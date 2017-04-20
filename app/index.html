@@ -27,7 +27,7 @@
         <div class="md-toolbar-tools">
             
             <md-button href="#/">
-            <img src="img/g4v.png" height="64" width="64">
+            <img src="img/g4v.png" height="64" width="64" border="3">
             </md-button>
             
             
@@ -46,37 +46,83 @@
             </md-autocomplete>
 
 
-            <md-button class="md-primary md-raised" layout-align="center center" aria-label="People" href="#alpha"> 
-                <md-icon class="material-icons">face</md-icon>
-                <br>
-                People
-            </md-button>
-            
-            
-            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Companies" href="#beta"> 
-                <md-icon class="material-icons">business</md-icon>
-                <br>
-                Companies
-            </md-button>
-            
-            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Research" href="#alpha"> 
-                <md-icon class="material-icons">subject</md-icon>
-                <br>
-                Research
-            </md-button>
             
 
-            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Help" href="#beta"> 
-                <md-icon class="material-icons">help_outline</md-icon>
-                <br>
-                Help
-            </md-button>
             
+<md-tabs md-stretch-tabs md-selected="selectedIndex">
+    <md-tab label="home">
+         
+        <md-tab-label>
+            
+        <md-icon class="material-icons">home
+            <md-tooltip>Home</md-tooltip>
+            </md-icon>
+        </md-tab-label>
+<!--
+        <md-tab-body>
+            People
+        </md-tab-body>
+-->
+    </md-tab>
+    <md-tab label="people">
+        <md-tab-label>
+            
+        <md-icon class="material-icons">face
+            <md-tooltip>People</md-tooltip></md-icon>
+        </md-tab-label>
+<!--
+        <md-tab-body>
+            People
+        </md-tab-body>
+-->
+    </md-tab>
+    <md-tab label="Business">
+    <md-tab-label>
+        
+        <md-icon class="material-icons">business
+        <md-tooltip>Business</md-tooltip></md-icon>
+        </md-tab-label>
+<!--
+        <md-tab-body>
+            Business
+        </md-tab-body>
+-->
+    </md-tab>
+    <md-tab label="Research">
+           <md-tab-label>
+               
+        <md-icon class="material-icons">subject
+               <md-tooltip>Research</md-tooltip></md-icon>
+        </md-tab-label>
+<!--
+        <md-tab-body>
+            Research
+        </md-tab-body>
+-->
+    </md-tab>
+    <md-tab label="Help">
+           <md-tab-label>
+               
+        <md-icon class="material-icons">help
+               <md-tooltip>Help</md-tooltip></md-icon>
+        </md-tab-label>
+<!--
+        <md-tab-body>
+            Help
+        </md-tab-body>
+-->
+    </md-tab>
+</md-tabs>
+
             
         </div>
     </md-toolbar>
+        
+  
     </md-content>
 
+    
+    
     <ng-view>
         <h1>hello</h1></ng-view>
 

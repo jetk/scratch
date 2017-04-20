@@ -11,19 +11,31 @@ app.config(function ($mdThemingProvider) {
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "prime.htm"
+            templateUrl: "views/prime.htm"
         })
         .when("/alpha", {
-            templateUrl: "alpha.htm",
+            templateUrl: "views/alpha.htm",
             controller: "alphaCtrl"
         })
-        .when("/beta", {
-            templateUrl: "beta.htm",
-            controller: "betaCtrl"
-        });
+        .when("/people", {
+            templateUrl: "views/people.htm",
+            controller: "peopleCtrl"
+        })
+        .when("/busi", {
+                templateUrl: "views/busi.htm",
+                controller: "busiCtrl"
+            })
+        .when("/research", {
+                templateUrl: "views/research.htm",
+                controller: "researchCtrl"
+            })
+        .when("/help", {
+                templateUrl: "views/help.htm",
+                controller: "helpCtrl"
+            });
 });
 
-app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
+app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function ($scope, $mdDialog, $http, $location) {
 
 
     this.querySearch = function (query) {
@@ -37,30 +49,19 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $md
             })
     }
 
-    $scope.foo = "hello"
-    $scope.bar = function () {
+            $scope.selectedIndex = null;
 
+        $scope.$watch('selectedIndex', function(current, old) {
+            switch (current) {
+                case 0: $location.url("/alpha");break;
+                case 1: $location.url("/people");break;
+                case 2: $location.url("/busi");break;
+                case 3: $location.url("/research");break;
+                case 4: $location.url("/help");break;
+            }
+        });
+        
 
-
-
-        $mdDialog.show(
-            $mdDialog.alert()
-            .title('Success!')
-            .content('Hello World')
-            .ok('Ok')
-        );
-
-
-        if ($scope.foo == "hello") {
-
-            $scope.foo = "world"
-        } else {
-
-            $scope.foo = "hello"
-        }
-
-
-    }
 }])
 
 
@@ -73,7 +74,28 @@ app.controller('alphaCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog)
 
 
 
-app.controller('betaCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+app.controller('peopleCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 
 
-}]);
+}])
+
+
+app.controller('busiCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+app.controller('researchCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+app.controller('helpCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+;
