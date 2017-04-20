@@ -1,0 +1,95 @@
+<html lang="en" ng-app="StarterApp">
+
+<head>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="initial-scale=1" />
+</head>
+
+<body ng-controller="AppCtrl as ctrl">
+
+      <md-sidenav #nav>
+    <md-nav-list>
+      <md-list-item>
+        <a href="#"></a>
+      </md-list-item>
+      <md-list-item>
+        <a href="#"></a>
+      </md-list-item>
+    </md-nav-list>
+  </md-sidenav>
+    
+    <md-content>
+
+
+    <md-toolbar class="md-hue-2 md-medium-tall" layout="row" layout-align="center center">
+        <div class="md-toolbar-tools">
+            
+            <md-button href="#/">
+            <img src="img/g4v.png" height="64" width="64">
+            </md-button>
+            
+            
+            <md-autocomplete flex md-selected-item="ctrl.selectedItem"
+                             md-search-text="ctrl.searchText"
+                             md-items="item in ctrl.querySearch(ctrl.searchText)"
+                             md-item-text="item.login" md-delay="300"
+                             md-floating-label="Search for anything"
+                             md-search-text-change="null">
+                <div layout="row" class="item" layout-align="start center">
+
+                    <span md-highlight-text="ctrl.searchText">{{item.login}}</span>
+                </div>
+
+
+            </md-autocomplete>
+
+
+            <md-button class="md-primary md-raised" layout-align="center center" aria-label="People" href="#alpha"> 
+                <md-icon class="material-icons">face</md-icon>
+                <br>
+                People
+            </md-button>
+            
+            
+            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Companies" href="#beta"> 
+                <md-icon class="material-icons">business</md-icon>
+                <br>
+                Companies
+            </md-button>
+            
+            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Research" href="#alpha"> 
+                <md-icon class="material-icons">subject</md-icon>
+                <br>
+                Research
+            </md-button>
+            
+
+            <md-button class="md-primary md-raised" layout-align="center center" aria-label="Help" href="#beta"> 
+                <md-icon class="material-icons">help_outline</md-icon>
+                <br>
+                Help
+            </md-button>
+            
+            
+        </div>
+    </md-toolbar>
+    </md-content>
+
+    <ng-view>
+        <h1>hello</h1></ng-view>
+
+
+
+
+    <!-- Angular Material Dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
