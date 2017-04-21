@@ -65,7 +65,7 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
 }])
 
 
-app.controller('alphaCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav) {
+app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', function ($scope, $mdSidenav, $http) {
 
     
     $scope.openLeftMenu = function() {
@@ -75,7 +75,36 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidena
        $mdSidenav('right').toggle();
      };
 
-
+    
+    $scope.articles = null
+    $http.get('articles.json').success(function (data) {
+            $scope.articles = data
+        })
+    
+    
+    $scope.all_filters=
+    [
+     {title:"Sectors",filters:[
+                {title:"Adtech",ticked:false},
+                {title:"Badtech",ticked:false},
+                {title:"CADtech",ticked:false},
+                {title:"Edtech",ticked:false},
+                {title:"Fadtech",ticked:false}]},
+    {title:"Geographies",filters:[
+                {title:"Germany",ticked:false},
+                {title:"France",ticked:false},
+                {title:"Austria",ticked:false},
+                {title:"Switzerland",ticked:false},
+                {title:"Sweden",ticked:false},
+                {title:"Spain",ticked:false}]},
+     {title:"Series",filters:[
+                {title:"Seed",ticked:false},
+                {title:"A",ticked:false},
+                {title:"B",ticked:false},
+                {title:"C",ticked:false},
+                {title:"Late",ticked:false}]}
+    ]
+    
 }])
 
 

@@ -1,23 +1,71 @@
-
-
-
-
-     <md-content>           
-            <md-button ng-click="openLeftMenu()">Open Left Menu</md-button>
-			<md-button ng-click="openRightMenu()">Open Right Menu</md-button>
-         </md-content>    
-
 <md-content class="md-padding md-hue-1" layout-xs="column" layout="row">
     
     
-    <div id="sideNavContaine"  layout="row" ng-cloak>
-         <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('min-width: 1000px')">Welcome to TutorialsPoint.Com</md-sidenav>
-      </div>
+    <div layout="row" ng-cloak>
+        
+        
+        
+<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
     
-    <div flex-xs flex-gt-xs="500" layout="column">
+    
+    <div layout="row">
+        <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+            <i class="material-icons">filter_list</i>
+        </md-button>
+        <span class="md-title">  Filter Feed</span>
+    </div>
+    <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter friends" />
+  <md-switch md-invert aria-label="Discover" layout-align="center top">
+    Discover new content
+  </md-switch>
+    
+    <md-card ng-repeat="filter_set in all_filters">
+        <md-card-header>
+            <span class="md-header">{{filter_set.title}}</span>
+        </md-card-header>
+        <md-list>
+            <md-list-item  ng-repeat="filter in filter_set.filters">
+                <md-checkbox ng-model="filter.ticked"></md-checkbox>
+                <div class="md-list-item-text">
+                    <h3>{{filter.title}}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card>
 
 
-        <md-card md-theme="dark-red md-theme-watch">
+</md-sidenav>
+    </div>
+    
+    <div flex-xs layout="column">
+        
+        
+        
+        <md-card ng-repeat="article in articles">
+        <md-card-header layout="row">
+            <md-card-avatar>
+                <img class="md-user-avatar" src={{article.avatar}}>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">
+                {{article.company}}
+                </span>
+                <span class="md-subhead">Research Update</span>
+                <md-card-header-text> 
+        </md-card-header>
+        <md-card-content>{{article.blurb}}</md-card-content>
+         <md-card-footer>
+             <div layout="row" layout-wrap>
+                 <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
+                 <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
+                 <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
+                 <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
+             </div>
+        </md-card-footer>
+        </md-card>
+
+
+        <md-card>
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Kluglesoft Inc</span>
@@ -35,7 +83,7 @@
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
           </md-card-content>
       </md-card>
-        <md-card md-theme="dark-red md-theme-watch">
+        <md-card>
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Kluglesoft Inc</span>
@@ -52,7 +100,8 @@
           <md-card-content>
           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
           </md-card-content>
-      </md-card><md-card md-theme="dark-red md-theme-watch">
+      </md-card>
+        <md-card>
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Kluglesoft Inc</span>
@@ -72,8 +121,12 @@
       </md-card>
     </div>
     
-        <div id="sideNavContainer"  layout="row" ng-cloak>
-         <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('min-width: 1000px')">Welcome to TutorialsPoint.Com</md-sidenav>
+        <div layout="row" ng-cloak>
+         <md-sidenav md-component-id="right" class="md-sidenav-right" md-is-locked-open="$mdMedia('min-width: 1000px')">
+            <md-button class="md-fab md-mini" ng-click="openRightMenu()">
+             <i class="material-icons">more_vert</i>
+            </md-button>
+        </md-sidenav>
       </div>
     
   </md-content>
