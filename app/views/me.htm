@@ -1,0 +1,50 @@
+  <md-content class="md-padding md-hue-1" layout-padding>
+    <md-card>
+  <md-card-header layout="row" layout-wrap>
+    <md-card-avatar flex="10">
+      <img class="md-user-avatar" src="img/Cloud_Engineering.png">
+    </md-card-avatar>
+      <md-card-header-text flex layout="column">
+      <span class="md-title">Jan Klug</span>
+      <span class="md-subhead">Product Manager @ Go4Venture</span>
+      <span class="md-subhead">I tek the finance and finance the tek</span>
+    </md-card-header-text>
+      
+    <md-card-actions layout="column" layout-align="start center" flex="10">
+    <md-button class="md-hue md-raised">Edit</md-button>
+    <md-button class="md-hue md-raised">Verfiy</md-button>
+
+  </md-card-actions>
+
+  </md-card-header>
+</md-card>
+
+      
+<md-card theme="purple">
+    
+  <md-card-header layout="row">
+      <md-card-header-text flex layout="column">
+      <span class="md-title">My Picks</span>
+      
+    </md-card-header-text>
+      
+ <md-card-actions layout="row">
+    <md-button class="md-hue md-raised" ng-click="hardy()">Bulk Delete</md-button>
+
+
+  </md-card-actions>
+
+  </md-card-header>
+    
+  <md-list>
+  <md-list-item class="md-2-line" ng-repeat="company in targets">
+    <md-checkbox ng-model="company.ticked"></md-checkbox>
+    <div class="md-list-item-text">
+      <h3>{{company.title}}</h3>
+      <p>{{company.description}}</p>
+    </div>
+  </md-list-item>
+</md-list>
+</md-card>
+    
+  </md-content>
