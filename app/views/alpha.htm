@@ -14,7 +14,7 @@
         </md-button>
         <span class="md-title">  Filter Feed</span>
     </div>
-    <input type="search" ng-model="q" placeholder="filter friends..." aria-label="filter friends" />
+    <input type="search" ng-model="q" placeholder="filter for articles..." aria-label="filter articles" />
   <md-switch md-invert aria-label="Discover" layout-align="center top">
     Discover new content
   </md-switch>
@@ -41,7 +41,7 @@
         
         
         
-        <md-card ng-repeat="article in articles">
+        <md-card ng-repeat="article in articles | filter:q">
         <md-card-header layout="row">
             <md-card-avatar>
                 <img class="md-user-avatar" src={{article.avatar}}>
@@ -65,60 +65,7 @@
         </md-card>
 
 
-        <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Kluglesoft Inc</span>
-            <span class="md-subhead">Research Update</span>
-          </md-card-title-text>
-          <md-card-title-media>
-            <div class="md-media-lg card-media"></div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-raised">Follow</md-button>
-          <md-button>Contact</md-button>
-        </md-card-actions>
-          <md-card-content>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
-          </md-card-content>
-      </md-card>
-        <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Kluglesoft Inc</span>
-            <span class="md-subhead">Research Update</span>
-          </md-card-title-text> 
-          <md-card-title-media>
-            <div class="md-media-lg card-media"></div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Follow</md-button>
-          <md-button>Contact</md-button>
-        </md-card-actions>
-          <md-card-content>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
-          </md-card-content>
-      </md-card>
-        <md-card>
-        <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">Kluglesoft Inc</span>
-            <span class="md-subhead">Research Update</span>
-          </md-card-title-text> 
-          <md-card-title-media>
-            <div class="md-media-lg card-media"></div>
-          </md-card-title-media>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Follow</md-button>
-          <md-button>Contact</md-button>
-        </md-card-actions>
-          <md-card-content>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
-          </md-card-content>
-      </md-card>
+
     </div>
     
         <div layout="row" ng-cloak>
