@@ -25,7 +25,7 @@
         </md-card-header>
         <md-list>
             <md-list-item  ng-repeat="filter in filter_set.filters">
-                <md-checkbox ng-model="filter.ticked"></md-checkbox>
+                <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}"></md-checkbox>
                 <div class="md-list-item-text">
                     <h3>{{filter.title}}</h3>
                 </div>
@@ -43,7 +43,7 @@
         
         <md-card ng-repeat="article in articles | filter:q">
         <md-card-header layout="row">
-            <md-card-avatar>
+            <md-card-avatar style="max-width: 100px; max-height: 100px">
                 <img class="md-user-avatar" src={{article.avatar}}>
             </md-card-avatar>
             <md-card-header-text>

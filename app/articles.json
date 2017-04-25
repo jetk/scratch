@@ -2,7 +2,7 @@
     {
         "company":"Acme",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/a.png",
         "sector":"Fadtech",
         "geography":"Sweden",
         "stage":"A",
@@ -12,7 +12,7 @@
     {
         "company":"Bacne",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/b.png",
         "sector":"Edtech",
         "geography":"Austria",
         "stage":"A",
@@ -22,7 +22,7 @@
     {
         "company":"Crakme",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/c.png",
         "sector":"Dadtech",
         "geography":"Sweden",
         "stage":"Seed",
@@ -32,7 +32,7 @@
     {
         "company":"Daquri",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/d.png",
         "sector":"CADtech",
         "geography":"Germany",
         "stage":"Seed",
@@ -42,7 +42,7 @@
     {
         "company":"Eacne",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/e.png",
         "sector":"Badtech",
         "geography":"France",
         "stage":"C",
@@ -52,7 +52,7 @@
     {
         "company":"Fakme",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/f.png",
         "sector":"Adtech",
         "geography":"Switzerland",
         "stage":"B",
@@ -62,7 +62,7 @@
     {
         "company":"Gaki",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/g.png",
         "sector":"Fadtech",
         "geography":"Spain",
         "stage":"C",
@@ -72,7 +72,7 @@
     {
         "company":"Hakthee",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
-        "avatar":"img/x.png",
+        "avatar":"img/h.png",
         "sector":"CADtech",
         "geography":"Spain",
         "stage":"Late",
