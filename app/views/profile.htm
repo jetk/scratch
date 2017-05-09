@@ -1,0 +1,68 @@
+<md-content class="md-padding md-hue-1" layout-xs="column">
+
+
+<md-card class="md-padding">
+        <md-card-header layout="row">
+            <md-card-avatar>
+               <img class="md-user-avatar" src="img/x.png" >
+            </md-card-avatar>
+            <md-card-header-text flex="80" layout="column">
+                <span class="md-title">{{pro.name}}</span>
+                <span class="md-subhead">{{pro.motto}}</span>
+                <span class="md-subhead" layout = "row"><i class="material-icons">bubble_chart</i> {{pro.sector}}</span>
+                <span class="md-subhead" layout = "row"><i class="material-icons">location_on</i> {{pro.geography}}</span>
+                <span class="md-subhead" layout = "row"><i class="material-icons">show_chart</i> {{pro.stage}}</span>
+            </md-card-header-text>
+         </md-card-header>
+    <md-card-content>
+    {{pro.blurb}}
+    </md-card-content>
+    <md-card-header>
+        <md-card-header-text><span class="md-title">Competitive Landscape </span></md-card-header-text>
+        <div layout = "row" layout-wrap> 
+        <md-button ng-repeat="logo in pro.competitors" flex="10" aria-label="comp_{{logo}}">
+        <img src="img/{{logo}}">
+        </md-button>
+        </div>     
+    </md-card-header>
+</md-card>
+
+<md-card class="md-padding">
+    <md-card-header>
+        <md-card-header-text>
+            <span class="md-title">Investment Management</span>
+        </md-card-header-text>
+    </md-card-header>
+    <input type="text">
+    
+</md-card>
+    
+<md-card>
+<md-list>
+  <md-list-item class="md-2-line">
+    <div class="md-list-item-text" layout="row" layout-align="start center">
+      <span flex="20">Name</span>
+      <span flex="5"></span>
+      <span flex="20">Country</span>
+        <span flex="5"></span>
+      <span flex="20">Most Rec. Round</span>
+        <span flex="5"></span>
+      <span flex="20">Last Round Size</span>
+    </div>
+  </md-list-item>
+  <md-list-item class="md-2-line" ng-repeat="investor in pro.Investors">
+    <div class="md-list-item-text" layout="row" layout-align="start center">
+        <span flex="20">{{investor.name}}</span>
+      <span flex="5"></span>
+      <span flex="20">{{investor.country}}</span>
+        <span flex="5"></span>
+      <span flex="20">{{investor.last_round}}</span>
+        <span flex="5"></span>
+      <span flex="20">{{investor.last_round_size}}</span>
+    </div>
+  </md-list-item>
+</md-list>
+
+</md-card>
+    
+</md-content>

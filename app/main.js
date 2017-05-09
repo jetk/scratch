@@ -32,6 +32,14 @@ app.config(function ($routeProvider) {
         .when("/help", {
                 templateUrl: "views/help.htm",
                 controller: "helpCtrl"
+            })
+        .when("/inv", {
+                templateUrl: "views/inv.htm",
+                controller: "invCtrl"
+            })
+        .when("/profile", {
+                templateUrl: "views/profile.htm",
+                controller: "profileCtrl"
             });
 });
 
@@ -56,8 +64,9 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
                 case 0: $location.url("/alpha");break;
                 case 1: $location.url("/busi");break;
                 case 2: $location.url("/research");break;
-                case 3: $location.url("/me");break;
-                case 4: $location.url("/help");break;
+                case 3: $location.url("/inv");break;
+                case 4: $location.url("/me");break;
+                case 5: $location.url("/help");break;
             }
         });
         
@@ -65,8 +74,12 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
 }])
 
 
-app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', function ($scope, $mdSidenav, $http) {
+app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
 
+    
+    $scope.foo = function() {
+        $location.path('/profile').search({company: 'marduk'})
+    }
     
     $scope.openLeftMenu = function() {
                $mdSidenav('left').toggle();
@@ -81,7 +94,7 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', function ($scope, 
             $scope.articles = data
         })
     
-    
+
     $scope.all_filters=
     [
      {title:"Sectors",filters:[
@@ -107,6 +120,68 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', function ($scope, 
     
 }])
 
+
+
+
+app.controller('invCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+    $scope.hardy = function(list){        
+        for (var i=0; i<list.length; i++){
+            if (list[i].ticked == true){
+                list.splice(i,1)
+            }
+        }
+        if (list.length==1 && list[0].ticked){
+            list.splice(0,1)
+        }
+        
+        for (var i=0; i<list.length; i++){
+            list.ticked = false
+        }
+    }
+    
+    $scope.delete_list = function(list){
+        for (var i=0; i<$scope.company_lists.length; i++){
+            if ($scope.company_lists[i].list_name==list.list_name){
+                $scope.company_lists.splice(i,1)
+            }
+        }
+    }
+    
+    
+    
+     $scope.showPrompt = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.prompt()
+      .title('What would you name your dog?')
+      .textContent('Bowser is a common name.')
+      .placeholder('Dog name')
+      .ariaLabel('Dog name')
+      .initialValue('Buddy')
+      .targetEvent(ev)
+      .ok('Okay!')
+      .cancel('I\'m a cat person');
+
+    $mdDialog.show(confirm).then(function(result) {
+      $scope.status = 'You decided to name your dog ' + result + '.';
+    }, function() {
+      $scope.status = 'You didn\'t name your dog.';
+    });
+  };
+    
+    $scope.company_lists = [{list_name:"Interesting Companies",companies:[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},
+{title:"Spartoo",description:"Operator of an online shopping outlet.",ticked:false},
+{title:"Phone and Phone",description:"On-line vendor of mobile phones.",ticked:false}]},
+                            {list_name:"Met or Spoken to",companies:[{title:"Terra Nova",description:"Electronic Waste Recycler.",ticked:false},
+{title:"Oxford Nanopore Technologies",description:"Developer of molecular detection technology with applications in DNA sequencing.",ticked:false},
+{title:"Metallkraft",description:"Recycler of silicon wafers from the semiconductor industry.",ticked:false}]},
+                            {list_name:"Received Pitch",companies:[{title:"1855",description:"Euronext Listed e-tailer of wine.",ticked:false},
+{title:"OpSec Security",description:"AIM-listed provider of authentication technologies",ticked:false},
+{title:"Effpower",description:"Developer of bi-polar batteries for the automotive industry.",ticked:false}]}]
+    
+
+    
+}])
 
 
 
@@ -147,25 +222,42 @@ app.controller('meCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 {title:"OpSec Security",description:"AIM-listed provider of authentication technologies",ticked:false},
 {title:"Effpower",description:"Developer of bi-polar batteries for the automotive industry.",ticked:false}]}]
     
-/*    
-$scope.targets =[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},
-{title:"Spartoo",description:"Operator of an online shopping outlet.",ticked:false},
-{title:"Phone and Phone",description:"On-line vendor of mobile phones.",ticked:false},
-{title:"Terra Nova",description:"Electronic Waste Recycler.",ticked:false},
-{title:"Oxford Nanopore Technologies",description:"Developer of molecular detection technology with applications in DNA sequencing.",ticked:false},
-{title:"Metallkraft",description:"Recycler of silicon wafers from the semiconductor industry.",ticked:false},
-{title:"1855",description:"Euronext Listed e-tailer of wine.",ticked:false},
-{title:"OpSec Security",description:"AIM-listed provider of authentication technologies",ticked:false},
-{title:"Effpower",description:"Developer of bi-polar batteries for the automotive industry.",ticked:false}]
-*/
-    
+
     
 }])
 
 
-app.controller('busiCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+app.controller('busiCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
 
-
+    $scope.countries = null
+    
+     $http.get('countries.json').success(function (data) {
+            
+        $scope.countries=data
+        }).error(function (data){
+        console.log(data.message)
+    })
+    
+    
+     
+    $scope.f=[{"GBR":false},{"FRA":false},{"DNK":false}]
+     
+    $scope.companies = null
+    
+    
+    
+    
+        $scope.openLeftMenu = function() {
+               $mdSidenav('left').toggle();
+             };
+    
+    $http.get('companies.json').success(function (data) {
+            
+        $scope.companies=data
+        }).error(function (data){
+        console.log(data.message)
+    })
+    
 
 }])
 
@@ -189,6 +281,19 @@ app.controller('researchCtrl', ['$scope', '$mdDialog', function ($scope, $mdDial
 app.controller('helpCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 
 
+
+}])
+
+
+app.controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
+
+    $scope.pro = {}    
+    
+    var company = $location.search().company+".json"
+    
+        $http.get(company).success(function (data) {
+            $scope.pro = data
+        })
 
 }])
 

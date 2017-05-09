@@ -1,0 +1,55 @@
+{
+  "name":"Marduk",
+  "motto":"Mototo Ergo Sum",
+  "geography":"Sweden",
+  "sector":"Deeptech",
+  "stage":"Seed",
+  "blurb":"Lw'nafh ph'ee chtenff gnaiih epnyth cah uh'e ee f'ehye f'y'hah n'gha fm'latgh, ngAzathoth nglui 'ai li'hee sll'haog llll f'Nyarlathotep nog kadishtu naflshogg, kadishtu ngthrod f'mg hlirgh lloig f'ilyaa Tsathoggua ebunma ron 'bthnk. Llll ee nafln'ghft mnahn' Chaugnar Faugn sgn'wahl nnn'fhalma nnnron, Tsathoggua fhtagn ph'r'luh ooboshu bug geb, fm'latgh Azathoth sgn'wahl goka bug ya.",
+  "competitors":["a.png","c.png","d.png","e.png"],
+  "notes":[],
+  "Investors":
+    [
+      {
+        "name":"Kluglesoft Ventures",
+        "country":"Wakanda",
+        "last_round":"Seed",
+        "last_round_size":"$1.0m"
+      },
+      {
+        "name":"Rockstar Capital",
+        "country":"Latveria",
+        "last_round":"Seed",
+        "last_round_size":"$1.0m"
+      }
+    ],
+  "NR":
+    [
+      {
+        "author":"Go4Venture",
+        "type":"Transaction Update",
+        "title":"Marduk raises seed capital to launch panzer division",
+        "blurb":"Phasellus porttitor nibh ac tortor scelerisque hendrerit. Cras posuere sodales massa. In nec ex venenatis, cursus magna a, efficitur mi. Donec odio quam, blandit ut mi ut, rhoncus efficitur quam. Fusce egestas lectus in volutpat varius. Praesent urna enim, rhoncus tempor faucibus quis, lacinia vehicula arcu."
+      },
+      {
+        "author":"Go4Venture",
+        "type":"Sector Analysis",
+        "title":"Deeptech so deep its underground",
+        "blurb":"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn. Gothayar Nyarlathotep hupadgh, gokaog ebunma 'fhalma y'hah vulgtlagln bug hlirgh llll, h'ah vulgtm nguh'e ngilyaa shogg athg nogagl. Geb orr'e nw Dagon ch' Yoggoth, ee hrii nnnbug gof'nn k'yarnak naflah, llll throd llll ph'ebunma."
+      }
+    ],
+    "Team":
+      [
+        {
+         "name":"Morgan Steinmeyer Hakansson",
+         "title":"CEO"
+        },
+        {
+         "name":"Magnus Andersson",
+         "title":"COO"
+        },
+        {
+         "name":"Fredrik Widigs",
+         "title":"CDO"
+        }
+      ]
+}

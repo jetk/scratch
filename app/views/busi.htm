@@ -1,3 +1,64 @@
- <md-sidenav md-component-id="left" class="md-sidenav-left">
-    Left Nav!
-  </md-sidenav>
+<md-content class="md-padding md-hue-1" layout-xs="column" layout="row">
+    
+    
+    <div layout="row" ng-cloak>
+        
+        
+        
+<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+    
+    
+    <div layout="row">
+        <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+            <i class="material-icons">filter_list</i>
+        </md-button>
+        <span class="md-title">  Filter Feed</span>
+    </div>
+    <input type="search" ng-model="q" placeholder="filter for articles..." aria-label="filter articles" />
+
+    
+    <md-list>
+                <md-checkbox ng-model="DEU" aria-label="DEU" ng-true-value="'DEU'" ng-false-value="''">DEU</md-checkbox>
+                <md-checkbox ng-model="ESP" aria-label="ESP" ng-true-value="'ESP'" ng-false-value="''">ESP</md-checkbox>
+                <md-checkbox ng-model="FRA" aria-label="FRA" ng-true-value="'FRA'" ng-false-value="''">FRA</md-checkbox>
+                <md-checkbox ng-model="GBR" aria-label="GBR" ng-true-value="'GBR'" ng-false-value="''">GBR</md-checkbox>
+                <md-checkbox ng-model="ITA" aria-label="ITA" ng-true-value="'ITA'" ng-false-value="''">ITA</md-checkbox>
+    </md-list>
+
+
+
+</md-sidenav>
+    </div>
+    
+    <div flex-xs layout="column">
+
+<md-card class="md-padding" ng-repeat="company in companies |filter:q |filter:DEU |filter:ESP |filter:FRA |filter:GBR |filter:ITA     track by $index">
+<md-card-header  layout="row">
+    <md-card-avatar style="max-width: 48px; max-height: 48px">
+        <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
+    </md-card-avatar>
+    <md-card-header-text  class="md-padding">
+        <span class="md-title">
+        {{company.Company}}
+        </span>
+        <md-card-header-text> 
+</md-card-header>
+<md-card-content>{{company.Description|limitTo:140}}</md-card-content>
+ <md-card-footer>
+     <div layout="row" layout-wrap>
+         <md-card><i class="material-icons">bubble_chart</i> {{company.subsector}}</md-card>
+         <md-card><i class="material-icons">location_on</i> {{company.IsoCountry1}}</md-card>
+         <md-card><i class="material-icons">show_chart</i> A </md-card>
+     </div>
+</md-card-footer>
+</md-card>
+
+
+
+    </div>
+    
+
+    
+  </md-content>
+
+ 

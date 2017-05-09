@@ -18,7 +18,7 @@
   <md-switch md-invert aria-label="Discover" layout-align="center top">
     Discover new content
   </md-switch>
-    
+
     <md-card ng-repeat="filter_set in all_filters">
         <md-card-header>
             <span class="md-header">{{filter_set.title}}</span>
@@ -32,6 +32,7 @@
             </md-list-item>
         </md-list>
     </md-card>
+    
 
 
 </md-sidenav>
@@ -40,29 +41,30 @@
     <div flex-xs layout="column">
         
         
-        
-        <md-card ng-repeat="article in articles | filter:q">
-        <md-card-header layout="row">
-            <md-card-avatar style="max-width: 100px; max-height: 100px">
-                <img class="md-user-avatar" src={{article.avatar}}>
-            </md-card-avatar>
-            <md-card-header-text>
-                <span class="md-title">
-                {{article.company}}
-                </span>
-                <span class="md-subhead">Research Update</span>
-                <md-card-header-text> 
-        </md-card-header>
-        <md-card-content>{{article.blurb}}</md-card-content>
-         <md-card-footer>
-             <div layout="row" layout-wrap>
-                 <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
-                 <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
-                 <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
-                 <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
-             </div>
-        </md-card-footer>
-        </md-card>
+        <button class="md-raised md-hue" ng-click="foo()">CLICK ME</button>
+
+<md-card class="md-padding" ng-repeat="article in articles | filter:q">
+<md-card-header  layout="row">
+    <md-card-avatar style="max-width: 100px; max-height: 100px">
+        <img class="md-user-avatar" src={{article.avatar}}>
+    </md-card-avatar>
+    <md-card-header-text  class="md-padding">
+        <span class="md-title">
+        {{article.company}}
+        </span>
+        <span class="md-subhead">Research Update</span>
+        <md-card-header-text> 
+</md-card-header>
+<md-card-content>{{article.blurb}}</md-card-content>
+ <md-card-footer>
+     <div layout="row" layout-wrap>
+         <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
+         <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
+         <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
+         <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
+     </div>
+</md-card-footer>
+</md-card>
 
 
 
