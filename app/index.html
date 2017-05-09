@@ -1,7 +1,8 @@
 <html lang="en" ng-app="StarterApp">
 
 <head>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
+<!--    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <meta name="viewport" content="initial-scale=1" />
@@ -13,10 +14,10 @@
     <md-content>
 
 
-    <md-toolbar class="md-hue-2 md-medium-tall" layout="row" layout-align="center center">
+    <md-toolbar class="md-hue-2 md-medium-tall" layout="row" layout-align="center bottom">
         <div class="md-toolbar-tools">
             
-            <md-button href="#/" aria-label="home">
+            <md-button href="#/alpha" aria-label="home">
             <img src="img/g4v.png" height="64" width="64" border="3">
             </md-button>
             
@@ -34,87 +35,15 @@
 
             </md-autocomplete>
 
+      <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item ng-repeat="item in nav_items" md-nav-href="#{{item.url}}" name="{{item.label}}">
+        <md-icon class="material-icons">{{item.icon}}
+        <md-tooltip>{{item.label}}</md-tooltip>
+        </md-icon>  
+          
+        </md-nav-item>
+      </md-nav-bar>            
 
-            
-
-            
-<md-tabs md-stretch-tabs md-selected="selectedIndex">
-    <md-tab label="home">
-         
-        <md-tab-label>
-            
-        <md-icon class="material-icons">home
-            <md-tooltip>Home</md-tooltip>
-            </md-icon>
-        </md-tab-label>
-<!--
-        <md-tab-body>
-            People
-        </md-tab-body>
--->
-    </md-tab>
-    
-    <md-tab label="Business">
-    <md-tab-label>
-        
-        <md-icon class="material-icons">business
-        <md-tooltip>Business</md-tooltip></md-icon>
-        </md-tab-label>
-<!--
-        <md-tab-body>
-            Business
-        </md-tab-body>
--->
-    </md-tab>
-    <md-tab label="Research">
-           <md-tab-label>
-               
-        <md-icon class="material-icons">subject
-               <md-tooltip>Research</md-tooltip></md-icon>
-        </md-tab-label>
-<!--
-        <md-tab-body>
-            Research
-        </md-tab-body>
--->
-    </md-tab>
-    <md-tab label="investment management">
-    <md-tab-label>
-
-    <md-icon class="material-icons">work
-        <md-tooltip>Investment Management</md-tooltip></md-icon>
-    </md-tab-label>
-<!--
-    <md-tab-body>
-        People
-    </md-tab-body>
--->
-</md-tab>
-    <md-tab label="people">
-        <md-tab-label>
-            
-        <md-icon class="material-icons">face
-            <md-tooltip>People</md-tooltip></md-icon>
-        </md-tab-label>
-<!--
-        <md-tab-body>
-            People
-        </md-tab-body>
--->
-    </md-tab>
-    <md-tab label="Help">
-           <md-tab-label>
-               
-        <md-icon class="material-icons">help
-               <md-tooltip>Help</md-tooltip></md-icon>
-        </md-tab-label>
-<!--
-        <md-tab-body>
-            Help
-        </md-tab-body>
--->
-    </md-tab>
-</md-tabs>
 
             
         </div>
@@ -139,7 +68,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>-->
     <script src="main.js"></script>
 </body>
 

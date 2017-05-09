@@ -1,0 +1,21 @@
+<md-dialog flex>
+    <md-content layout="column">
+      <md-subheader>Add a company</md-subheader>
+      <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text-change="searchTextChange(searchText)"
+          md-search-text="searchText"
+          md-selected-item-change="selectedItemChange(item)"
+          md-items="item in items | filter:searchText"
+          md-item-text="item.Company"
+          md-min-length="0"
+          placeholder="What company do you want to add?">
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+      </md-autocomplete>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="hideDialog()">
+            Done
+        </md-button>
+    </div>
+</md-dialog>

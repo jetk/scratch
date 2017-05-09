@@ -71,6 +71,16 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
         });
         
 
+    
+    $scope.nav_items =    
+    [
+        {label:"Businesses", icon:"business", url:"/busi"},
+        {label:"Research", icon:"subject", url:"/research"},
+        {label:"Investment Management", icon:"work", url:"/inv"},
+        {label:"My Profile", icon:"face", url:"/me"},
+        {label:"Help", icon:"help", url:"/help"}    
+    ]
+
 }])
 
 
@@ -122,8 +132,7 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', funct
 
 
 
-
-app.controller('invCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+app.controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
 
     $scope.hardy = function(list){        
         for (var i=0; i<list.length; i++){
@@ -149,24 +158,48 @@ app.controller('invCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
     }
     
     
+    var companies = null
     
-     $scope.showPrompt = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog.prompt()
-      .title('What would you name your dog?')
-      .textContent('Bowser is a common name.')
-      .placeholder('Dog name')
-      .ariaLabel('Dog name')
-      .initialValue('Buddy')
-      .targetEvent(ev)
-      .ok('Okay!')
-      .cancel('I\'m a cat person');
-
-    $mdDialog.show(confirm).then(function(result) {
-      $scope.status = 'You decided to name your dog ' + result + '.';
-    }, function() {
-      $scope.status = 'You didn\'t name your dog.';
+    $http.get('companies.json').success(function (data) {
+            
+        companies=data
+        }).error(function (data){
+        console.log(data.message)
+    })
+    
+    
+    
+    $scope.showDialog = function ($event) {
+    $mdDialog.show({
+        targetEvent: $event,
+        controller: function($scope) {
+          $scope.searchText = 'a';
+          $scope.items = companies;
+        },
+        templateUrl: 'views/dialog.html',
+        scope: $scope.$new()
     });
+  };
+  
+    
+    var aleph ={title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false}
+    
+    $scope.selectedItemChange = function(item){
+        console.log("selected item is" + item.Company)
+        aleph.title = item.Company
+        aleph.description = item.Description
+        console.log(JSON.stringify($scope.company_lists[0].companies))
+    }
+    
+
+  $scope.hideDialog = function (item) {
+    
+      var new_co = {}
+      new_co.title = aleph.title
+      new_co.description = aleph.description
+      new_co.ticked = false
+      $scope.company_lists[0].companies.push(new_co)
+      $mdDialog.hide();
   };
     
     $scope.company_lists = [{list_name:"Interesting Companies",companies:[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},

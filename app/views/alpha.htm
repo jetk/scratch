@@ -1,4 +1,4 @@
-<md-content class="md-padding md-hue-1" layout-xs="column" layout="row">
+<md-content class="md-padding md-warn" layout-xs="column" layout="row">
     
     
     <div layout="row" ng-cloak>
@@ -43,10 +43,10 @@
         
         <button class="md-raised md-hue" ng-click="foo()">CLICK ME</button>
 
-<md-card class="md-padding" ng-repeat="article in articles | filter:q">
+<md-card ng-repeat="article in articles | filter:q">
 <md-card-header  layout="row">
     <md-card-avatar style="max-width: 100px; max-height: 100px">
-        <img class="md-user-avatar" src={{article.avatar}}>
+        <img src={{article.avatar}}>
     </md-card-avatar>
     <md-card-header-text  class="md-padding">
         <span class="md-title">

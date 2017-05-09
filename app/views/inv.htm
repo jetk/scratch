@@ -3,9 +3,7 @@
 <div layout="row">
     <input type="text" flex>
     <md-button class="md-hue md-raised">Add a new List</md-button>
-    <md-button class="md-primary md-raised" ng-click="showPrompt($event)"  >
-      Prompt Dialog
-    </md-button>
+
 </div>
 
 
@@ -17,13 +15,14 @@
       <span class="md-title">{{list.list_name}}</span>
     </md-card-header-text>
  <md-card-actions layout="row">
-    <md-button class="md-primary md-raised">Add Companies</md-button>
+<!--    <md-button class="md-primary md-raised" ng-click="showPrompt($event)"> Add Company </md-button>-->
+     <md-button class="md-primary md-raised" ng-click="showDialog($event)">Add Company</md-button>
     <md-button class="md-accent md-raised" ng-click="hardy(list.companies)">Delete Selected</md-button>
     <md-button class="md-warn md-raised" ng-click="delete_list(list)">Delete List</md-button>
   </md-card-actions>
   </md-card-header>
   <md-list>
-  <md-list-item class="md-2-line" ng-repeat="company in list.companies">
+  <md-list-item class="md-2-line" ng-repeat="company in list.companies track by $index">
     <md-checkbox ng-model="company.ticked"></md-checkbox>
     <div class="md-list-item-text">
       <h3>{{company.title}}</h3>
