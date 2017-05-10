@@ -1,0 +1,21 @@
+<md-dialog flex>
+    <md-content layout="column">
+      <md-subheader>Your notifications for {{company}}</md-subheader>
+      <md-card ng-repeat="a in range(number)" layout="row">
+          <md-card-header flex layout="column">
+            <span class="md-header" >Research Update</span>
+            <span class="md-subhead"> Some exciting stuff happened</span>
+        </md-card-header>
+    <md-card-actions layout="row">
+    <md-button class="md-warn md-raised">Ignore</md-button>
+    <md-button class="md-primary md-raised" >Read</md-button>
+    <md-button class="md-accent md-raised">Share</md-button>
+  </md-card-actions>
+              
+        <md-card>
+    </md-content>
+    <md-button class="md-primary" ng-click="hide_notifications()">
+            Done
+    </md-button>
+
+</md-dialog>

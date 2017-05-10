@@ -87,6 +87,35 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
 app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
 
     
+    $scope.accordianData = [
+		{
+			heading : "SECTORS",
+			filters : [
+                {title:"Adtech",ticked:false},
+                {title:"Badtech",ticked:false},
+                {title:"CADtech",ticked:false},
+                {title:"Edtech",ticked:false},
+                {title:"Fadtech",ticked:false}]
+		},
+        {
+            heading:"GEOGRAPHY",filters:[
+                {title:"Germany",ticked:false},
+                {title:"France",ticked:false},
+                {title:"Austria",ticked:false},
+                {title:"Switzerland",ticked:false},
+                {title:"Sweden",ticked:false},
+                {title:"Spain",ticked:false}]},
+        {
+            heading:"SERIES",filters:[
+                {title:"Seed",ticked:false},
+                {title:"A",ticked:false},
+                {title:"B",ticked:false},
+                {title:"C",ticked:false},
+                {title:"Late",ticked:false}]}
+	   ];
+
+    
+    
     $scope.foo = function() {
         $location.path('/profile').search({company: 'marduk'})
     }
@@ -131,7 +160,6 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', funct
 }])
 
 
-
 app.controller('invCtrl', ['$scope', '$mdDialog', '$http' , function ($scope, $mdDialog, $http) {
 
     $scope.hardy = function(list){        
@@ -158,6 +186,7 @@ app.controller('invCtrl', ['$scope', '$mdDialog', '$http' , function ($scope, $m
     }
     
     
+    
     var companies = null
     
     $http.get('companies.json').success(function (data) {
@@ -171,21 +200,22 @@ app.controller('invCtrl', ['$scope', '$mdDialog', '$http' , function ($scope, $m
     var affected_list =0 
     
     $scope.showDialog = function ($event, index) {
-    affected_list = index
-    console.log("affected list should be: "+affected_list)
-    $mdDialog.show({
-        targetEvent: $event,
-        controller: function($scope) {
-//          $scope.searchText = 'Enter a company';
-          $scope.items = companies;
-        },
-        templateUrl: 'views/dialog.html',
-        scope: $scope.$new()
-    });
-  };
+        affected_list = index
+        console.log("affected list should be: " + affected_list)
+
+        $mdDialog.show({
+            targetEvent: $event,
+            controller: function ($scope) {
+                //          $scope.searchText = 'Enter a company';
+                $scope.items = companies;
+            },
+            templateUrl: 'views/dialog.html',
+            scope: $scope.$new()
+        });
+    };
   
     
-    var aleph ={title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false}
+    var aleph ={title:"Example co",description:"Lorem ipsum dolor shit amit.",ticked:false}
     
     
     
@@ -205,19 +235,151 @@ app.controller('invCtrl', ['$scope', '$mdDialog', '$http' , function ($scope, $m
       new_co.title = aleph.title
       new_co.description = aleph.description
       new_co.ticked = false
+      new_co.noti=0
+      new_co.lin=0
       $scope.company_lists[affected_list].companies.push(new_co)
       $mdDialog.hide();
     };
     
-    $scope.company_lists = [{list_name:"Interesting Companies",companies:[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},
-{title:"Spartoo",description:"Operator of an online shopping outlet.",ticked:false},
-{title:"Phone and Phone",description:"On-line vendor of mobile phones.",ticked:false}]},
-                            {list_name:"Met or Spoken to",companies:[{title:"Terra Nova",description:"Electronic Waste Recycler.",ticked:false},
-{title:"Oxford Nanopore Technologies",description:"Developer of molecular detection technology with applications in DNA sequencing.",ticked:false},
-{title:"Metallkraft",description:"Recycler of silicon wafers from the semiconductor industry.",ticked:false}]},
-                            {list_name:"Received Pitch",companies:[{title:"1855",description:"Euronext Listed e-tailer of wine.",ticked:false},
-{title:"OpSec Security",description:"AIM-listed provider of authentication technologies",ticked:false},
-{title:"Effpower",description:"Developer of bi-polar batteries for the automotive industry.",ticked:false}]}]
+    $scope.notifications_dialog = function ($event, number, company) {
+
+            $mdDialog.show({
+                targetEvent: $event,
+                locals: {
+                    number: number,
+                    company: company
+                },
+                controller: function ($scope, number, company) {
+                    $scope.number = number;
+                    $scope.company = company;
+                    $scope.range = function (count) {
+                        var notifs = [];
+
+                        for (var i = 0; i < count; i++) {
+                            notifs.push(i)
+                        }
+
+                        return notifs;
+                    }
+                },
+
+                templateUrl: 'views/noti.htm',
+                scope: $scope.$new()
+            });    };
+  
+    $scope.hide_notifications = function(){
+        $mdDialog.hide();
+    }
+    
+    
+    
+    $scope.linkedin_dialog = function ($event, number, company) {
+
+            $mdDialog.show({
+                targetEvent: $event,
+                locals: {
+                    number: number,
+                    company: company
+                },
+                controller: function ($scope, number, company) {
+                    $scope.number = number;
+                    $scope.company = company;
+                    $scope.range = function (count) {
+                        var linkedin = [];
+
+                        for (var i = 0; i < count; i++) {
+                            linkedin.push(i)
+                        }
+
+                        return linkedin;
+                    }
+                },
+
+                templateUrl: 'views/lin.htm',
+                scope: $scope.$new()
+            });    };
+  
+    $scope.hide_linkedin = function(){
+        $mdDialog.hide();
+    }
+    
+    
+    
+    
+    $scope.company_lists =
+        [{
+            list_name: "Go4Venture Suggested Companies",
+            companies: [{
+                    title: "FlatFrog Laboratories",
+                    description: "Developer and manufacturer of touch screens.",
+                    ticked: false,
+                    noti: 2,
+                    lin: 9
+                },
+                {
+                    title: "Spartoo",
+                    description: "Operator of an online shopping outlet.",
+                    ticked: false,
+                    noti: 3,
+                    lin: 8
+                },
+                {
+                    title: "Phone and Phone",
+                    description: "On-line vendor of mobile phones.",
+                    ticked: false,
+                    noti: 1,
+                    lin: 5
+                }]
+        },
+        {
+            list_name: "Met or Spoken to",
+            companies: [{
+                    title: "Terra Nova",
+                    description: "Electronic Waste Recycler.",
+                    ticked: false,
+                    noti: 2,
+                    lin: 8
+                },
+                {
+                    title: "Oxford Nanopore Technologies",
+                    description: "Developer of molecular detection technology with applications in DNA sequencing.",
+                    ticked: false,
+                    noti: 2,
+                    lin: 3
+                },
+                {
+                    title: "Metallkraft",
+                    description: "Recycler of silicon wafers from the semiconductor industry.",
+                    ticked: false,
+                    noti: 2,
+                    lin: 7
+                }]
+        },
+        {
+            list_name: "Received Pitch",
+            companies: [{
+                    title: "1855",
+                    description: "Euronext Listed e-tailer of wine.",
+                    ticked: false,
+                    noti: 1,
+                    lin: 4
+                },
+                {
+                    title: "OpSec Security",
+                    description: "AIM-listed provider of authentication technologies",
+                    ticked: false,
+                    noti: 1,
+                    lin: 7
+                },
+                {
+                    title: "Effpower",
+                    description: "Developer of bi-polar batteries for the automotive industry.",
+                    ticked: false,
+                    noti: 2,
+                    lin: 2
+                }]
+        }]    
+
     
 
     
@@ -250,17 +412,6 @@ app.controller('meCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
         }
     }
     
-    
-    
-    $scope.company_lists = [{list_name:"Interesting Companies",companies:[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},
-{title:"Spartoo",description:"Operator of an online shopping outlet.",ticked:false},
-{title:"Phone and Phone",description:"On-line vendor of mobile phones.",ticked:false}]},
-                            {list_name:"Met or Spoken to",companies:[{title:"Terra Nova",description:"Electronic Waste Recycler.",ticked:false},
-{title:"Oxford Nanopore Technologies",description:"Developer of molecular detection technology with applications in DNA sequencing.",ticked:false},
-{title:"Metallkraft",description:"Recycler of silicon wafers from the semiconductor industry.",ticked:false}]},
-                            {list_name:"Received Pitch",companies:[{title:"1855",description:"Euronext Listed e-tailer of wine.",ticked:false},
-{title:"OpSec Security",description:"AIM-listed provider of authentication technologies",ticked:false},
-{title:"Effpower",description:"Developer of bi-polar batteries for the automotive industry.",ticked:false}]}]
     
 
     

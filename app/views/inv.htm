@@ -28,12 +28,12 @@
       <h3>{{company.title}}</h3>
       <p>{{company.description}}</p>
     </div>
-      <md-button class="md-raised" align="center center">
+      <md-button class="md-raised" align="center center" ng-click="notifications_dialog($event, company.noti, company.title)">
       <md-icon><i class="material-icons">priority_high</i></md-icon>
-          1
+          {{company.noti}}
       </md-button>
-      <md-button class="md-raised" align="center center">
-      <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon> 22
+      <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.noti, company.title)">
+      <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon> {{company.lin}}
       </md-button>
   </md-list-item>
 </md-list>

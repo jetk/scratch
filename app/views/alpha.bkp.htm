@@ -19,22 +19,19 @@
     Discover new content
   </md-switch>
 
-    	<div class="md-accordion" ng-repeat="data in accordianData">
-			<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
-				<div class="md-toolbar-tools">
-					<h2>
-						<span>{{data.heading}}</span>
-					</h2>
-					<span flex=""></span>
-					<span ng-class="{expandCollapse:true, active:data.expanded}"></span> 
-				</div>
-			</md-toolbar>
-			<div ng-class="{dataContent:true, activeContent:data.expanded}" ng-repeat="filter in data.filters" layout="row"> <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}"><div class="md-list-item-text">
-{{filter.title}}
-                </div></md-checkbox>
-                
-            </div>
-    </div>
+    <md-card ng-repeat="filter_set in all_filters">
+        <md-card-header>
+            <span class="md-header">{{filter_set.title}}</span>
+        </md-card-header>
+        <md-list>
+            <md-list-item  ng-repeat="filter in filter_set.filters">
+                <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}"></md-checkbox>
+                <div class="md-list-item-text">
+                    <h3>{{filter.title}}</h3>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-card>
     
 
 
