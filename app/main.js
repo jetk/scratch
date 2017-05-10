@@ -132,7 +132,7 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', funct
 
 
 
-app.controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
+app.controller('invCtrl', ['$scope', '$mdDialog', '$http' , function ($scope, $mdDialog, $http) {
 
     $scope.hardy = function(list){        
         for (var i=0; i<list.length; i++){
@@ -168,12 +168,15 @@ app.controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $md
     })
     
     
+    var affected_list =0 
     
-    $scope.showDialog = function ($event) {
+    $scope.showDialog = function ($event, index) {
+    affected_list = index
+    console.log("affected list should be: "+affected_list)
     $mdDialog.show({
         targetEvent: $event,
         controller: function($scope) {
-          $scope.searchText = 'a';
+//          $scope.searchText = 'Enter a company';
           $scope.items = companies;
         },
         templateUrl: 'views/dialog.html',
@@ -184,23 +187,27 @@ app.controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $md
     
     var aleph ={title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false}
     
+    
+    
     $scope.selectedItemChange = function(item){
-        console.log("selected item is" + item.Company)
         aleph.title = item.Company
         aleph.description = item.Description
-        console.log(JSON.stringify($scope.company_lists[0].companies))
     }
     
 
-  $scope.hideDialog = function (item) {
+    $scope.cancel_company_add = function(){
+    $mdDialog.hide();
+    }
     
+    $scope.confirm_company_add = function ()
+    {
       var new_co = {}
       new_co.title = aleph.title
       new_co.description = aleph.description
       new_co.ticked = false
-      $scope.company_lists[0].companies.push(new_co)
+      $scope.company_lists[affected_list].companies.push(new_co)
       $mdDialog.hide();
-  };
+    };
     
     $scope.company_lists = [{list_name:"Interesting Companies",companies:[{title:"FlatFrog Laboratories",description:"Developer and manufacturer of touch screens.",ticked:false},
 {title:"Spartoo",description:"Operator of an online shopping outlet.",ticked:false},
@@ -329,5 +336,7 @@ app.controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', fun
         })
 
 }])
+
+
 
 ;

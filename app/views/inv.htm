@@ -9,25 +9,32 @@
 
     
     
-<md-card ng-repeat="list in company_lists">
+<md-card ng-repeat="list in company_lists track by $index">
   <md-card-header layout="row">
       <md-card-header-text flex layout="column">
       <span class="md-title">{{list.list_name}}</span>
     </md-card-header-text>
  <md-card-actions layout="row">
 <!--    <md-button class="md-primary md-raised" ng-click="showPrompt($event)"> Add Company </md-button>-->
-     <md-button class="md-primary md-raised" ng-click="showDialog($event)">Add Company</md-button>
+     <md-button class="md-primary md-raised" ng-click="showDialog($event, $index)">Add Company</md-button>
     <md-button class="md-accent md-raised" ng-click="hardy(list.companies)">Delete Selected</md-button>
     <md-button class="md-warn md-raised" ng-click="delete_list(list)">Delete List</md-button>
   </md-card-actions>
   </md-card-header>
   <md-list>
-  <md-list-item class="md-2-line" ng-repeat="company in list.companies track by $index">
-    <md-checkbox ng-model="company.ticked"></md-checkbox>
-    <div class="md-list-item-text">
+  <md-list-item class="md-2-line" ng-repeat="company in list.companies">
+    <md-checkbox ng-model="company.ticked" layout="row" align="center center"></md-checkbox>
+    <div class="md-list-item-text" flex>
       <h3>{{company.title}}</h3>
       <p>{{company.description}}</p>
     </div>
+      <md-button class="md-raised" align="center center">
+      <md-icon><i class="material-icons">priority_high</i></md-icon>
+          1
+      </md-button>
+      <md-button class="md-raised" align="center center">
+      <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon> 22
+      </md-button>
   </md-list-item>
 </md-list>
 </md-card>
