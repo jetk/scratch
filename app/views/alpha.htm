@@ -1,86 +1,124 @@
 <md-content class="md-padding md-warn" layout-xs="column" layout="row">
-    
-    
+
+
     <div layout="row" ng-cloak>
-        
-        
-        
-<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
-    
-    
-    <div layout="row">
-        <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
-            <i class="material-icons">filter_list</i>
-        </md-button>
-        <span class="md-title">  Filter Feed</span>
-    </div>
-    <input type="search" ng-model="q" placeholder="filter for articles..." aria-label="filter articles" />
-  <md-switch md-invert aria-label="Discover" layout-align="center top">
-    Discover new content
-  </md-switch>
 
-    	<div class="md-accordion" ng-repeat="data in accordianData">
-			<md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
-				<div class="md-toolbar-tools">
-					<h2>
-						<span>{{data.heading}}</span>
-					</h2>
-					<span flex=""></span>
-					<span ng-class="{expandCollapse:true, active:data.expanded}"></span> 
-				</div>
-			</md-toolbar>
-			<div ng-class="{dataContent:true, activeContent:data.expanded}" ng-repeat="filter in data.filters" layout="row"> <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}"><div class="md-list-item-text">
-{{filter.title}}
-                </div></md-checkbox>
-                
+
+
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+
+
+            <div layout="row">
+                <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+                    <i class="material-icons">filter_list</i>
+                </md-button>
+                <span class="md-title">  Filter Feed</span>
             </div>
-    </div>
-    
+            <input type="search" ng-model="q" placeholder="filter for articles..." aria-label="filter articles" />
+            <md-switch md-invert aria-label="Discover" layout-align="center top">
+                Discover new content
+            </md-switch>
+
+            <div class="md-accordion" ng-repeat="data in accordianData">
+                <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+                        <h3>
+						<span>{{data.heading}}</span>
+					</h3>
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" ng-repeat="filter in data.filters" layout="row">
+                    <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}">
+                        <div class="md-list-item-text">
+                            {{filter.title}}
+                        </div>
+                    </md-checkbox>
+
+                </div>
+            </div>
 
 
-</md-sidenav>
+
+        </md-sidenav>
     </div>
-    
+
     <div flex-xs layout="column">
-        
-        
-        <button class="md-raised md-hue" ng-click="foo()">CLICK ME</button>
-
-<md-card ng-repeat="article in articles | filter:q">
-<md-card-header  layout="row">
-    <md-card-avatar style="max-width: 100px; max-height: 100px">
-        <img src={{article.avatar}}>
-    </md-card-avatar>
-    <md-card-header-text  class="md-padding">
-        <span class="md-title">
+        <md-card class="md-padding">
+            <span class="md-title" layout-align="center top">News related to my companies</span>
+        </md-card>
+        <md-card ng-repeat="article in articles | filter:q">
+            <md-card-header layout="row">
+                <md-card-avatar style="max-width: 100px; max-height: 100px">
+                    <img src={{article.avatar}}>
+                </md-card-avatar>
+                <md-card-header-text class="md-padding">
+                    <span class="md-title">
         {{article.company}}
         </span>
-        <span class="md-subhead">Research Update</span>
-        <md-card-header-text> 
-</md-card-header>
-<md-card-content>{{article.blurb}}</md-card-content>
- <md-card-footer>
-     <div layout="row" layout-wrap>
-         <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
-         <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
-         <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
-         <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
-     </div>
-</md-card-footer>
-</md-card>
+                    <span class="md-subhead">Research Update</span>
+                    <md-card-header-text>
+            </md-card-header>
+            <md-card-content>{{article.blurb}}</md-card-content>
+            <md-card-footer>
+                <div layout="row" layout-wrap>
+                    <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
+                    <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
+                    <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
+                    <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
+                </div>
+            </md-card-footer>
+        </md-card>
 
 
 
     </div>
-    
-        <div layout="row" ng-cloak>
-         <md-sidenav md-component-id="right" class="md-sidenav-right" md-is-locked-open="$mdMedia('min-width: 1000px')">
-            <md-button class="md-fab md-mini" ng-click="openRightMenu()">
-             <i class="material-icons">more_vert</i>
-            </md-button>
-        </md-sidenav>
-      </div>
-    
-  </md-content>
 
- 
+    <div layout="row" ng-cloak>
+        <md-sidenav md-component-id="right" class="md-sidenav-right" md-is-locked-open="true">
+
+            <div layout="row">
+                <md-button class="md-fab md-mini" ng-click="openRightMenu()">
+                    <i class="material-icons">more_vert</i>
+                </md-button>
+                <span class="md-title">Dashboard</span>
+            </div>
+            <md-card class="md-padding">
+                <span class="md-title" layout-align="center top">Fundraising for your company? Click here to syndicate</span>
+            </md-card>
+
+            <md-card>
+                <md-card-header>
+                    <span class="md-title">My Companies</span>
+                </md-card-header>
+
+
+                <div class="md-accordion" ng-repeat="data in company_lists">
+                    <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+                        <div class="md-toolbar-tools">
+                            <h3>
+						<span>{{data.list_name}}</span>
+					</h3>
+                            <span flex=""></span>
+                            <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                        </div>
+                    </md-toolbar>
+                    <div ng-class="{dataContent:true, activeContent:data.expanded}" ng-repeat="company in data.companies" layout="row">
+                        <span layout="row">
+                        <md-badge>{{company.noti}}</md-badge>
+                             
+                            <div class="md-list-item-text">
+                                 {{company.title}}
+                            </div>
+                        </span>    
+
+                    </div>
+                </div>
+
+
+        </md-sidenav>
+
+    </div>
+
+</md-content>

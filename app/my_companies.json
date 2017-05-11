@@ -1,0 +1,72 @@
+[{
+        "list_name": "Go4 Suggested Companies",
+        "companies": [{
+                "title": "FlatFrog Laboratories",
+                "description": "Developer and manufacturer of touch screens.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 9
+            },
+            {
+                "title": "Spartoo",
+                "description": "Operator of an online shopping outlet.",
+                "ticked": false,
+                "noti": 3,
+                "lin": 8
+            },
+            {
+                "title": "Phone and Phone",
+                "description": "On-line vendor of mobile phones.",
+                "ticked": false,
+                "noti": 1,
+                "lin": 5
+            }]
+    },
+    {
+        "list_name": "Met or Spoken to",
+        "companies": [{
+                "title": "Terra Nova",
+                "description": "Electronic Waste Recycler.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 8
+            },
+            {
+                "title": "Oxford Nanopore Technologies",
+                "description": "Developer of molecular detection technology with applications in DNA sequencing.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 3
+            },
+            {
+                "title": "Metallkraft",
+                "description": "Recycler of silicon wafers from the semiconductor industry.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 7
+            }]
+    },
+    {
+        "list_name": "Received Pitch",
+        "companies": [{
+                "title": "1855",
+                "description": "Euronext Listed e-tailer of wine.",
+                "ticked": false,
+                "noti": 1,
+                "lin": 4
+            },
+            {
+                "title": "OpSec Security",
+                "description": "AIM-listed provider of authentication technologies",
+                "ticked": false,
+                "noti": 1,
+                "lin": 7
+            },
+            {
+                "title": "Effpower",
+                "description": "Developer of bi-polar batteries for the automotive industry.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 2
+            }]
+    }]
