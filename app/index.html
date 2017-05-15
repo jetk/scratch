@@ -16,13 +16,14 @@
     <md-content>
 
 
-    <md-toolbar class="md-hue-2 md-medium-tall" layout="row" layout-align="center bottom">
+    <md-toolbar class="md-hue-2" layout="row" layout-align="center bottom">
         <div class="md-toolbar-tools">
             
             <md-button href="#/alpha" aria-label="home">
             <img src="img/g4v.png" height="64" width="64" border="3">
             </md-button>
             
+            <!--
             
             <md-autocomplete flex md-selected-item="ctrl.selectedItem"
                              md-search-text="ctrl.searchText"
@@ -36,7 +37,37 @@
 
 
             </md-autocomplete>
-
+            -->
+            
+                  <md-autocomplete
+          flex
+          md-selected-item="selectedItem"
+          md-selected-item-change="go_to_profile(item)"
+          md-search-text="searchText"
+          
+          md-items="item in items | filter:searchText"
+          md-item-text="item.Company"
+          md-min-length="0"
+          placeholder="Search for anything">
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+      
+            <md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+          <span class="item-title">
+            <md-icon><i class="material-icons">business</i></md-icon>
+            <span> <strong>{{item.Company}} </strong>|</span>
+          </span>
+                <span class="item-metadata">
+            <span>
+                {{item.IsoCountry1}} |
+            </span>
+            <span>
+               {{item.Description|limitTo:100}}
+            </span>
+          </span>
+        </md-item-template>
+        
+        </md-autocomplete>
       <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
         <md-nav-item ng-repeat="item in nav_items" md-nav-href="#{{item.url}}" name="{{item.label}}">
         <md-icon class="material-icons">{{item.icon}}
@@ -73,6 +104,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.js"></script>
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>-->
     <script src="main.js"></script>
+    <script src="services.js"></script>
 </body>
 
 </html>

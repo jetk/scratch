@@ -1,4 +1,4 @@
-var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute']);
+var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'app.services']);
 
 
 app.config(function ($mdThemingProvider) {
@@ -43,9 +43,17 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function ($scope, $mdDialog, $http, $location) {
+app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location','co_service', function ($scope, $mdDialog, $http, $location, co_service) {
 
-
+    $scope.go_to_profile = function(company)
+    {
+        
+        $location.path('/profile').search({
+            company: company.Company
+        })
+    
+    }
+    $scope.items=co_service
     this.querySearch = function (query) {
         return $http.get("https://api.github.com/search/users", {
                 params: {
@@ -114,9 +122,14 @@ app.controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', function
 
 }])
 
-app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
+app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'co_service', function ($scope, $mdSidenav, $http, $location, $timeout, co_service) {
 
-
+    //$timeout(foo,5000)
+    
+    function foo(){
+        alert(co_service)
+    }
+    
     $scope.accordianData = 
         [
         {
@@ -198,7 +211,10 @@ app.controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', funct
 	   ];
 
 
-
+    $scope.gotoinv = function(){
+        $location.path('/inv')
+    }
+    
     $scope.company_lists = null;
     $http.get('my_companies.json').success(function (data) {
         $scope.company_lists = data
@@ -439,7 +455,7 @@ app.controller('meCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 }])
 
 
-app.controller('busiCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
+app.controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
 
     $scope.countries = null
 
@@ -460,21 +476,14 @@ app.controller('busiCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $m
         "DNK": false
     }]
 
-    $scope.companies = null
+    $scope.companies = co_service
 
-
+    
 
 
     $scope.openLeftMenu = function () {
         $mdSidenav('left').toggle();
     };
-
-    $http.get('companies.json').success(function (data) {
-
-        $scope.companies = data
-    }).error(function (data) {
-        console.log(data.message)
-    })
 
 
 }])
@@ -522,7 +531,9 @@ app.controller('helpCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) 
 
 
 app.controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
-
+    
+    
+    //This works well and fine if we have a json file for each profile out there
     $scope.pro = {}
 
     var company = $location.search().company + ".json"
@@ -530,9 +541,8 @@ app.controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', fun
     $http.get(company).success(function (data) {
         $scope.pro = data
     })
-
+    
 }])
-
 
 
 ;

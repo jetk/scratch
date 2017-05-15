@@ -1,6 +1,7 @@
 [
     {
         "company":"Acme",
+        "subject":"SYNDICATION OFFER",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/a.png",
         "sector":"Fadtech",
@@ -11,6 +12,7 @@
     },
     {
         "company":"Bacne",
+        "subject":"Research update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/b.png",
         "sector":"Edtech",
@@ -21,6 +23,7 @@
     },
     {
         "company":"Crakme",
+        "subject":"Competition Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/c.png",
         "sector":"Dadtech",
@@ -31,6 +34,7 @@
     },
     {
         "company":"Daquri",
+        "subject":"Market Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/d.png",
         "sector":"CADtech",
@@ -41,6 +45,7 @@
     },
     {
         "company":"Eacne",
+        "subject":"Fundraising Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/e.png",
         "sector":"Badtech",
@@ -51,6 +56,7 @@
     },
     {
         "company":"Fakme",
+        "subject":"Fundraising Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/f.png",
         "sector":"Adtech",
@@ -61,6 +67,7 @@
     },
     {
         "company":"Gaki",
+        "subject":"Competition Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/g.png",
         "sector":"Fadtech",
@@ -71,6 +78,7 @@
     },
     {
         "company":"Hakthee",
+        "subject":"Research Update",
         "tags":["foo","bar","baz","einey","meiney","miney","moe"],
         "avatar":"img/h.png",
         "sector":"CADtech",

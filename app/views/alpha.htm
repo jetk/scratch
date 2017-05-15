@@ -48,17 +48,15 @@
         <md-card class="md-padding">
             <span class="md-title" layout-align="center top">News related to my companies</span>
         </md-card>
+        
         <md-card ng-repeat="article in articles | filter:q">
             <md-card-header layout="row">
                 <md-card-avatar style="max-width: 100px; max-height: 100px">
-                    <img src={{article.avatar}}>
+                    <img src="{{article.avatar}}">
                 </md-card-avatar>
-                <md-card-header-text class="md-padding">
-                    <span class="md-title">
-        {{article.company}}
-        </span>
-                    <span class="md-subhead">Research Update</span>
-                    <md-card-header-text>
+                
+                    <span class="md-title">{{article.company}} | {{article.subject}}</span>
+                    
             </md-card-header>
             <md-card-content>{{article.blurb}}</md-card-content>
             <md-card-footer>
@@ -90,7 +88,8 @@
 
             <md-card>
                 <md-card-header>
-                    <span class="md-title">My Companies</span>
+                    <span class="md-title" flex>My Companies</span>
+                    <md-button class="md-icon-button launch" ng-click="gotoinv()"><i class="material-icons">launch</i></md-button>
                 </md-card-header>
 
 
