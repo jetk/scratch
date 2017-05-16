@@ -3,12 +3,13 @@
 
 <md-card class="md-padding">
         <md-card-header layout="row">
-            <md-card-avatar>
-               <img class="md-user-avatar" src="img/x.png" >
-            </md-card-avatar>
-            <md-card-header-text flex="80" layout="column">
-                <span class="md-title">{{pro.name}}</span>
-                <span class="md-subhead">{{pro.motto}}</span>
+               <md-card-avatar style="min-width: 128px; min-height: 128px">
+        <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
+    </md-card-avatar>
+            
+            <md-card-header-text flex="60" layout="column">
+                <span class="md-headline">{{pro.name}}</span>
+                <span class="md-title">{{pro.motto}}</span>
                 <span class="md-subhead" layout = "row"><i class="material-icons">bubble_chart</i> {{pro.sector}}</span>
                 <span class="md-subhead" layout = "row"><i class="material-icons">location_on</i> {{pro.geography}}</span>
                 <span class="md-subhead" layout = "row"><i class="material-icons">show_chart</i> {{pro.stage}}</span>

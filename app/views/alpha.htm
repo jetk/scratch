@@ -12,12 +12,18 @@
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
-                <span class="md-title">  Filter Feed</span>
+                
+                <span class="md-title">Filter this feed</span>
+                
             </div>
-            <input type="search" ng-model="q" placeholder="filter for articles..." aria-label="filter articles" />
+            <md-card>
+            <input type="search" ng-model="q" placeholder="filter for articles by keyword..." aria-label="filter articles" />
+            </md-card>
+<!--
             <md-switch md-invert aria-label="Discover" layout-align="center top">
                 Discover new content
             </md-switch>
+-->
 
             <div class="md-accordion" ng-repeat="data in accordianData">
                 <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
@@ -30,8 +36,9 @@
                     </div>
                 </md-toolbar>
                 <div ng-class="{dataContent:true, activeContent:data.expanded}" ng-repeat="filter in data.filters" layout="row">
+
                     <md-checkbox ng-model="filter.ticked" aria-label="{{filter.title}}">
-                        <div class="md-list-item-text">
+                        <div  class="md-list-item-text">
                             {{filter.title}}
                         </div>
                     </md-checkbox>
@@ -45,11 +52,12 @@
     </div>
 
     <div flex-xs layout="column">
-        <md-card class="md-padding">
-            <span class="md-title" layout-align="center top">News related to my companies</span>
+        <md-card class="md-padding" layout="row">
+            <span ng-if="list_loaded"  class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies</span>
+            <md-slider ng-model="mode" min="0" max="2" aria-label="mode"></md-slider>
         </md-card>
         
-        <md-card ng-repeat="article in articles | filter:q">
+        <md-card ng-click="go_to_article(article)" ng-if="list_loaded" ng-repeat="article in get_article_list(mode) | filter:q">
             <md-card-header layout="row">
                 <md-card-avatar style="max-width: 100px; max-height: 100px">
                     <img src="{{article.avatar}}">
@@ -83,13 +91,13 @@
                 <span class="md-title">Dashboard</span>
             </div>
             <md-card class="md-padding">
-                <span class="md-title" layout-align="center top">Fundraising for your company? Click here to syndicate</span>
+                <span class="md-title" layout-align="center top">Targeted call to action</span>
             </md-card>
 
             <md-card>
                 <md-card-header>
                     <span class="md-title" flex>My Companies</span>
-                    <md-button class="md-icon-button launch" ng-click="gotoinv()"><i class="material-icons">launch</i></md-button>
+                    <md-button class="md-icon-button launch" ng-click="go_to_inv()"><i class="material-icons">launch</i></md-button>
                 </md-card-header>
 
 

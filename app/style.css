@@ -5,10 +5,10 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
 }
 
 .md-accordion .expandCollapse { 
-  width:30px;
-  height:30px;
+  width:10px;
+  height:10px;
   position:relative;
-  font-size:20px;
+  font-size:10px;
   font-weight:bold;
   cursor:pointer;
   color:#fff;
@@ -21,12 +21,12 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
   border:0px;
 }
 .md-accordion .expandCollapse:before, .md-accordion .expandCollapse:after {
-  width:30px;
-  height:30px;
+  width:10px;
+  height:10px;
   display:block;
   position:absolute;
   top:0; left:0;
-  line-height:32px;
+  line-height:16px;
   text-align:center;
   -webkit-transition: .3s all ease-out;
   transition: .3s all ease-out;
@@ -63,7 +63,7 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
 
 .md-accordion .activeContent {
   height:auto;
-  padding:20px;
+  padding:3px;
   display:block;
 }
 
@@ -85,3 +85,15 @@ md-badge{
   padding: 2px 4px;
   border-radius: 4px;
 }
+
+
+md-checkbox.md-checkbox-inner-container {
+      height: 12px;
+      width: 12px;
+    }
+
+md-checkbox.md-checkbox-label {
+      line-height: 12px;
+    }
+
+md-checkbox.md-icon {transform: scale(.7)}
