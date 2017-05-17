@@ -3,9 +3,16 @@
 
     <div layout="row" ng-cloak>
 
-
-
+    
         <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+            
+            
+                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
+    <label>
+      <input type="checkbox" ng-model="filter[sector]" />
+      {{ sector }}
+    </label>
+            </div>
 
 
             <div layout="row">
@@ -16,6 +23,9 @@
                 <span class="md-title">Filter this feed</span>
                 
             </div>
+            
+            
+
             <md-card>
             <input type="search" ng-model="q" placeholder="filter for articles by keyword..." aria-label="filter articles" />
             </md-card>
@@ -26,7 +36,7 @@
 -->
 
             <div class="md-accordion" ng-repeat="data in accordianData">
-                <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
                         <h3>
 						<span>{{data.heading}}</span>
@@ -53,11 +63,15 @@
 
     <div flex-xs layout="column">
         <md-card class="md-padding" layout="row">
-            <span ng-if="list_loaded"  class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies</span>
+            <span ng-if="list_loaded"  class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies    <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
+          
+            
             <md-slider ng-model="mode" min="0" max="2" aria-label="mode"></md-slider>
+            
+            
         </md-card>
         
-        <md-card ng-click="go_to_article(article)" ng-if="list_loaded" ng-repeat="article in get_article_list(mode) | filter:q">
+        <md-card ng-click="go_to_article(article)" ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q |filter:filterBySector ">
             <md-card-header layout="row">
                 <md-card-avatar style="max-width: 100px; max-height: 100px">
                     <img src="{{article.avatar}}">
@@ -102,7 +116,7 @@
 
 
                 <div class="md-accordion" ng-repeat="data in company_lists">
-                    <md-toolbar ng-init="data.expanded = false" ng-click="data.expanded = !data.expanded">
+                    <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                         <div class="md-toolbar-tools">
                             <h3>
 						<span>{{data.list_name}}</span>

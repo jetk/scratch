@@ -1,5 +1,7 @@
 angular.module('app.controllers', [])
 
+  
+
     .controller('AppCtrl', ['$scope', '$mdDialog', '$http', '$location', 'co_service', function ($scope, $mdDialog, $http, $location, co_service) {
 
         $scope.go_to_profile = function (company) {
@@ -79,14 +81,53 @@ angular.module('app.controllers', [])
 }])
 
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'co_service', function ($scope, $mdSidenav, $http, $location, $timeout, co_service) {
+/*
 
-        //$timeout(foo,1000)
+
+        $timeout(foo,1000)
+        var fakefeed=generate_feed(0,10)
 
         function foo() {
-            alert("new JS file!")
+            $scope.fullfeed.all = fakefeed
         }
 
-        $scope.accordianData = [
+Below was a failed attempt at programattically generating filters based on the the avaliable values in the feed list, to then use a custom angular filter to affect the main feed
+
+*/
+        function getSectors(list) {
+
+            return (list || []).
+            map(function (article) {
+              return article.sector;
+            }).
+            filter(function (cat, idx, arr) {
+              return arr.indexOf(cat) === idx;
+            });
+        }
+        
+        $scope.getSectors = getSectors
+
+        function filterBySector(article) {
+            return $scope.filter[article.sector] || noFilter($scope.filter);
+        }
+
+        $scope.filterBySector = filterBySector
+
+        function noFilter(filterObj) {
+            return Object.
+            keys(filterObj).
+            every(function (key) {
+              return !filterObj[key];
+            });
+        }
+
+        $scope.noFilter = noFilter
+        
+        
+        $scope.log = function () {
+            console.log($scope.filter)
+        }
+            $scope.accordianData = [
             {
                 heading: "SECTORS",
                 filters: [
@@ -199,6 +240,7 @@ angular.module('app.controllers', [])
                     return $scope.fullfeed.recommended;
                     break;
                 case 2:
+                    $scope.filter = getSectors($scope.fullfeed.all);
                     return $scope.fullfeed.all;
                     break;
                 default:
@@ -251,13 +293,70 @@ angular.module('app.controllers', [])
         }
 
 
+        function generate_feed(mode, quantity) {
+            
+            var feed = []
+            for (i = 0; i < quantity; i++) {
+
+                var feed_entry = co_service[getRandomInt(1315, 2200)]
+
+                var new_feed_item = {
+                    company: feed_entry.Company,
+                    subject: generate_subject(),
+                    tags: generate_tags(),
+                    avatar: "http://loremflickr.com/48/48/logo?random="+i,
+                    sector: generate_sector(),
+                    geography: feed_entry.IsoCountry1,
+                    stage: generate_stage(),
+                    blurb: feed_entry.Description,
+                    article: null
+                }
+
+//                    feed_entry.tags=generate_tags()
+                    //feed_entry.stage=generat_stage()
+
+                feed.push(new_feed_item)
+            }
+                        
+            return feed
+        }
+        
+        var subject_array=["SYNDICATION OFFER","Research Update","Competition Update","Market Update","Transaction Update"]
+        function generate_subject(){
+            return subject_array[getRandomInt(0,subject_array.length-1)]
+        }
+        
+
+        var sector_array=["Adtech","Badtech","CADtech","Edtech","Fadtec"]
+        function generate_sector(){
+            return sector_array[getRandomInt(0,sector_array.length-1)]
+        }
+        
+        var tags_array=["tig","tag","tog","tug","foo","bar","baz","tab","asf","acs"]
+        
+        function generate_tags(){
+            var tags_generated = []
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            return tags_generated
+        }
+        
+        var stage_array=["angel","seed","A","B","C","Late"]
+        function generate_stage(){
+            return stage_array[getRandomInt(0,subject_array.length-1)]
+        }
+        
 
         $scope.fullfeed = null
         $scope.list_loaded = false
 
+        $scope.filter=null
 
         $http.get('feed.json').success(function (data) {
             $scope.fullfeed = data
+            $scope.filter=getSectors(data.followed);
+            $scope.fullfeed.all = generate_feed(0,20)
             $scope.mode = 0
             $scope.list_loaded = true
             replace($scope.fullfeed)
@@ -266,6 +365,9 @@ angular.module('app.controllers', [])
 
 
 }])
+
+
+
 
     .controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
 
@@ -359,6 +461,8 @@ angular.module('app.controllers', [])
 
         $scope.notifications_dialog = function ($event, number, company) {
 
+            
+            
             $mdDialog.show({
                 targetEvent: $event,
                 locals: {

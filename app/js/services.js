@@ -1,5 +1,6 @@
 angular.module('app.services', [])
 
+
 .factory('co_service', function(){
    return [
 {"ID":"8999","Company":"Marduk","IsoCountry1":"0","IsoCountry2":"0","Type":"Investor","Parent Sector":"individual","Sector":"","subsector":"","Additional tag":"","Description":""},
