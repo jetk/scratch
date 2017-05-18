@@ -57,7 +57,7 @@ angular.module('app.controllers', [])
                 url: "/busi"
         },
             {
-                label: "Research",
+                label: "CLEVER NAME FOR FILTER TAGS",
                 icon: "subject",
                 url: "/research"
         },
@@ -94,25 +94,59 @@ angular.module('app.controllers', [])
 Below was a failed attempt at programattically generating filters based on the the avaliable values in the feed list, to then use a custom angular filter to affect the main feed
 
 */
-        function getSectors(list) {
-
+        $scope.getGenericFilters=function(list, property) {
+            
             return (list || []).
             map(function (article) {
-              return article.sector;
+                
+              return article[property];
             }).
             filter(function (cat, idx, arr) {
               return arr.indexOf(cat) === idx;
             });
         }
         
-        $scope.getSectors = getSectors
+        
+        
+        //Still can't figure out how to work this, currently just replicating the function three times
+       $scope.filterByProperties = function(wine) {
 
-        function filterBySector(article) {
+            var activeFilterProps = Object.
+            keys($scope.filter).filter(function (prop) {
+                return !noFilter($scope.filter[prop]);
+            });
+
+            return activeFilterProps.every(function (prop) {
+                return $scope.filter[prop][wine[prop]];
+            });
+
+        }
+       
+       
+       //Kludge to force articles to show before a filter is engaged
+        $scope.touched=false;
+        
+        $scope.filterBySector = function(article) {
+            if(true||$scope.touched){
             return $scope.filter[article.sector] || noFilter($scope.filter);
+            }
+            else return true;
         }
 
-        $scope.filterBySector = filterBySector
+        
+        
+        $scope.filterByGeography = function(article) {
+            if($scope.touched){
+            return $scope.geog[article.geography] || noFilter($scope.geog);
+            }
+            else return true;
+        }
 
+         
+        
+        
+        
+        
         function noFilter(filterObj) {
             return Object.
             keys(filterObj).
@@ -123,89 +157,10 @@ Below was a failed attempt at programattically generating filters based on the t
 
         $scope.noFilter = noFilter
         
-        
         $scope.log = function () {
             console.log($scope.filter)
+            $scope.touched=true
         }
-            $scope.accordianData = [
-            {
-                heading: "SECTORS",
-                filters: [
-                    {
-                        title: "Adtech",
-                        ticked: false
-                },
-                    {
-                        title: "Badtech",
-                        ticked: false
-                },
-                    {
-                        title: "CADtech",
-                        ticked: false
-                },
-                    {
-                        title: "Edtech",
-                        ticked: false
-                },
-                    {
-                        title: "Fadtech",
-                        ticked: false
-                }]
-		},
-            {
-                heading: "GEOGRAPHY",
-                filters: [
-                    {
-                        title: "Germany",
-                        ticked: false
-                },
-                    {
-                        title: "France",
-                        ticked: false
-                },
-                    {
-                        title: "Austria",
-                        ticked: false
-                },
-                    {
-                        title: "Switzerland",
-                        ticked: false
-                },
-                    {
-                        title: "Sweden",
-                        ticked: false
-                },
-                    {
-                        title: "Spain",
-                        ticked: false
-                }]
-        },
-            {
-                heading: "SERIES",
-                filters: [
-                    {
-                        title: "Seed",
-                        ticked: false
-                },
-                    {
-                        title: "A",
-                        ticked: false
-                },
-                    {
-                        title: "B",
-                        ticked: false
-                },
-                    {
-                        title: "C",
-                        ticked: false
-                },
-                    {
-                        title: "Late",
-                        ticked: false
-                }]
-        }
-	   ];
-
 
         $scope.go_to_inv = function () {
             $location.path('/inv')
@@ -229,7 +184,6 @@ Below was a failed attempt at programattically generating filters based on the t
         $scope.get_article_list = function (mode) {
 
             if ($scope.fullfeed == null) {
-
                 return null;
             }
             switch (mode) {
@@ -240,7 +194,7 @@ Below was a failed attempt at programattically generating filters based on the t
                     return $scope.fullfeed.recommended;
                     break;
                 case 2:
-                    $scope.filter = getSectors($scope.fullfeed.all);
+                    //$scope.filter = getSectors($scope.fullfeed.all);
                     return $scope.fullfeed.all;
                     break;
                 default:
@@ -305,7 +259,7 @@ Below was a failed attempt at programattically generating filters based on the t
                     subject: generate_subject(),
                     tags: generate_tags(),
                     avatar: "http://loremflickr.com/48/48/logo?random="+i,
-                    sector: generate_sector(),
+                    sector: feed_entry.Sector,//generate_sector(),
                     geography: feed_entry.IsoCountry1,
                     stage: generate_stage(),
                     blurb: feed_entry.Description,
@@ -350,14 +304,50 @@ Below was a failed attempt at programattically generating filters based on the t
 
         $scope.fullfeed = null
         $scope.list_loaded = false
-
-        $scope.filter=null
-
+        $scope.filter={}
+        $scope.geog = {}
+        $scope.mode = 0
+        
+        $scope.loggeo = function(){
+            console.log($scope.geog)
+        }
+        
+        
+        function set_up_sector_filters(temp_filters){
+            
+            for(i = 0; i<temp_filters.length;i++){
+                $scope.filter[temp_filters[i]]=$location.search()?false:true;
+            }
+                        
+            for(var key in $location.search())
+                    $scope.filter[key]=true
+            
+        }
+        
+                
+        function set_up_geog_filters(temp_geog){
+            
+            for(i = 0; i<temp_geog.length;i++){
+                $scope.geog[temp_geog[i]]=$location.search()?false:true;
+            }
+                        
+            for(var key in $location.search())
+                    $scope.geog[key]=true
+            
+        }
+        
         $http.get('feed.json').success(function (data) {
             $scope.fullfeed = data
-            $scope.filter=getSectors(data.followed);
+            
+            
+            var temp_filters=$scope.getGenericFilters(data.followed,"sector")
+            set_up_sector_filters(temp_filters)
+            
+            
+            var temp_geog=$scope.getGenericFilters(data.followed,"geography")
+            set_up_geog_filters(temp_geog)
+            
             $scope.fullfeed.all = generate_feed(0,20)
-            $scope.mode = 0
             $scope.list_loaded = true
             replace($scope.fullfeed)
         })
@@ -596,14 +586,33 @@ Below was a failed attempt at programattically generating filters based on the t
 
 }])
 
-    .controller('researchCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    .controller('researchCtrl', ['$scope', '$mdDialog','$location', function ($scope, $mdDialog, $location) {
 
-
+        $scope.alpha_with_parameters =function(index){
+            
+            
+            if(index==0){
+                
+             $location.path('/alpha').search({
+                 Adtech: true,
+                 Austria: true,
+                 Germany: true,
+                 Switzerland: true
+            })
+            }
+            else if (index==1){
+                $location.path('/alpha').search({
+                 Spain: true,
+                 Fintech: true
+            })
+            }
+            
+        }
         $scope.channel_lists =
 
         [
                 {
-                    channel: "Microsoft Ventures's Hot Picks",
+                    channel: "Adtech in DACH",
                     img: "img/msftven_logo.png"
             },
                 {
@@ -613,18 +622,6 @@ Below was a failed attempt at programattically generating filters based on the t
                 {
                     channel: "Deeptech by Cisco",
                     img: "img/cisco_logo.png"
-            },
-                {
-                    channel: "Insurtech by Aviva",
-                    img: "img/aviva_logo.png"
-            },
-                {
-                    channel: "Early Stage by 500startups",
-                    img: "img/500startups_logo.png"
-            },
-                {
-                    channel: "Terraforming Technology by Weyland Yutani",
-                    img: "img/WYC_logo.png"
             }
         ]
 

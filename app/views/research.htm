@@ -4,8 +4,8 @@
 <div class='md-padding' layout="row" layout-wrap>
 
     
-    <md-card style="width: 250px;" ng-repeat="channel in channel_lists">
-      <img src="{{channel.img}}" class="md-card-image" alt="">
+    <md-card style="width: 250px;" ng-repeat="channel in channel_lists track by $index">
+      <!--<img src="{{channel.img}}" class="md-card-image" alt="">-->
       <md-card-content>
         <h2>{{channel.channel}}</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
@@ -14,7 +14,7 @@
         <md-card-footer>
         <div class="md-actions" layout="row" layout-align="end center">
         <md-button>Save</md-button>
-        <md-button>View</md-button>
+        <md-button ng-click="alpha_with_parameters($index)">View</md-button>
       </div>
         </md-card-footer>
     </md-card>
