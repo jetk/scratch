@@ -4,7 +4,7 @@
     <div layout="row" ng-cloak>
 
     
-        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open = "true" layout="column">
         
             <!--
             
@@ -94,22 +94,30 @@
             
         </md-card>
         
-        <md-card ng-click="go_to_article(article)" ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography">
-            <md-card-header layout="row">
-                <md-card-avatar style="max-width: 100px; max-height: 100px">
-                    <img src="{{article.avatar}}">
-                </md-card-avatar>
+        <md-card  ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography">
+            <md-card-header class ="md-padding"layout="row">
+                 
+                    <img style="max-width: 64px; max-height: 64px" src="{{article.avatar}}">
                 
-                    <span class="md-title">{{article.company}} | {{article.subject}}</span>
-                    
+                
+                    <span class="md-title" flex>{{article.company}} | {{article.subject}}</span>
+                    <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
             </md-card-header>
             <md-card-content>{{article.blurb}}</md-card-content>
             <md-card-footer>
                 <div layout="row" layout-wrap>
-                    <md-card><i class="material-icons">bubble_chart</i> {{article.sector}}</md-card>
-                    <md-card><i class="material-icons">location_on</i> {{article.geography}}</md-card>
-                    <md-card><i class="material-icons">show_chart</i> {{article.stage}}</md-card>
-                    <md-card ng-repeat="tag in article.tags"><i class="material-icons">label</i>{{tag}}</md-card>
+                    
+                    
+                 
+                
+                <md-chips readonly="true">
+                    <md-chip ng-click="set_up_sector_filters(article.sector)"><i class="material-icons">bubble_chart</i> {{article.sector}}</md-chip>
+                    <md-chip ng-click="set_up_geog_filters(article.geography)"><i class="material-icons">location_on</i> {{article.geography}}</md-chip>
+                    <md-chip><i class="material-icons">show_chart</i> {{article.stage}}</md-chip>
+                </md-chips>
+                <md-chips ng-model="article.tags" readonly="true">
+                    <md-chip><i class="material-icons">label</i>{{$chip.name}}</md-chip>
+                </md-chips>
                 </div>
             </md-card-footer>
         </md-card>
@@ -137,6 +145,7 @@
                     <md-button class="md-icon-button launch" ng-click="go_to_inv()"><i class="material-icons">launch</i></md-button>
                 </md-card-header>
 
+                
 
                 <div class="md-accordion" ng-repeat="data in company_lists">
                     <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">

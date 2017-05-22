@@ -57,12 +57,12 @@ angular.module('app.controllers', [])
                 url: "/busi"
         },
             {
-                label: "CLEVER NAME FOR FILTER TAGS",
+                label: "Canals",
                 icon: "subject",
                 url: "/research"
         },
             {
-                label: "Investment Management",
+                label: "Investment Mgmt",
                 icon: "work",
                 url: "/inv"
         },
@@ -108,7 +108,7 @@ Below was a failed attempt at programattically generating filters based on the t
         
         
         
-        //Still can't figure out how to work this, currently just replicating the function three times
+        //Still can't figure out how to work this, currently just replicating the function two times
        $scope.filterByProperties = function(wine) {
 
             var activeFilterProps = Object.
@@ -142,11 +142,7 @@ Below was a failed attempt at programattically generating filters based on the t
             else return true;
         }
 
-         
-        
-        
-        
-        
+              
         function noFilter(filterObj) {
             return Object.
             keys(filterObj).
@@ -315,6 +311,12 @@ Below was a failed attempt at programattically generating filters based on the t
         
         function set_up_sector_filters(temp_filters){
             
+            
+            if (angular.isString(temp_filters)){
+                
+                $scope.filter[temp_filters]=!$scope.filter[temp_filters];
+            }
+            
             for(i = 0; i<temp_filters.length;i++){
                 $scope.filter[temp_filters[i]]=$location.search()?false:true;
             }
@@ -324,8 +326,18 @@ Below was a failed attempt at programattically generating filters based on the t
             
         }
         
+        $scope.set_up_sector_filters = set_up_sector_filters
+        
+        
                 
         function set_up_geog_filters(temp_geog){
+            console.log("doing the thing tier 1")
+            //I know this is playing with fire to have this function handle
+            //both strings and arrays but hey it's JS and I'm being really lazy
+            if (angular.isString(temp_geog)){
+                console.log("doing the thing")
+                $scope.geog[temp_geog]=!$scope.geog[temp_geog];
+            }
             
             for(i = 0; i<temp_geog.length;i++){
                 $scope.geog[temp_geog[i]]=$location.search()?false:true;
@@ -335,6 +347,8 @@ Below was a failed attempt at programattically generating filters based on the t
                     $scope.geog[key]=true
             
         }
+        $scope.set_up_geog_filters = set_up_geog_filters
+        
         
         $http.get('feed.json').success(function (data) {
             $scope.fullfeed = data
@@ -362,14 +376,18 @@ Below was a failed attempt at programattically generating filters based on the t
     .controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
 
         $scope.hardy = function (list) {
+            
+            if (list.length == 1 && list[0].ticked) {
+                list.splice(0, 1)
+                return
+            }
+            
             for (var i = 0; i < list.length; i++) {
                 if (list[i].ticked == true) {
                     list.splice(i, 1)
                 }
             }
-            if (list.length == 1 && list[0].ticked) {
-                list.splice(0, 1)
-            }
+
 
             for (var i = 0; i < list.length; i++) {
                 list.ticked = false
@@ -386,6 +404,7 @@ Below was a failed attempt at programattically generating filters based on the t
 
 
         $scope.company_lists = null;
+        
         $http.get('my_companies.json').success(function (data) {
             $scope.company_lists = data
         })
@@ -588,9 +607,18 @@ Below was a failed attempt at programattically generating filters based on the t
 
     .controller('researchCtrl', ['$scope', '$mdDialog','$location', function ($scope, $mdDialog, $location) {
 
+        
+        $scope.go_to_alpha_with_filters=function(filters){
+            var search_params = {}
+            for (i=0;i< filters.length;i++){
+                search_params[filters[i]]=true
+            }
+            console.log(JSON.stringify(search_params))
+            $location.path('/alpha').search(search_params)
+        }
+        
+        
         $scope.alpha_with_parameters =function(index){
-            
-            
             if(index==0){
                 
              $location.path('/alpha').search({
@@ -613,17 +641,81 @@ Below was a failed attempt at programattically generating filters based on the t
         [
                 {
                     channel: "Adtech in DACH",
-                    img: "img/msftven_logo.png"
+                    comments: "",
+                    filters: ["Adtech","Germany","Switzerland","Austria"],
+                    contributors: ["G4V","Catcap"]
             },
                 {
                     channel: "Fintech in Spain by Group Olivo",
-                    img: "img/olivo_logo.png"
+                    comments: "",
+                    filters: ["Fintech","Spain"],
+                    contributors: ["G4V","Olivo"]
+            },
+                
+        ]
+        
+        
+        
+        
+        $scope.canal_lists=
+            {saved:[
+                {
+                    name: "Swiss Adtech",
+                    comments: "",
+                    filters: ["Adtech","Switzerland"],
+                    contributors: ["G4V","Catcap"]
             },
                 {
-                    channel: "Deeptech by Cisco",
-                    img: "img/cisco_logo.png"
-            }
+                    name: "Austrain Edtech",
+                    comments: "",
+                    filters: ["Austria","Edtech"],
+                    contributors: ["G4V"]
+            },
+         
+                
+        ],
+           recommended: [
+                {
+                    name: "Adtech in DACH",
+                    comments: "",
+                    filters: ["Adtech","Germany","Switzerland","Austria"],
+                    contributors: ["G4V","Catcap"]
+            },
+                {
+                    name: "Fintech in Spain by Group Olivo",
+                    comments: "",
+                    filters: ["Fintech","Spain"],
+                    contributors: ["G4V","Olivo"]
+            },
+            {
+                    name: "Deeptech",
+                    comments: "",
+                    filters: ["Deeptech"],
+                    contributors: ["G4V","Olivo"]
+            },
+                
+        ],
+             
+             popular: [
+                {
+                    name: "Michael Kotting's Hot Picks",
+                    comments: "",
+                    filters: ["UK","custom"],
+                    contributors: ["G4V","Accel"]
+            },
+                {
+                    name: "Microsoft Accelerator's Top 5",
+                    comments: "",
+                    filters: ["Fintech","Spain"],
+                    contributors: ["G4V","Microsoft Accelerator"]
+            },
+                
         ]
+             
+            }
+
+        $scope.foo=null;
+
 
 
 }])
@@ -637,17 +729,16 @@ Below was a failed attempt at programattically generating filters based on the t
     .controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', 'co_service', function ($scope, $mdSidenav, $http, $location, co_service) {
 
 
-
         //This works well and fine if we have a json file for each profile out there
         $scope.pro = {}
-
-
 
         var company = $location.search().company
 
         $http.get("example_profile.json").success(function (data) {
+            
             var db_entry = null
-
+            
+            //Retrieves the 'database entry' from the company database service. Obviously this needs to be much more sophisticated
             co_service.some(function (entry) {
                 if (entry.Company == company) {
                     db_entry = entry

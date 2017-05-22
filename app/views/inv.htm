@@ -28,11 +28,15 @@
       <h3>{{company.title}}</h3>
       <p>{{company.description}}</p>
     </div>
+      <md-button class="md-raised" ng-if="company.fund" align="center center" >
+      <md-icon><i class="material-icons">attach_money <img style="max-width: 24px; max-height: 24px" ng-src="img/{{company.fund}}.png" ></i> </md-icon>
+          
+      </md-button>
       <md-button class="md-raised" align="center center" ng-click="notifications_dialog($event, company.noti, company.title)">
       <md-icon><i class="material-icons">priority_high</i></md-icon>
           {{company.noti}}
       </md-button>
-      <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.noti, company.title)">
+      <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
       <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon> {{company.lin}}
       </md-button>
   </md-list-item>

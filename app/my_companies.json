@@ -5,14 +5,16 @@
                 "description": "Developer and manufacturer of touch screens.",
                 "ticked": false,
                 "noti": 2,
-                "lin": 9
+                "lin": 5,
+                "fund":"g4v"
+            
             },
             {
                 "title": "Spartoo",
                 "description": "Operator of an online shopping outlet.",
                 "ticked": false,
                 "noti": 3,
-                "lin": 8
+                "lin": 3
             },
             {
                 "title": "Phone and Phone",
@@ -29,21 +31,23 @@
                 "description": "Electronic Waste Recycler.",
                 "ticked": false,
                 "noti": 2,
-                "lin": 8
+                "lin": 4,
+                "fund":"g4v"
             },
             {
                 "title": "Oxford Nanopore Technologies",
                 "description": "Developer of molecular detection technology with applications in DNA sequencing.",
                 "ticked": false,
                 "noti": 2,
-                "lin": 3
+                "lin": 3,
+                "fund":"crowdcube"
             },
             {
                 "title": "Metallkraft",
                 "description": "Recycler of silicon wafers from the semiconductor industry.",
                 "ticked": false,
                 "noti": 2,
-                "lin": 7
+                "lin": 1
             }]
     },
     {
@@ -60,7 +64,8 @@
                 "description": "AIM-listed provider of authentication technologies",
                 "ticked": false,
                 "noti": 1,
-                "lin": 7
+                "lin": 5,
+                "fund":"angelist"
             },
             {
                 "title": "Effpower",

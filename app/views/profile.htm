@@ -1,69 +1,210 @@
-<md-content class="md-padding md-hue-1" layout-xs="column">
+<md-content class="md-padding md-hue-1" layout="row">
+
+    <div layout-xs="column" flex="75">
 
 
-<md-card class="md-padding">
-        <md-card-header layout="row">
-               <md-card-avatar style="min-width: 128px; min-height: 128px">
-        <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
-    </md-card-avatar>
+
+        <md-toolbar class="md-warn" layout = "row">
+            <span class="md-padding md-title" flex>Go4Venture Proprietary Profile</span>
             
-            <md-card-header-text flex="60" layout="column">
-                <span class="md-headline">{{pro.name}}</span>
-                <span class="md-title">{{pro.motto}}</span>
-                <span class="md-subhead" layout = "row"><i class="material-icons">bubble_chart</i> {{pro.sector}}</span>
-                <span class="md-subhead" layout = "row"><i class="material-icons">location_on</i> {{pro.geography}}</span>
-                <span class="md-subhead" layout = "row"><i class="material-icons">show_chart</i> {{pro.stage}}</span>
-            </md-card-header-text>
-         </md-card-header>
-    <md-card-content>
-    {{pro.blurb}}
-    </md-card-content>
-    <md-card-header>
-        <md-card-header-text><span class="md-title">Competitive Landscape </span></md-card-header-text>
-        <div layout = "row" layout-wrap> 
-        <md-button ng-repeat="logo in pro.competitors" flex="10" aria-label="comp_{{logo}}">
-        <img src="img/{{logo}}">
-        </md-button>
-        </div>     
-    </md-card-header>
-</md-card>
+                <md-button> Download Tearsheet
+                </md-button>
+            
+        </md-toolbar>
 
-<md-card class="md-padding">
-    <md-card-header>
-        <md-card-header-text>
-            <span class="md-title">Investment Management</span>
-        </md-card-header-text>
-    </md-card-header>
-    <input type="text">
-    
-</md-card>
-    
-<md-card>
-<md-list>
-  <md-list-item class="md-2-line">
-    <div class="md-list-item-text" layout="row" layout-align="start center">
-      <span flex="20">Name</span>
-      <span flex="5"></span>
-      <span flex="20">Country</span>
-        <span flex="5"></span>
-      <span flex="20">Most Rec. Round</span>
-        <span flex="5"></span>
-      <span flex="20">Last Round Size</span>
-    </div>
-  </md-list-item>
-  <md-list-item class="md-2-line" ng-repeat="investor in pro.Investors">
-    <div class="md-list-item-text" layout="row" layout-align="start center">
-        <span flex="20">{{investor.name}}</span>
-      <span flex="5"></span>
-      <span flex="20">{{investor.country}}</span>
-        <span flex="5"></span>
-      <span flex="20">{{investor.last_round}}</span>
-        <span flex="5"></span>
-      <span flex="20">{{investor.last_round_size}}</span>
-    </div>
-  </md-list-item>
-</md-list>
 
-</md-card>
-    
+        <md-card>
+            <md-card-header class="md-padding" layout="row">
+                <md-card-avatar style="min-width: 128px; min-height: 128px">
+                    <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
+                </md-card-avatar>
+
+                <md-card-header-text flex="70" layout="column">
+                    <span class="md-headline">{{pro.name}}</span>
+                    <span class="md-title">{{pro.motto}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{pro.sector}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{pro.geography}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">show_chart</i> Series {{pro.stage}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1m over 2 rounds</span>
+                </md-card-header-text>
+            <div layout="column">
+                <md-button class="md-raised"> follow
+                </md-button> 
+                <md-button class="md-raised"> Add to List
+                </md-button> 
+            </div>
+            </md-card-header>
+            <md-card-content>
+                {{pro.blurb}}
+            </md-card-content>
+            <md-card-header class="md-padding">
+                <md-card-header-text><span class="md-title">Competitors</span></md-card-header-text>
+                <div layout="row" layout-wrap>
+                    <md-button ng-repeat="logo in pro.competitors" flex="10" aria-label="comp_{{logo}}">
+                        <img src="img/{{logo}}" style="max-width:48px">
+                    </md-button>
+                </div>
+            </md-card-header>
+        </md-card>
+
+        <md-card>
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">My Investment Notes and Shared Files</span>
+                </md-card-header-text>
+            </md-card-header>
+
+            <md-list>
+
+                <md-list-item>
+                    <input type="text" flex placeholder="Type note or drag file here to upload">
+                    <md-button>Add</md-button>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <img src="img/pdf.jpg" class="md-avatar">
+                    <div class="md-list-item-text" layout="column">
+                        <p>Termsheet </p>
+                        <p>12:33 23-May-2017 - shared with you by {{pro.name}}</p>
+                    </div>
+                    <md-button class="md-mini" aria-label="download">
+                        <md-icon><i class="material-icons">file_download</i></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <img src="img/xls.jpg" class="md-avatar">
+                    <div class="md-list-item-text" layout="column">
+                        <p>Financial Model</p>
+                        <p>12:37 20-May-2017 - shared with you by {{pro.name}}</p>
+                    </div>
+                    <md-button class="md-mini" aria-label="download2">
+                        <md-icon><i class="material-icons">file_download</i></md-icon>
+                    </md-button>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <img src="img/note.png" class="md-avatar">
+                    <div class="md-list-item-text" layout="column">
+                        <p>Thoughts from second meeting</p>
+                        <p>18:13 10-May-2017 - note by you</p>
+                    </div>
+                    <md-button class="md-mini" aria-label="download2">
+                        <md-icon><i class="material-icons">open_in_new</i></md-icon>
+                    </md-button>
+                </md-list-item>
+
+            </md-list>
+
+        </md-card>
+
+        <md-card>
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">Investors</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="20">Name</span>
+                        
+                        <span flex="20">Country</span>
+                        
+                        <span flex="20">Most Rec. Round</span>
+                        
+                        <span flex="20">Last Round Size</span>
+                        <span flex="10"></span>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-repeat="investor in pro.Investors">
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="20">{{investor.name}}</span>
+                        
+                        <span flex="20">{{investor.country}}</span>
+                        
+                        <span flex="20">{{investor.last_round}}</span>
+                        
+                        <span flex="20">{{investor.last_round_size}}</span>
+                        <span flex="10"><md-button class="md-raised">Portfolio</md-button></span>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+        </md-card>
+
+        <md-card>
+            <md-card-header style="min-height:100px">
+                <md-card-header-text class="md-padding">
+                    <span class="md-title">Research and Curated News</span>
+                </md-card-header-text>
+            </md-card-header>
+            <div style="max-height:175px; overflow-y: scroll">
+            <div layout="row" layout-wrap>
+                <md-card flex="30" class="md-padding" ng-repeat="article in pro.NR">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">{{article.title}}</span>
+                            <span class="md-subhead">{{article.type}}</span>
+                            <span class="md-subhead">{{article.author}}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="md-padding">
+                    {{article.blurb}}
+                    </md-card-content>
+                </md-card>
+            </div>
+            </div>
+        </md-card>
+    </div>
+    <div flex="25">
+
+        <md-toolbar class="md-accent" layout="row">
+            <span class="md-padding md-title">3rd Party Data</span>
+            <md-icon> <img src="img/crunchbase.png" style="max-width:24px; max-height:24px"></md-icon>
+            <md-icon><img src="img/x.png" style="max-width:24px; max-height:24px"></md-icon>
+        </md-toolbar>
+
+
+        <md-card>
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">Team Members</span>
+                </md-card-header-text>
+            </md-card-header>
+            <div style="max-height:175px; overflow-y: scroll">
+                <md-list>
+                    <md-list-item class="md-2-line" ng-repeat="member in pro.Team">
+                        <div class="md-list-item-text">
+                            <p>{{member.name}}</p>
+                            <p>{{member.title}}</p>
+                        </div>
+                        <md-button class="md-icon-button md-primary">
+                            <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+        </md-card>
+
+        <md-card>
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">News from the web</span>
+                </md-card-header-text>
+            </md-card-header>
+
+            <div style="max-height:175px; overflow-y: scroll">
+                <md-list>
+                    <md-list-item class="md-2-line" ng-repeat="n in [1,2,3,4,5,6,7,8,9,10]">
+                        <div class="md-list-item-text" flex layout-wrap>
+
+                            <p>{{n}} News</p>
+                            <p>Date and Source</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+        </md-card>
+
+    </div>
 </md-content>
