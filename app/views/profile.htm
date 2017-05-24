@@ -19,13 +19,23 @@
                     <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
                 </md-card-avatar>
 
-                <md-card-header-text flex="70" layout="column">
+                <md-card-header-text flex="80" layout="row" >
+                    <div layout="column">
                     <span class="md-headline">{{pro.name}}</span>
                     <span class="md-title">{{pro.motto}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{pro.sector}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{pro.geography}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">cloud</i> www.{{pro.name}}.com</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">group</i>50-100</span>
+                    </div>
+                          <div layout="column">
+                    <span class="md-headline">&nbsp</span>
+                    <span class="md-title">&nbsp</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">hourglass_empty</i>2010</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">show_chart</i> Series {{pro.stage}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1m over 2 rounds</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">account_balance</i> 5 investors</span>
+                    </div>
                 </md-card-header-text>
             <div layout="column">
                 <md-button class="md-raised"> follow
@@ -34,11 +44,21 @@
                 </md-button> 
             </div>
             </md-card-header>
-            <md-card-content>
-                {{pro.blurb}}
-            </md-card-content>
+            <md-card class="md-padding">
+                <md-card-header ><span class="md-title">ABOUT</span></md-card-header>
+                <md-content>{{pro.blurb}}</md-content>
+            </md-card>
+                        <md-card>
+            <md-card-header class="md-padding"><span class="md-title">POSITIONING</span></md-card-header>
+                    <md-content class="md-padding">This would be a description of the company's market and its technology related to it ..... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus, mauris eu tincidunt venenatis, nulla felis lobortis sapien, efficitur bibendum nibh est ac ex. Proin volutpat gravida elit, id ornare diam rhoncus vitae. Ut convallis nisl id dui dapibus pharetra. Ut condimentum velit varius sem placerat feugiat. Suspendisse potenti. Ut sit amet gravida urna</md-content>
+            </md-card>
+                        <md-card>
+                <md-card-header class="md-padding"><span class="md-title">COMPETITION</span></md-card-header>
+                        <md-content class="md-padding">This would be an analysis on how this company compared it its competitors ..... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus, mauris eu tincidunt venenatis, nulla felis lobortis sapien, efficitur bibendum nibh est ac ex. Proin volutpat gravida elit, id ornare diam rhoncus vitae. Ut convallis nisl id dui dapibus pharetra. Ut condimentum velit varius sem placerat feugiat. Suspendisse potenti. Ut sit amet gravida urna</md-content>
+            </md-card>
+
             <md-card-header class="md-padding">
-                <md-card-header-text><span class="md-title">Competitors</span></md-card-header-text>
+                <md-card-header-text><span class="md-title">Similar Companies</span></md-card-header-text>
                 <div layout="row" layout-wrap>
                     <md-button ng-repeat="logo in pro.competitors" flex="10" aria-label="comp_{{logo}}">
                         <img src="img/{{logo}}" style="max-width:48px">
@@ -46,11 +66,33 @@
                 </div>
             </md-card-header>
         </md-card>
-
+        <md-card>
+            <md-card-header >
+                
+                    <span class="md-title">Research and Curated News</span>
+                
+            </md-card-header>
+            <div style="max-height:175px; overflow-y: scroll">
+            <div layout="row" layout-wrap>
+                <md-card flex="30" class="md-padding" ng-repeat="article in pro.NR">
+                    <md-card-header>
+                        <md-card-header-text>
+                            <span class="md-title">{{article.title}}</span>
+                            <span class="md-subhead">{{article.type}}</span>
+                            <span class="md-subhead">{{article.author}}</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-content class="md-padding">
+                    {{article.blurb}}
+                    </md-card-content>
+                </md-card>
+            </div>
+            </div>
+        </md-card>
         <md-card>
             <md-card-header class="md-padding">
                 <md-card-header-text>
-                    <span class="md-title">My Investment Notes and Shared Files</span>
+                    <span class="md-title">Investment CRM</span>
                 </md-card-header-text>
             </md-card-header>
 
@@ -97,9 +139,9 @@
 
         <md-card>
             <md-card-header class="md-padding">
-                <md-card-header-text>
+                
                     <span class="md-title">Investors</span>
-                </md-card-header-text>
+                
             </md-card-header>
             <md-list>
                 <md-list-item class="md-2-line">
@@ -129,30 +171,41 @@
             </md-list>
 
         </md-card>
-
+        
         <md-card>
-            <md-card-header style="min-height:100px">
-                <md-card-header-text class="md-padding">
-                    <span class="md-title">Research and Curated News</span>
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">Funding</span>
                 </md-card-header-text>
             </md-card-header>
-            <div style="max-height:175px; overflow-y: scroll">
-            <div layout="row" layout-wrap>
-                <md-card flex="30" class="md-padding" ng-repeat="article in pro.NR">
-                    <md-card-header>
-                        <md-card-header-text>
-                            <span class="md-title">{{article.title}}</span>
-                            <span class="md-subhead">{{article.type}}</span>
-                            <span class="md-subhead">{{article.author}}</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content class="md-padding">
-                    {{article.blurb}}
-                    </md-card-content>
-                </md-card>
-            </div>
-            </div>
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Round</span>
+                        <span flex="15">Amount</span>
+                        <span flex="20">Date</span>
+                        
+                        <span flex="30">Investors</span>
+                        
+                        
+                        <span flex="20">Reports</span>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line" >
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Seed</span>
+                        <span flex="15">$1.0m</span>
+                        <span flex="20">10-May-16</span>
+                        <span flex="30">Kluglesoft Ventures, Rockstar Capital</span>
+                        
+                        <span flex="20"><md-button class="md-raised">Read   </md-button></span>
+                    </div>
+                </md-list-item>
+            </md-list>
+
         </md-card>
+
+        
     </div>
     <div flex="25">
 
@@ -195,11 +248,12 @@
             <div style="max-height:175px; overflow-y: scroll">
                 <md-list>
                     <md-list-item class="md-2-line" ng-repeat="n in [1,2,3,4,5,6,7,8,9,10]">
-                        <div class="md-list-item-text" flex layout-wrap>
+                        <div class="md-list-item-text"  layout-wrap>
 
                             <p>{{n}} News</p>
                             <p>Date and Source</p>
                         </div>
+
                     </md-list-item>
                 </md-list>
             </div>

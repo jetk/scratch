@@ -3,9 +3,9 @@
 
     <div layout="row" ng-cloak>
 
-    
-        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open = "true" layout="column">
-        
+
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+
             <!--
             
                   <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
@@ -21,22 +21,22 @@
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
-                
+
                 <span class="md-title">Filter this feed</span>
-                
+
             </div>
-            
-            
+
+
 
             <md-card>
-            <input type="search" ng-model="q" placeholder="filter for articles by keyword..." aria-label="filter articles" />
+                <input type="search" ng-model="q" placeholder="filter for articles by keyword..." aria-label="filter articles" />
             </md-card>
 
-     
 
-                <md-button  class="md-accent md-raised">Save these filters</md-button>
 
-            
+            <md-button class="md-accent md-raised">Save these filters</md-button>
+
+
             <div class="md-accordion">
                 <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
@@ -61,9 +61,9 @@
             <div class="md-accordion">
                 <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
-                        
-                            <span>GEOGRAPHIES</span>
-                        
+
+                        <span>GEOGRAPHIES</span>
+
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -80,44 +80,65 @@
             </div>
 
 
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+
+                        <span>SUBJECTS</span>
+
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+
+                    <div ng-if="list_loaded" ng-click="logsub()" ng-repeat="subject in getGenericFilters(get_article_list(mode),'subject')">
+                        <label>
+                              <input type="checkbox" ng-model="subj[subject]" />
+                              {{ subject }}
+                            </label>
+                    </div>
+                </div>
+            </div>
+
 
         </md-sidenav>
     </div>
 
     <div flex-xs layout="column">
         <md-card class="md-padding" layout="row">
-            <span ng-if="list_loaded"  class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies    <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
-          
-            
+            <span ng-if="list_loaded" class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies    <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
+
+
             <md-slider ng-model="mode" ng-change="log()" min="0" max="2" aria-label="mode"></md-slider>
-            
-            
+
+
         </md-card>
-        
-        <md-card  ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography">
-            <md-card-header class ="md-padding"layout="row">
-                 
-                    <img style="max-width: 64px; max-height: 64px" src="{{article.avatar}}">
-                
-                
-                    <span class="md-title" flex>{{article.company}} | {{article.subject}}</span>
-                    <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
+
+        <md-card ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography | filter:filterBySubject">
+            <md-card-header class="md-padding" layout="row">
+
+                <img style="max-width: 64px; max-height: 64px" src="{{article.avatar}}">
+
+
+                <span class="md-title" flex>{{article.company}} | {{article.subject}}</span>
+                <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
             </md-card-header>
             <md-card-content>{{article.blurb}}</md-card-content>
             <md-card-footer>
                 <div layout="row" layout-wrap>
-                    
-                    
-                 
-                
-                <md-chips readonly="true">
-                    <md-chip ng-click="set_up_sector_filters(article.sector)"><i class="material-icons">bubble_chart</i> {{article.sector}}</md-chip>
-                    <md-chip ng-click="set_up_geog_filters(article.geography)"><i class="material-icons">location_on</i> {{article.geography}}</md-chip>
-                    <md-chip><i class="material-icons">show_chart</i> {{article.stage}}</md-chip>
-                </md-chips>
-                <md-chips ng-model="article.tags" readonly="true">
-                    <md-chip><i class="material-icons">label</i>{{$chip.name}}</md-chip>
-                </md-chips>
+
+
+
+
+                    <md-chips readonly="true">
+                        <md-chip ng-click="set_up_sector_filters(article.sector)"><i class="material-icons">bubble_chart</i> {{article.sector}}</md-chip>
+                        <md-chip ng-click="set_up_geog_filters(article.geography)"><i class="material-icons">location_on</i> {{article.geography}}</md-chip>
+                        <md-chip><i class="material-icons">show_chart</i> {{article.stage}}</md-chip>
+                    </md-chips>
+                    <md-chips ng-model="article.tags" readonly="true">
+                        <md-chip><i class="material-icons">label</i>{{$chip.name}}</md-chip>
+                    </md-chips>
                 </div>
             </md-card-footer>
         </md-card>
@@ -145,14 +166,14 @@
                     <md-button class="md-icon-button launch" ng-click="go_to_inv()"><i class="material-icons">launch</i></md-button>
                 </md-card-header>
 
-                
+
 
                 <div class="md-accordion" ng-repeat="data in company_lists">
                     <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                         <div class="md-toolbar-tools">
                             <h3>
-						<span>{{data.list_name}}</span>
-					</h3>
+                                <span>{{data.list_name}}</span>
+                            </h3>
                             <span flex=""></span>
                             <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                         </div>
@@ -164,7 +185,7 @@
                             <div class="md-list-item-text">
                                  {{company.title}}
                             </div>
-                        </span>    
+                        </span>
 
                     </div>
                 </div>

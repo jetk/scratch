@@ -1,5 +1,70 @@
 angular.module('app.services', [])
 
+.service('feed_generator', function(co_service){
+    
+        getRandomInt= function(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+
+        this.generate_feed = function(mode, quantity) {
+            
+            var feed = []
+            for (i = 0; i < quantity; i++) {
+
+                var feed_entry = co_service[getRandomInt(1315, 2200)]
+
+                var new_feed_item = {
+                    company: feed_entry.Company,
+                    subject: generate_subject(),
+                    tags: generate_tags(),
+                    avatar: "http://loremflickr.com/48/48/logo?random="+i,
+                    sector: feed_entry.Sector,//generate_sector(),
+                    geography: feed_entry.IsoCountry1,
+                    stage: generate_stage(),
+                    blurb: feed_entry.Description,
+                    article: null
+                }
+
+//                    feed_entry.tags=generate_tags()
+                    //feed_entry.stage=generat_stage()
+
+                feed.push(new_feed_item)
+            }
+                        
+            return feed
+        }
+        
+        var subject_array=["SYNDICATION OFFER","Research Update", "Company Update", "Transaction Update"]
+        generate_subject=function (){
+            return subject_array[getRandomInt(0,subject_array.length-1)]
+        }
+        
+
+        var sector_array=["Adtech","Badtech","CADtech","Edtech","Fadtec"]
+        generate_sector= function (){
+            return sector_array[getRandomInt(0,sector_array.length-1)]
+        }
+        
+        var tags_array=["tig","tag","tog","tug","foo","bar","baz","tab","asf","acs"]
+        
+        generate_tags=function (){
+            var tags_generated = []
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
+            return tags_generated
+        }
+        
+        var stage_array=["angel","seed","A","B","C","Late"]
+        generate_stage=function (){
+            return stage_array[getRandomInt(0,subject_array.length-1)]
+        }
+        
+    
+      
+})
+
 
 .factory('co_service', function(){
    return [

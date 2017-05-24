@@ -57,12 +57,12 @@ angular.module('app.controllers', [])
                 url: "/busi"
         },
             {
-                label: "Canals",
+                label: "Channels",
                 icon: "subject",
                 url: "/research"
         },
             {
-                label: "Investment Mgmt",
+                label: "Investment CRM",
                 icon: "work",
                 url: "/inv"
         },
@@ -80,84 +80,12 @@ angular.module('app.controllers', [])
 
 }])
 
-    .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'co_service', function ($scope, $mdSidenav, $http, $location, $timeout, co_service) {
-/*
-
-
-        $timeout(foo,1000)
-        var fakefeed=generate_feed(0,10)
-
-        function foo() {
-            $scope.fullfeed.all = fakefeed
-        }
-
-Below was a failed attempt at programattically generating filters based on the the avaliable values in the feed list, to then use a custom angular filter to affect the main feed
-
-*/
-        $scope.getGenericFilters=function(list, property) {
-            
-            return (list || []).
-            map(function (article) {
-                
-              return article[property];
-            }).
-            filter(function (cat, idx, arr) {
-              return arr.indexOf(cat) === idx;
-            });
-        }
+    .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
         
         
-        
-        //Still can't figure out how to work this, currently just replicating the function two times
-       $scope.filterByProperties = function(wine) {
-
-            var activeFilterProps = Object.
-            keys($scope.filter).filter(function (prop) {
-                return !noFilter($scope.filter[prop]);
-            });
-
-            return activeFilterProps.every(function (prop) {
-                return $scope.filter[prop][wine[prop]];
-            });
-
-        }
-       
-       
-       //Kludge to force articles to show before a filter is engaged
-        $scope.touched=false;
-        
-        $scope.filterBySector = function(article) {
-            if(true||$scope.touched){
-            return $scope.filter[article.sector] || noFilter($scope.filter);
-            }
-            else return true;
-        }
-
-        
-        
-        $scope.filterByGeography = function(article) {
-            if($scope.touched){
-            return $scope.geog[article.geography] || noFilter($scope.geog);
-            }
-            else return true;
-        }
-
-              
-        function noFilter(filterObj) {
-            return Object.
-            keys(filterObj).
-            every(function (key) {
-              return !filterObj[key];
-            });
-        }
-
-        $scope.noFilter = noFilter
-        
-        $scope.log = function () {
-            console.log($scope.filter)
-            $scope.touched=true
-        }
-
+        /*
+        Navigation
+        */
         $scope.go_to_inv = function () {
             $location.path('/inv')
         }
@@ -171,12 +99,18 @@ Below was a failed attempt at programattically generating filters based on the t
 
         }
 
-
+        /*
+        Populates right side-bar with followed companies
+        */
         $scope.company_lists = null;
         $http.get('my_companies.json').success(function (data) {
             $scope.company_lists = data
         })
 
+        
+        /*
+        Display functions for main feed
+        */
         $scope.get_article_list = function (mode) {
 
             if ($scope.fullfeed == null) {
@@ -217,8 +151,9 @@ Below was a failed attempt at programattically generating filters based on the t
             }
         };
 
-
-
+        /*
+        Controls the sidenav
+        */
         $scope.openLeftMenu = function () {
             $mdSidenav('left').toggle();
         };
@@ -241,72 +176,101 @@ Below was a failed attempt at programattically generating filters based on the t
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
-
-
-        function generate_feed(mode, quantity) {
+        
+        
+        /*
+        Filtering
+        */
+       
+       //Kludge to force articles to show before a filter is engaged
+        $scope.touched=false;
+        
+        //extracts possible filters from the feed depending on content
+        $scope.getGenericFilters=function(list, property) {
             
-            var feed = []
-            for (i = 0; i < quantity; i++) {
-
-                var feed_entry = co_service[getRandomInt(1315, 2200)]
-
-                var new_feed_item = {
-                    company: feed_entry.Company,
-                    subject: generate_subject(),
-                    tags: generate_tags(),
-                    avatar: "http://loremflickr.com/48/48/logo?random="+i,
-                    sector: feed_entry.Sector,//generate_sector(),
-                    geography: feed_entry.IsoCountry1,
-                    stage: generate_stage(),
-                    blurb: feed_entry.Description,
-                    article: null
-                }
-
-//                    feed_entry.tags=generate_tags()
-                    //feed_entry.stage=generat_stage()
-
-                feed.push(new_feed_item)
+            return (list || []).
+            map(function (article) {
+                
+              return article[property];
+            }).
+            filter(function (cat, idx, arr) {
+              return arr.indexOf(cat) === idx;
+            });
+        }
+        
+        //Replicated a few times to get filtering on the respective categories
+        $scope.filterBySector = function(article) {
+            if(true||$scope.touched){
+            return $scope.filter[article.sector] || noFilter($scope.filter);
             }
-                        
-            return feed
+            else return true;
         }
         
-        var subject_array=["SYNDICATION OFFER","Research Update","Competition Update","Market Update","Transaction Update"]
-        function generate_subject(){
-            return subject_array[getRandomInt(0,subject_array.length-1)]
+        $scope.filterByGeography = function(article) {
+            if($scope.touched){
+            return $scope.geog[article.geography] || noFilter($scope.geog);
+            }
+            else return true;
         }
         
+        $scope.filterBySubject = function(article) {
+            if($scope.touched){
+            return $scope.subj[article.subject] || noFilter($scope.subj);
+            }
+            else return true;
+        }
 
-        var sector_array=["Adtech","Badtech","CADtech","Edtech","Fadtec"]
-        function generate_sector(){
-            return sector_array[getRandomInt(0,sector_array.length-1)]
+        //used for returning everything when no filter is assigned
+        function noFilter(filterObj) {
+            return Object.
+            keys(filterObj).
+            every(function (key) {
+              return !filterObj[key];
+            });
+        }
+        $scope.noFilter = noFilter
+
+        
+        //TODO: rename so it's no longer a logging function
+        $scope.log = function () {
+            console.log($scope.filter)
+            $scope.touched=true
+        }
+
+        $scope.loggeo = function(){
+            console.log($scope.geog)
+            $scope.touched=true
         }
         
-        var tags_array=["tig","tag","tog","tug","foo","bar","baz","tab","asf","acs"]
-        
-        function generate_tags(){
-            var tags_generated = []
-            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
-            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
-            tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])
-            return tags_generated
+        $scope.logsub = function(){
+            console.log($scope.subj)
+            $scope.touched=true
         }
         
-        var stage_array=["angel","seed","A","B","C","Late"]
-        function generate_stage(){
-            return stage_array[getRandomInt(0,subject_array.length-1)]
+        //Still can't figure out how to work this, currently just replicating the function two times. Might one day be more useful
+       $scope.filterByProperties = function(wine) {
+
+            var activeFilterProps = Object.
+            keys($scope.filter).filter(function (prop) {
+                return !noFilter($scope.filter[prop]);
+            });
+
+            return activeFilterProps.every(function (prop) {
+                return $scope.filter[prop][wine[prop]];
+            });
+
         }
+        
         
 
         $scope.fullfeed = null
         $scope.list_loaded = false
         $scope.filter={}
         $scope.geog = {}
+        $scope.subj= {}
         $scope.mode = 0
         
-        $scope.loggeo = function(){
-            console.log($scope.geog)
-        }
+   
         
         
         function set_up_sector_filters(temp_filters){
@@ -331,7 +295,6 @@ Below was a failed attempt at programattically generating filters based on the t
         
                 
         function set_up_geog_filters(temp_geog){
-            console.log("doing the thing tier 1")
             //I know this is playing with fire to have this function handle
             //both strings and arrays but hey it's JS and I'm being really lazy
             if (angular.isString(temp_geog)){
@@ -350,6 +313,32 @@ Below was a failed attempt at programattically generating filters based on the t
         $scope.set_up_geog_filters = set_up_geog_filters
         
         
+                
+        function set_up_subject_filters(temp_subject){
+            //I know this is playing with fire to have this function handle
+            //both strings and arrays but hey it's JS and I'm being really lazy
+            if (angular.isString(temp_subject)){
+                console.log("doing the thing")
+                $scope.subj[temp_subject]=!$scope.subj[temp_subject];
+            }
+            
+            for(i = 0; i<temp_subject.length;i++){
+                $scope.subj[temp_subject[i]]=$location.search()?false:true;
+            }
+                        
+            for(var key in $location.search())
+                    $scope.subj[key]=true
+            
+        }
+        $scope.set_up_subject_filters = set_up_subject_filters
+        
+        
+        
+        
+        
+        
+        
+        
         $http.get('feed.json').success(function (data) {
             $scope.fullfeed = data
             
@@ -361,7 +350,10 @@ Below was a failed attempt at programattically generating filters based on the t
             var temp_geog=$scope.getGenericFilters(data.followed,"geography")
             set_up_geog_filters(temp_geog)
             
-            $scope.fullfeed.all = generate_feed(0,20)
+            var temp_subject=$scope.getGenericFilters(data.followed,"subject")
+            set_up_geog_filters(temp_subject)
+            
+            $scope.fullfeed.all = feed_generator.generate_feed(0,20)
             $scope.list_loaded = true
             replace($scope.fullfeed)
         })
@@ -373,7 +365,7 @@ Below was a failed attempt at programattically generating filters based on the t
 
 
 
-    .controller('invCtrl', ['$scope', '$mdDialog', '$http', function ($scope, $mdDialog, $http) {
+    .controller('invCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
 
         $scope.hardy = function (list) {
             
@@ -410,17 +402,7 @@ Below was a failed attempt at programattically generating filters based on the t
         })
 
 
-
-        var companies = null
-
-        $http.get('companies.json').success(function (data) {
-
-            companies = data
-        }).error(function (data) {
-            console.log(data.message)
-        })
-
-
+        
         var affected_list = 0
 
         $scope.showDialog = function ($event, index) {
@@ -431,7 +413,7 @@ Below was a failed attempt at programattically generating filters based on the t
                 targetEvent: $event,
                 controller: function ($scope) {
                     //          $scope.searchText = 'Enter a company';
-                    $scope.items = companies;
+                    $scope.items = co_service;
                 },
                 templateUrl: 'views/dialog.html',
                 scope: $scope.$new()
@@ -543,29 +525,167 @@ Below was a failed attempt at programattically generating filters based on the t
 
     .controller('meCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 
-        $scope.hardy = function (list) {
-            for (var i = 0; i < list.length; i++) {
-                if (list[i].ticked == true) {
-                    list.splice(i, 1)
-                }
-            }
-            if (list.length == 1 && list[0].ticked) {
-                list.splice(0, 1)
-            }
+ 
 
-            for (var i = 0; i < list.length; i++) {
-                list.ticked = false
-            }
-        }
+        
+        /*
+        
+        Ripped directly out of MD-Chips demo. Need to replace with actual filters
+        */
+    $scope.readonly = false;
+    $scope.selectedItem = null;
+    $scope.searchText = null;
+    $scope.querySearch = querySearch;
+    //TODO
+    $scope.filters = loadVegetables();
+    $scope.selectedFilters = [];
+    $scope.numberChips = [];
+    $scope.numberChips2 = [];
+    $scope.numberBuffer = '';
+    $scope.RequireMatch = true;
+    $scope.transformChip = transformChip;
 
-        $scope.delete_list = function (list) {
-            for (var i = 0; i < $scope.company_lists.length; i++) {
-                if ($scope.company_lists[i].list_name == list.list_name) {
-                    $scope.company_lists.splice(i, 1)
-                }
-            }
-        }
+    /**
+     * Return the proper object when the append is called.
+     */
+    function transformChip(chip) {
+      // If it is an object, it's already a known chip
+      if (angular.isObject(chip)) {
+        return chip;
+      }
 
+      // Otherwise, create a new one
+      return { name: chip, type: 'new' }
+    }
+
+    /**
+     * Search for vegetables.
+     */
+    function querySearch (query) {
+      var results = query ? $scope.filters.filter(createFilterFor(query)) : [];
+      return results;
+    }
+
+    /**
+     * Create filter function for a query string
+     */
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+
+      return function filterFn(filter) {
+        return (filter._lowername.indexOf(lowercaseQuery) === 0) ||
+            (filter._lowertype.indexOf(lowercaseQuery) === 0);
+      };
+
+    }
+
+    $scope.push_to_selected = function(chip){
+        console.log(JSON.stringify(chip))
+        $scope.selectedFilters.push(chip)
+    }
+    function loadVegetables() {
+      var filters = [
+{'name':"Macedonia",'type':"Geo"},
+{'name':"Adtech",'type':"Sector"},
+{'name':"Albania",'type':"Geo"},
+{'name':"Alternative Telecom Operators",'type':"Sector"},
+{'name':"Andorra",'type':"Geo"},
+{'name':"Application-Specific Hardware",'type':"Sector"},
+{'name':"Austria",'type':"Geo"},
+{'name':"Azerbaijan",'type':"Geo"},
+{'name':"Belarus",'type':"Geo"},
+{'name':"Belgium",'type':"Geo"},
+{'name':"Bosnia and Herzegovina",'type':"Geo"},
+{'name':"Bulgaria",'type':"Geo"},
+{'name':"Cleantech",'type':"Sector"},
+{'name':"Communications & Networking",'type':"Sector"},
+{'name':"Consulting",'type':"Sector"},
+{'name':"Content Delivery Networks",'type':"Sector"},
+{'name':"Croatia",'type':"Geo"},
+{'name':"Czech Republic",'type':"Geo"},
+{'name':"Data Centres",'type':"Sector"},
+{'name':"Denmark",'type':"Geo"},
+{'name':"Devices",'type':"Sector"},
+{'name':"Diagnostics",'type':"Sector"},
+{'name':"Discovery Platforms",'type':"Sector"},
+{'name':"Distribution",'type':"Sector"},
+{'name':"Drug Delivery Systems",'type':"Sector"},
+{'name':"Drug Discovery",'type':"Sector"},
+{'name':"Electronics Manufacturing Services",'type':"Sector"},
+{'name':"Enterprise Application Software",'type':"Sector"},
+{'name':"Estonia",'type':"Geo"},
+{'name':"Finland",'type':"Geo"},
+{'name':"France",'type':"Geo"},
+{'name':"Genomics",'type':"Sector"},
+{'name':"Germany",'type':"Geo"},
+{'name':"Greece",'type':"Geo"},
+{'name':"Hardware",'type':"Sector"},
+{'name':"Healthcare",'type':"Sector"},
+{'name':"Healthcare IT",'type':"Sector"},
+{'name':"Hosting",'type':"Sector"},
+{'name':"Hungary",'type':"Geo"},
+{'name':"IaaS",'type':"Sector"},
+{'name':"Iceland",'type':"Geo"},
+{'name':"Imaging",'type':"Sector"},
+{'name':"Ireland",'type':"Geo"},
+{'name':"IT",'type':"Sector"},
+{'name':"Italy",'type':"Geo"},
+{'name':"Kosovo",'type':"Geo"},
+{'name':"Late",'type':"Stage"},
+{'name':"Latvia",'type':"Geo"},
+{'name':"Liechtenstein",'type':"Geo"},
+{'name':"Lithuania",'type':"Geo"},
+{'name':"Luxembourg",'type':"Geo"},
+{'name':"Malta",'type':"Geo"},
+{'name':"Media & Internet",'type':"Sector"},
+{'name':"Medtech",'type':"Sector"},
+{'name':"M-Health",'type':"Sector"},
+{'name':"Moldova",'type':"Geo"},
+{'name':"Monaco",'type':"Geo"},
+{'name':"Montenegro",'type':"Geo"},
+{'name':"Netherlands",'type':"Geo"},
+{'name':"Norway",'type':"Geo"},
+{'name':"Other",'type':"Sector"},
+{'name':"Other Healthcare",'type':"Sector"},
+{'name':"Other System Software",'type':"Sector"},
+{'name':"Other Vertical Application Software",'type':"Sector"},
+{'name':"Poland",'type':"Geo"},
+{'name':"Portugal",'type':"Geo"},
+{'name':"Processing",'type':"Sector"},
+{'name':"Romania",'type':"Geo"},
+{'name':"Russia",'type':"Geo"},
+{'name':"San Marino",'type':"Geo"},
+{'name':"Security Software",'type':"Sector"},
+{'name':"Seed",'type':"Stage"},
+{'name':"Semis",'type':"Sector"},
+{'name':"Serbia",'type':"Geo"},
+{'name':"Series A",'type':"Stage"},
+{'name':"Series B",'type':"Stage"},
+{'name':"Series C",'type':"Stage"},
+{'name':"Services",'type':"Sector"},
+{'name':"Slovakia",'type':"Geo"},
+{'name':"Slovenia",'type':"Geo"},
+{'name':"Software",'type':"Sector"},
+{'name':"Spain",'type':"Geo"},
+{'name':"Sweden",'type':"Geo"},
+{'name':"Switzerland",'type':"Geo"},
+{'name':"Telecom",'type':"Sector"},
+{'name':"Telecom Services",'type':"Sector"},
+{'name':"Telecom Software",'type':"Sector"},
+{'name':"Traditional Telecom Operators",'type':"Sector"},
+{'name':"Turkey",'type':"Geo"},
+{'name':"Ukraine",'type':"Geo"},
+{'name':"United Kingdom",'type':"Geo"},
+{'name':"Vatican City",'type':"Geo"}
+]
+
+      return filters.map(function (filter) {
+        filter._lowername = filter.name.toLowerCase();
+        filter._lowertype = filter.type.toLowerCase();
+        return filter;
+      });
+    }
+  
 
 
 
@@ -574,14 +694,16 @@ Below was a failed attempt at programattically generating filters based on the t
 
     .controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
 
-        $scope.countries = null
+        $scope.countries = co_service
 
+        /*
         $http.get('countries.json').success(function (data) {
 
             $scope.countries = data
         }).error(function (data) {
             console.log(data.message)
         })
+        */
 
 
 
@@ -606,7 +728,18 @@ Below was a failed attempt at programattically generating filters based on the t
 }])
 
     .controller('researchCtrl', ['$scope', '$mdDialog','$location', function ($scope, $mdDialog, $location) {
-
+        
+        
+        $scope.save = function(channel, index){
+            
+            
+            
+            console.log("parent index is: "+JSON.stringify(channel))
+            console.log("child index is: "+index)
+            
+            $scope.channel_lists.saved.push($scope.channel_lists[channel][index])
+            $scope.channel_lists[channel].splice(index,1)
+        }
         
         $scope.go_to_alpha_with_filters=function(filters){
             var search_params = {}
@@ -636,28 +769,11 @@ Below was a failed attempt at programattically generating filters based on the t
             }
             
         }
-        $scope.channel_lists =
 
-        [
-                {
-                    channel: "Adtech in DACH",
-                    comments: "",
-                    filters: ["Adtech","Germany","Switzerland","Austria"],
-                    contributors: ["G4V","Catcap"]
-            },
-                {
-                    channel: "Fintech in Spain by Group Olivo",
-                    comments: "",
-                    filters: ["Fintech","Spain"],
-                    contributors: ["G4V","Olivo"]
-            },
-                
-        ]
         
         
         
-        
-        $scope.canal_lists=
+        $scope.channel_lists=
             {saved:[
                 {
                     name: "Swiss Adtech",

@@ -1,60 +1,82 @@
-  <md-content class="md-padding md-hue-1" layout-padding>
+<md-content class="md-padding md-hue-1" layout-padding>
     <md-card>
-  <md-card-header layout="row" layout-wrap>
-    <md-card-avatar flex="10">
-      <img class="md-user-avatar" src="img/Cloud_Engineering.png">
-    </md-card-avatar>
-      <md-card-header-text flex layout="column">
-      <span class="md-title">Jan Klug</span>
-      <span class="md-subhead">Product Manager @ Go4Venture</span>
-      <span class="md-subhead">I tek the finance and finance the tek</span>
-    </md-card-header-text>
-      
-    <md-card-actions layout="column" layout-align="start center" flex="10">
-    <md-button class="md-hue md-raised">Edit</md-button>
-    <md-button class="md-hue md-raised">Verfiy</md-button>
+        <md-card-header layout="row" layout-wrap>
+            <md-card-avatar flex="10">
+                <img class="md-user-avatar" src="img/Cloud_Engineering.png">
+            </md-card-avatar>
+            <md-card-header-text flex layout="column">
+                <span class="md-title">Jan Klug</span>
+                <span class="md-subhead">Product Manager @ Go4Venture</span>
+                <span class="md-subhead">Used to do tech finance, now I do fintech</span>
+            </md-card-header-text>
 
-  </md-card-actions>
+            <md-card-actions layout="column" layout-align="start center" flex="10">
+                <md-button class="md-hue md-raised">Edit</md-button>
+                <md-button class="md-hue md-raised">Verfiy</md-button>
 
-  </md-card-header>
-</md-card>
+            </md-card-actions>
 
-      
-<md-card class="md-primary" >
-  <md-card-header layout="row">
-      <md-card-header-text flex layout="column">
-      <span class="md-title">Investment CRM</span>
-    </md-card-header-text>
- <md-card-actions layout="row">
-    <md-button class="md-hue md-raised">Add a new List</md-button>
-  </md-card-actions>
-  </md-card-header>
-</md-card-header>
-      
+        </md-card-header>
+    </md-card>
 
 
-<md-card ng-repeat="list in company_lists">
-  <md-card-header layout="row">
-      <md-card-header-text flex layout="column">
-      <span class="md-title">{{list.list_name}}</span>
-    </md-card-header-text>
- <md-card-actions layout="row">
-    <md-button class="md-primary md-raised">Add Companies</md-button>
-    <md-button class="md-accent md-raised" ng-click="hardy(list.companies)">Delete Selected</md-button>
-    <md-button class="md-warn md-raised" ng-click="delete_list(list)">Delete List</md-button>
-  </md-card-actions>
-  </md-card-header>
-  <md-list>
-  <md-list-item class="md-2-line" ng-repeat="company in list.companies">
-    <md-checkbox ng-model="company.ticked"></md-checkbox>
-    <div class="md-list-item-text">
-      <h3>{{company.title}}</h3>
-      <p>{{company.description}}</p>
-    </div>
-  </md-list-item>
-</md-list>
-</md-card>
+    <md-card>
+        <md-card-header class="md-padding">
+            <span class="md-title">Currently showing content about:</span>
+        </md-card-header>
 
-</md-card>
-      
+
+    <md-chips ng-model="selectedFilters" md-autocomplete-snap
+              md-transform-chip="transformChip($chip)"
+              md-require-match="RequireMatch">
+      <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text="searchText"
+          md-items="item in querySearch(searchText)"
+          md-item-text="item.name"
+          placeholder="Type a filter or a category">
+        <span md-highlight-text="searchText">{{item.name}} :: {{item.type}}</span>
+      </md-autocomplete>
+      <md-chip-template><!--Actually in charge of templating-->
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
+        <md-chip><!--Hardcoded demo chips-->
+        <span>
+          <strong>Fintech</strong>
+          <em>(Sector)</em>
+        </span>
+        </md-chip>
+        <md-chip>
+        <span>
+          <strong>Cleantech</strong>
+          <em>(Sector)</em>
+        </span>
+        </md-chip>
+        <md-chip>
+        <span>
+          <strong>Germany</strong>
+          <em>(Geo)</em>
+        </span>
+        </md-chip>
+    </md-chips>
+
+    <md-card-header class="md-padding">
+            <span class="md-title">All available topics</span>
+    </md-card-header>
+    
+    <md-chips ng-model="filters" readonly="true">
+                        <md-chip-template ng-click="push_to_selected($chip)">
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
+                    </md-chips>
+    
+    
+    </md-card>
 </md-content>
+
