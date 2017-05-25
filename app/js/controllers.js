@@ -693,7 +693,92 @@ angular.module('app.controllers', [])
 
 
     .controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
+        
+        $scope.companies = co_service
+        
+       //Kludge to force articles to show before a filter is engaged
+        $scope.touched=false;
+        
+        //extracts possible filters from the feed depending on content
+        $scope.getGenericFilters=function(list, property) {
+            
+            return (list || []).
+            map(function (article) {
+                
+              return article[property];
+            }).
+            filter(function (cat, idx, arr) {
+              return arr.indexOf(cat) === idx;
+            });
+        }
+        
+        //Replicated a few times to get filtering on the respective categories
+        $scope.filterBySector = function(article) {
+            return $scope.filter[article.subsector] || noFilter($scope.filter);
+        }
+        
+        $scope.filterByGeography = function(article) {
+            return $scope.geog[article.IsoCountry1] || noFilter($scope.geog);
+        }
+        
 
+
+        //used for returning everything when no filter is assigned
+        function noFilter(filterObj) {
+            return Object.
+            keys(filterObj).
+            every(function (key) {
+              return !filterObj[key];
+            });
+        }
+        $scope.noFilter = noFilter
+
+        
+        //TODO: rename so it's no longer a logging function
+        $scope.log = function () {
+            console.log($scope.filter)
+            $scope.touched=true
+        }
+
+        $scope.loggeo = function(){
+            console.log($scope.geog)
+            $scope.touched=true
+        }
+        
+   
+        //Still can't figure out how to work this, currently just replicating the function two times. Might one day be more useful
+       $scope.filterByProperties = function(wine) {
+
+            var activeFilterProps = Object.
+            keys($scope.filter).filter(function (prop) {
+                return !noFilter($scope.filter[prop]);
+            });
+
+            return activeFilterProps.every(function (prop) {
+                return $scope.filter[prop][wine[prop]];
+            });
+
+        }
+        
+        
+
+        $scope.fullfeed = null
+        $scope.list_loaded = false
+        $scope.filter={}
+        $scope.geog = {}
+        $scope.subj= {}
+        $scope.mode = 0
+            
+            $scope.list_loaded = true
+        
+        
+        
+        
+        
+        
+        
+        
+        
         $scope.countries = co_service
 
         /*
@@ -715,7 +800,7 @@ angular.module('app.controllers', [])
             "DNK": false
     }]
 
-        $scope.companies = co_service
+        
 
 
 
@@ -844,7 +929,7 @@ angular.module('app.controllers', [])
 
     .controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', 'co_service', function ($scope, $mdSidenav, $http, $location, co_service) {
 
-
+        $scope.contributors=[{name:"Bob Cox", articles:20},{name:"Perry Kelso", articles:12}]
         //This works well and fine if we have a json file for each profile out there
         $scope.pro = {}
 
