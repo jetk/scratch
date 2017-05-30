@@ -101,6 +101,28 @@
                 </div>
             </div>
 
+            
+            
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+
+                        <span>STAGE</span>
+
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+                    <div ng-if="list_loaded">
+                        <label><input type="checkbox"/>Seed</label>
+                        <label><input type="checkbox"/>Series A</label>
+                        <label><input type="checkbox"/>Series B</label>
+                        <label><input type="checkbox"/>Series C</label>
+                        <label><input type="checkbox"/>Late</label>
+                    </div>
+                </div>
+            </div>
 
         </md-sidenav>
     </div>
@@ -118,18 +140,21 @@
         <md-card ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography | filter:filterBySubject">
             <md-card-header class="md-padding" layout="row">
 
-                <img style="max-width: 64px; max-height: 64px" src="{{article.avatar}}">
-
-
-                <span class="md-title" flex>{{article.company}} | {{article.subject}}</span>
-                <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
+                <img style="max-width: 64px; max-height: 64px" ng-click="go_to_profile(article)" src="{{article.avatar}}">
+                <div flex="5"></div>
+                <div layout="column" flex>
+                <span class="md-headline" >{{article.company}}</span>
+                <div>
+                    <span class="md-subhead" flex>{{article.subject}} </span> <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
+                    </div>
+                    
+                </div>
+                
+                <img style="max-width: 64px; max-height: 64px" src="img/{{article.subject}}.png">
             </md-card-header>
-            <md-card-content>{{article.blurb}}</md-card-content>
+            <md-card-content>{{article.blurb}}</md-card-content> 
             <md-card-footer>
                 <div layout="row" layout-wrap>
-
-
-
 
                     <md-chips readonly="true">
                         <md-chip ng-click="set_up_sector_filters(article.sector)"><i class="material-icons">bubble_chart</i> {{article.sector}}</md-chip>

@@ -1,6 +1,151 @@
-<md-content class="md-padding md-warn" layout-xs="column" layout="row">
+<md-content class="md-padding md-warn" layout-xs="column" layout="column">
 
-<span class="md-title">{{article_company}}</span>
-<span class="md-title">{{article_type}}</span>
 
+    <md-card layout="column">
+        <md-card-header class="md-padding" layout="row">
+                <img style="max-width:64px;max-height:64px" src="http://loremflickr.com/128/128/logo">
+            <div flex="2">&nbsp</div>
+            <md-card-header-text layout="column">
+                <span class="md-display-1">{{article_company}}</span>
+                <span class="md-subhead">{{article_type}}</span>
+            </md-card-header-text>
+            <md-button class="md-raised" ng-click="go_to_profile(article_company)">Go to Profile</md-button>
+            <md-button class="md-raised" ng-click="null" ng-if="article_type=='SYNDICATION OFFER'">Request Introduction</md-button>
+            <md-button class="md-raised" ng-click="null" ng-if="article_type=='SYNDICATION OFFER'">Request More Information</md-button>
+        </md-card-header>
+    </md-card>
+    
+    
+    <div ng-if="article_type=='SYNDICATION OFFER'">
+        <md-card>
+            <md-card-content>
+            {{article_company}} is using Go4Venture to syndicate £6m of its £15m Series A. You have been shown this deal because it  has algorithmically matched your investment preferences, investment CRM and reading activity.
+            </md-card-content>
+            <md-card-footer>
+                If this is not the right fit for you but you would like to see similiar deals, <md-button>click here</md-button>
+            </md-card-footer>
+        </md-card>
+        <md-card>
+            <md-card-header>
+                <span class="md-title">Teaser</span>
+            </md-card-header>
+            <md-card-content>
+             <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in rhoncus justo. Nam commodo viverra neque, in commodo mauris aliquet eu. Aenean suscipit ut velit vel bibendum. Duis condimentum, ipsum eu pulvinar malesuada, ante ligula viverra tortor, eget pretium arcu libero ut sapien. Phasellus purus sapien, mattis vulputate metus id, tempus gravida est. Donec eget nunc fringilla, tempus urna vel, porttitor elit. Integer sodales tincidunt tellus, sit amet blandit mi commodo vitae. Nam nec pharetra sapien. Integer ultrices, odio a bibendum blandit, felis justo dapibus mi, eget viverra dui sapien vitae odio. Praesent libero leo, fermentum id nisl eu, feugiat accumsan nunc. In iaculis augue sed nulla tempor, et elementum augue accumsan. Quisque nec sollicitudin ex, at pulvinar nunc. Etiam aliquet ex et vestibulum tempor.
+                    </p>
+                    <p>
+                        Proin id nunc consequat, commodo mi ut, sodales metus. Ut quis mi quam. Donec tincidunt nunc vestibulum nisi pharetra, at viverra felis tincidunt. In non consectetur lectus, eu pellentesque leo. Vestibulum ante erat, elementum eget lorem nec, lacinia consequat leo. Nulla fermentum sed odio nec auctor. Pellentesque lorem purus, elementum nec justo nec, ultricies scelerisque sapien. Curabitur rhoncus felis vel ante mattis dignissim. Cras augue magna, feugiat at fringilla sit amet, convallis vel urna. Nam lobortis sed turpis sed bibendum. Aenean congue iaculis dignissim. Nulla facilisi. Aenean a egestas magna. Integer diam nisi, fringilla vel urna id, auctor gravida odio. Proin eu felis et lorem molestie elementum. Duis sed pharetra lorem.
+                    </p>
+                    <p>
+                        Ut elementum nibh vitae velit malesuada, ac sagittis elit porttitor. Suspendisse ut diam tellus. In a nisl aliquam magna commodo varius. Nam blandit ac erat efficitur tristique. Donec felis nunc, dignissim eget felis et, fermentum ullamcorper elit. Mauris felis libero, viverra eget purus sit amet, sagittis vehicula ante. Suspendisse at mattis orci. Quisque auctor elit ac lectus mollis, eget tincidunt nibh mollis. Fusce sapien lorem, tincidunt eget ipsum sit amet, vehicula tincidunt lorem. Pellentesque facilisis lacus justo, sed cursus ex facilisis at. Aliquam erat volutpat. Nunc elementum elit a porttitor pulvinar. Proin vitae ipsum sed justo vehicula pharetra vitae in diam. Nulla vel erat nec ligula condimentum laoreet consectetur a nibh.
+                    </p>
+            </md-card-content>
+        
+        </md-card>
+        <md-card>
+            <md-list>
+                <md-list-item class="md-2-line">
+                        <img src="img/pdf.jpg" class="md-avatar">
+                        <div class="md-list-item-text" layout="column">
+                            <p>Termsheet </p>
+                            <p>12:33 23-May-2017</p>
+                        </div>
+                        <md-button class="md-mini" aria-label="download"> 
+                            <md-icon><i class="material-icons">lock_outline</i></md-icon>
+                    Request    
+                    </md-button>
+                    </md-list-item>
+                    <md-list-item class="md-2-line">
+                        <img src="img/xls.jpg" class="md-avatar">
+                        <div class="md-list-item-text" layout="column">
+                            <p>Financial Model</p>
+                            <p>12:37 20-May-2017</p>
+                        </div>
+                        <md-button class="md-mini" aria-label="download2">
+                            <md-icon><i class="material-icons">lock_outline</i></md-icon>
+                        Request
+                        </md-button>
+                    </md-list-item>
+            </md-list>    
+        </md-card>
+    </div>
+
+    <div layout="row" ng-if="article_type!='SYNDICATION OFFER'">
+
+        <div layout="column" >
+            <md-card layout="column">
+                <md-card-header>
+                    <span class="md-title">Research Detail</span>
+                </md-card-header>
+                <md-list>
+                    <md-list-item class="md-2-line">
+                        <img src="img/user.png" class="md-avatar">
+                        <div class="md-list-item-text" layout="column">
+                            <p>Robert Researcherson</p>
+                            <p>12:33 23-May-2017</p>
+                        </div>
+                        <md-button>
+                            <md-icon><img style="max-width:32px ; max-height:32px" src="img/g4v.png"></md-icon>
+                        </md-button>
+
+                    </md-list-item>
+                </md-list>
+
+            </md-card>
+            <md-card>
+                <md-card-header>
+                    <span class="md-title">Companies Mentioned</span>
+                </md-card-header>
+
+                <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
+                    <md-list class="md-dense">
+                        <md-list-item ng-click="go_to_profile(fake_company)" ng-repeat="fake_company in fake_companies track by $index">
+                            <img style="max-height:32px;max-width:32px" class="md-avatar" src="http://loremflickr.com/64/64/logo?random={{$index}}">
+                            <div class="md-list-item-text">{{fake_company.Company}}</div>
+                        </md-list-item>
+                    </md-list>
+
+
+                </md-card-content>
+
+            </md-card>
+            <md-card>
+                <md-card-header>
+                    <span class="md-title">Investors Mentioned</span>
+                </md-card-header>
+
+                <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
+                    <md-list class="md-dense">
+                        <md-list-item ng-click="go_to_profile(fake_investor)" ng-repeat="fake_investor in fake_investors track by $index">
+                            <img style="max-height:32px;max-width:32px" class="md-avatar" src="http://loremflickr.com/64/64/logo?random={{$index+10}}">
+                            <div class="md-list-item-text">{{fake_investor.Company}}</div>
+                        </md-list-item>
+                    </md-list>
+
+
+                </md-card-content>
+
+            </md-card>
+
+        </div>
+
+        <div flex="75" >
+            <md-card>
+
+                <md-card-content>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in rhoncus justo. Nam commodo viverra neque, in commodo mauris aliquet eu. Aenean suscipit ut velit vel bibendum. Duis condimentum, ipsum eu pulvinar malesuada, ante ligula viverra tortor, eget pretium arcu libero ut sapien. Phasellus purus sapien, mattis vulputate metus id, tempus gravida est. Donec eget nunc fringilla, tempus urna vel, porttitor elit. Integer sodales tincidunt tellus, sit amet blandit mi commodo vitae. Nam nec pharetra sapien. Integer ultrices, odio a bibendum blandit, felis justo dapibus mi, eget viverra dui sapien vitae odio. Praesent libero leo, fermentum id nisl eu, feugiat accumsan nunc. In iaculis augue sed nulla tempor, et elementum augue accumsan. Quisque nec sollicitudin ex, at pulvinar nunc. Etiam aliquet ex et vestibulum tempor.
+                    </p>
+                    <p>
+                        Proin id nunc consequat, commodo mi ut, sodales metus. Ut quis mi quam. Donec tincidunt nunc vestibulum nisi pharetra, at viverra felis tincidunt. In non consectetur lectus, eu pellentesque leo. Vestibulum ante erat, elementum eget lorem nec, lacinia consequat leo. Nulla fermentum sed odio nec auctor. Pellentesque lorem purus, elementum nec justo nec, ultricies scelerisque sapien. Curabitur rhoncus felis vel ante mattis dignissim. Cras augue magna, feugiat at fringilla sit amet, convallis vel urna. Nam lobortis sed turpis sed bibendum. Aenean congue iaculis dignissim. Nulla facilisi. Aenean a egestas magna. Integer diam nisi, fringilla vel urna id, auctor gravida odio. Proin eu felis et lorem molestie elementum. Duis sed pharetra lorem.
+                    </p>
+                    <p>
+                        Ut elementum nibh vitae velit malesuada, ac sagittis elit porttitor. Suspendisse ut diam tellus. In a nisl aliquam magna commodo varius. Nam blandit ac erat efficitur tristique. Donec felis nunc, dignissim eget felis et, fermentum ullamcorper elit. Mauris felis libero, viverra eget purus sit amet, sagittis vehicula ante. Suspendisse at mattis orci. Quisque auctor elit ac lectus mollis, eget tincidunt nibh mollis. Fusce sapien lorem, tincidunt eget ipsum sit amet, vehicula tincidunt lorem. Pellentesque facilisis lacus justo, sed cursus ex facilisis at. Aliquam erat volutpat. Nunc elementum elit a porttitor pulvinar. Proin vitae ipsum sed justo vehicula pharetra vitae in diam. Nulla vel erat nec ligula condimentum laoreet consectetur a nibh.
+                    </p>
+
+                </md-card-content>
+            </md-card>
+        </div>
+
+    </div>
 </md-content>

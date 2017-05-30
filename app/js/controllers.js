@@ -83,6 +83,18 @@ angular.module('app.controllers', [])
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
         
         
+        
+        $scope.go_to_profile = function (article) {
+             
+             
+            $location.path('/profile').search({
+                company: article.company
+            })
+             
+            
+        }
+        
+        
         /*
         Navigation
         */
@@ -859,7 +871,7 @@ angular.module('app.controllers', [])
         
         
         $scope.channel_lists=
-            {saved:[
+            {SAVED:[
                 {
                     name: "Swiss Adtech",
                     comments: "",
@@ -875,7 +887,7 @@ angular.module('app.controllers', [])
          
                 
         ],
-           recommended: [
+           RECOMMENDED: [
                 {
                     name: "Adtech in DACH",
                     comments: "",
@@ -897,7 +909,7 @@ angular.module('app.controllers', [])
                 
         ],
              
-             popular: [
+             POPULAR: [
                 {
                     name: "Michael Kotting's Hot Picks",
                     comments: "",
@@ -933,7 +945,10 @@ angular.module('app.controllers', [])
         //This works well and fine if we have a json file for each profile out there
         $scope.pro = {}
 
+        
+        console.log("this is profile controller")
         var company = $location.search().company
+        console.log("arrived from elsewhere, company is: "+company)
 
         $http.get("example_profile.json").success(function (data) {
             
@@ -957,11 +972,30 @@ angular.module('app.controllers', [])
 
 }])
 
-    .controller('articleCtrl', ['$scope', '$mdSidenav', '$http', '$location', function ($scope, $mdSidenav, $http, $location) {
-
+    .controller('articleCtrl', ['$scope', '$mdSidenav', '$http', '$location', 'co_service', 'random_int', function ($scope, $mdSidenav, $http, $location, co_service, random_int) {
+        
+         $scope.go_to_profile = function (company) {
+             
+             
+             
+            $location.path('/profile').search({
+                company: angular.isString(company)?company:company.Company
+            })
+             
+            
+        }
+        
+        $scope.fake_companies = []
+        var number_of_fake_companies = random_int.getRandomInt(1,10)
+        for (i=0;i<number_of_fake_companies;i++)
+        {$scope.fake_companies.push(co_service[random_int.getRandomInt(0,933)])}
+        
+        $scope.fake_investors = []
+        var number_of_fake_investors = random_int.getRandomInt(1,10)
+        for (i=0;i<number_of_fake_investors;i++)
+        {$scope.fake_investors.push(co_service[random_int.getRandomInt(933,co_service.length)])}
+        
         $scope.article_company = $location.search().company
         $scope.article_type = $location.search().type
-
-
 
 }])
