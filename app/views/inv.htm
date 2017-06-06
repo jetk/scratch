@@ -22,7 +22,7 @@
   </md-card-actions>
   </md-card-header>
   <md-list>
-  <md-list-item class="md-2-line" ng-repeat="company in list.companies">
+  <md-list-item class="md-2-line" ng-repeat="company in list.companies" ng-click="go_to_profile(company.title)">
     <md-checkbox ng-model="company.ticked" layout="row" align="center center"></md-checkbox>
     <div class="md-list-item-text" flex>
       <h3>{{company.title}}</h3>

@@ -83,7 +83,7 @@ angular.module('app.controllers', [])
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
         
         
-        
+        $scope.minimum_raised=10
         $scope.go_to_profile = function (article) {
              
              
@@ -377,7 +377,7 @@ angular.module('app.controllers', [])
 
 
 
-    .controller('invCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
+    .controller('invCtrl', ['$scope', '$mdDialog', '$http', 'co_service', '$location', function ($scope, $mdDialog, $http, co_service, $location) {
 
         $scope.hardy = function (list) {
             
@@ -413,7 +413,13 @@ angular.module('app.controllers', [])
             $scope.company_lists = data
         })
 
-
+            
+        $scope.go_to_profile = function (company){
+            
+        $location.path('/profile').search({
+                company: angular.isString(company)?company:company.Company
+            })
+        }
         
         var affected_list = 0
 
@@ -916,6 +922,12 @@ angular.module('app.controllers', [])
                     filters: ["UK","custom"],
                     contributors: ["G4V","Accel"]
             },
+            {
+                    name: "Music Ally's Favourites across Western Europe",
+                    comments: "",
+                    filters: ["Music","custom"],
+                    contributors: ["Music Ally"]
+            },
                 {
                     name: "Microsoft Accelerator's Top 5",
                     comments: "",
@@ -961,8 +973,11 @@ angular.module('app.controllers', [])
                 }
             });
 
+            $scope.lead=false
 
             $scope.pro = data
+            $scope.pro.id = db_entry.ID
+            console.log($scope.pro.id)
             $scope.pro.name = db_entry.Company
             $scope.pro.geography = db_entry.IsoCountry1
             $scope.pro.sector = db_entry.subsector

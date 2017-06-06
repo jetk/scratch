@@ -1,8 +1,8 @@
 {"followed":[
     {
-        "company":"Acme",
+        "company":"Fictioncorp",
         "subject":"SYNDICATION OFFER",
-        "tags":["einey","meiney","miney","moe"],
+        "tags":["vertical","retail","AI","Impact"],
         "avatar":"img/a.png",
         "sector":"Adtech",
         "geography":"Austria",
@@ -11,9 +11,9 @@
         "article":"null"
     },
     {
-        "company":"Bacne",
-        "subject":"SYNDICATION OFFER",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "company":"Foogle",
+        "subject":"Research Update",
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/b.png",
         "sector":"Edtech",
         "geography":"Austria",
@@ -22,20 +22,20 @@
         "article":"null"
     },
     {
-        "company":"Crakme",
-        "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "company":"Talesforce",
+        "subject":"Company Update",
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/c.png",
-        "sector":"Dadtech",
+        "sector":"Deeptech",
         "geography":"Germany",
         "stage":"Seed",
         "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         "article":"null"
     },
     {
-        "company":"Daquri",
+        "company":"Teknoa",
         "subject":"Transaction Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/d.png",
         "sector":"Fintech",
         "geography":"Spain",
@@ -44,9 +44,9 @@
         "article":"null"
     },
     {
-        "company":"Eacne",
+        "company":"Fissilemat",
         "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/e.png",
         "sector":"Fintech",
         "geography":"Spain",
@@ -55,9 +55,9 @@
         "article":"null"
     },
     {
-        "company":"Fakme",
+        "company":"Opusra",
         "subject":"Company Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/f.png",
         "sector":"Adtech",
         "geography":"Switzerland",
@@ -68,20 +68,20 @@
 ],
 "recommended":[
     {
-        "company":"Acme",
+        "company":"Fictioncorp",
         "subject":"SYNDICATION OFFER",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/a.png",
-        "sector":"Fadtech",
+        "sector":"Adtech",
         "geography":"Sweden",
         "stage":"A",
         "blurb":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
         "article":"null"
     },
     {
-        "company":"Bacne",
+        "company":"Foogle",
         "subject":"Research update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/b.png",
         "sector":"Edtech",
         "geography":"Austria",
@@ -90,20 +90,20 @@
         "article":"null"
     },
     {
-        "company":"Crakme",
+        "company":"Talesforce",
         "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/c.png",
-        "sector":"Dadtech",
+        "sector":"Deeptech",
         "geography":"Sweden",
         "stage":"Seed",
         "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         "article":"null"
     },
     {
-        "company":"Daquri",
+        "company":"Teknoa",
         "subject":"Company Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/d.png",
         "sector":"CADtech",
         "geography":"Germany",
@@ -112,20 +112,20 @@
         "article":"null"
     },
     {
-        "company":"Eacne",
+        "company":"Fissilemat",
         "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/e.png",
-        "sector":"Badtech",
+        "sector":"Cleantech",
         "geography":"France",
         "stage":"C",
         "blurb":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
         "article":"null"
     },
     {
-        "company":"Fakme",
+        "company":"Opusra",
         "subject":"Transaction Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/f.png",
         "sector":"Adtech",
         "geography":"Switzerland",
@@ -135,10 +135,10 @@
     },
     {
         "company":"Gaki",
-        "subject":"Competition Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "subject":"Transaction Update",
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/g.png",
-        "sector":"Fadtech",
+        "sector":"Adtech",
         "geography":"Spain",
         "stage":"C",
         "blurb":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC.",
@@ -147,7 +147,7 @@
     {
         "company":"Hakthee",
         "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/h.png",
         "sector":"CADtech",
         "geography":"Spain",
@@ -160,7 +160,7 @@
     {
         "company":"Twofor",
         "subject":"Research update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/a.png",
         "sector":"Edtech",
         "geography":"Norway",
@@ -171,7 +171,7 @@
     {
         "company":"Thepriceof",
         "subject":"Research update",
-        "tags":["foo","bar","baz","miney","moe"],
+        "tags":["foo","bar","baz","AI","Impact"],
         "avatar":"img/a.png",
         "sector":"Edtech",
         "geography":"Sweden",
@@ -180,9 +180,9 @@
         "article":"null"
     },
     {
-        "company":"Bacne",
+        "company":"Foogle",
         "subject":"Research update",
-        "tags":["einey","meiney","miney","moe"],
+        "tags":["vertical","retail","AI","Impact"],
         "avatar":"img/b.png",
         "sector":"Adtech",
         "geography":"Austria",
@@ -191,20 +191,20 @@
         "article":"null"
     },
     {
-        "company":"Crakme",
-        "subject":"Competition Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "company":"Talesforce",
+        "subject":"Transaction Update",
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/c.png",
-        "sector":"Dadtech",
+        "sector":"Deeptech",
         "geography":"Sweden",
         "stage":"Seed",
         "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         "article":"null"
     },
     {
-        "company":"Daquri",
+        "company":"Teknoa",
         "subject":"Market Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/d.png",
         "sector":"CADtech",
         "geography":"Germany",
@@ -213,20 +213,20 @@
         "article":"null"
     },
     {
-        "company":"Eacne",
+        "company":"Fissilemat",
         "subject":"Fundraising Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/e.png",
-        "sector":"Badtech",
+        "sector":"Cleantech",
         "geography":"France",
         "stage":"C",
         "blurb":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
         "article":"null"
     },
     {
-        "company":"Fakme",
+        "company":"Opusra",
         "subject":"Fundraising Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/f.png",
         "sector":"Adtech",
         "geography":"Sweden",
@@ -236,10 +236,10 @@
     },
     {
         "company":"Gaki",
-        "subject":"Competition Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "subject":"Transaction Update",
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/g.png",
-        "sector":"Fadtech",
+        "sector":"Adtech",
         "geography":"Spain",
         "stage":"C",
         "blurb":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC.",
@@ -248,7 +248,7 @@
     {
         "company":"Hakthee",
         "subject":"Research Update",
-        "tags":["foo","bar","baz","einey","meiney","miney","moe"],
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/h.png",
         "sector":"CADtech",
         "geography":"Italy",

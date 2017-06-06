@@ -4,14 +4,21 @@
 
 
 
-        <md-toolbar class="md-warn" layout = "row">
-            <span class="md-padding md-title" flex>Go4Venture Proprietary Profile</span>
+        <md-toolbar ng-if="pro.id>=9000" class="md-primary" layout = "row">
+            <span class="md-padding md-title" flex>Go4Venture Proprietary Scaleup Profile</span>
             
                 <md-button> Download Tearsheet
                 </md-button>
             
         </md-toolbar>
 
+           <md-toolbar ng-if="pro.id<9000" class="md-warn" layout = "row">
+            <span class="md-padding md-title" flex>Go4Venture Proprietary Investor Profile</span>
+            
+                <md-button> Download Tearsheet
+                </md-button>
+            
+        </md-toolbar>
 
         <md-card>
             <md-card-header class="md-padding" layout="row">
@@ -48,6 +55,7 @@
                 <md-card-header ><span class="md-title">ABOUT</span></md-card-header>
                 <md-content>{{pro.blurb}}</md-content>
             </md-card>
+            <div ng-if="pro.id>=9000">
                         <md-card>
             <md-card-header class="md-padding"><span class="md-title">POSITIONING</span></md-card-header>
                     <md-content class="md-padding">This would be a description of the company's market and its technology related to it ..... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus, mauris eu tincidunt venenatis, nulla felis lobortis sapien, efficitur bibendum nibh est ac ex. Proin volutpat gravida elit, id ornare diam rhoncus vitae. Ut convallis nisl id dui dapibus pharetra. Ut condimentum velit varius sem placerat feugiat. Suspendisse potenti. Ut sit amet gravida urna</md-content>
@@ -55,6 +63,13 @@
                         <md-card>
                 <md-card-header class="md-padding"><span class="md-title">COMPETITION</span></md-card-header>
                         <md-content class="md-padding">This would be an analysis on how this company compared it its competitors ..... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dapibus, mauris eu tincidunt venenatis, nulla felis lobortis sapien, efficitur bibendum nibh est ac ex. Proin volutpat gravida elit, id ornare diam rhoncus vitae. Ut convallis nisl id dui dapibus pharetra. Ut condimentum velit varius sem placerat feugiat. Suspendisse potenti. Ut sit amet gravida urna</md-content>
+            </md-card>
+
+            </div>
+            
+            <md-card ng-if="pro.id<9000">
+                <md-card-header class="md-padding"><span class="md-title">INVESTMENT PREFERENCES</span></md-card-header>
+                        <md-content class="md-padding">This would be an analysis of the investor's preferences....i dapibus pharetra. Ut condimentum velit varius sem placerat feugiat. Suspendisse potenti. Ut sit amet gravida urna</md-content>
             </md-card>
 
             <md-card-header class="md-padding">
@@ -160,7 +175,7 @@
         </md-card>
     
 
-        <md-card>
+        <md-card ng-if="pro.id>=9000" >
             <md-card-header class="md-padding">
                 
                     <span class="md-title">Investors</span>
@@ -195,7 +210,7 @@
 
         </md-card>
         
-        <md-card>
+        <md-card ng-if="pro.id>=9000" >
             <md-card-header class="md-padding">
                 <md-card-header-text>
                     <span class="md-title">Funding</span>
@@ -219,7 +234,7 @@
                         <span flex="15">Seed</span>
                         <span flex="15">$1.0m</span>
                         <span flex="20">10-May-16</span>
-                        <span flex="30">Kluglesoft Ventures, Rockstar Capital</span>
+                        <span flex="30">Octopus Ventures, Microsoft Accelerator</span>
                         
                         <span flex="20"><md-button class="md-raised">Read   </md-button></span>
                     </div>
@@ -228,6 +243,67 @@
 
         </md-card>
 
+        
+        
+        <md-card ng-if="pro.id<9000" >
+            <md-card-header class="md-padding">
+                <md-card-header-text>
+                    <span class="md-title">Investments</span>
+                </md-card-header-text>
+            </md-card-header>
+            <label>
+            <input type="checkbox" ng-model="lead"/> See deals lead only
+            </label>
+            <md-list>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Company</span>
+                        <span flex="15">Round</span>
+                        <span flex="15">Amount</span>
+                        <span flex="20">Date</span>
+                        
+                        <span flex="30">Investors</span>
+                        
+                        
+                        <span flex="20">Reports</span>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line">
+                    <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Sintek</span>
+                        <span flex="15">Seed</span>
+                        <span flex="15">$1.0m</span>
+                        <span flex="20">10-May-16</span>
+                        <span flex="30">{{pro.name}} (lead), Accel Partners</span>
+                        
+                        <span flex="20"><md-button class="md-raised">Read   </md-button></span>
+                    </div>
+                    </md-list-item>
+                <md-list-item class="md-2-line">
+                     <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Acheron</span>
+                        <span flex="15">A</span>
+                        <span flex="15">$5.0m</span>
+                        <span flex="20">20-Jun-15</span>
+                        <span flex="30">{{pro.name}} (lead), Octopus Ventures</span>
+                        
+                        <span flex="20"><md-button class="md-raised">Read   </md-button></span>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-2-line" ng-if="lead==false">
+                     <div class="md-list-item-text" layout="row" layout-align="start center">
+                        <span flex="15">Acheron</span>
+                        <span flex="15">Seed</span>
+                        <span flex="15">$1.5m</span>
+                        <span flex="20">11-Feb-14</span>
+                        <span flex="30">{{pro.name}}, Index Ventures</span>
+                        
+                        <span flex="20"><md-button class="md-raised">Read   </md-button></span>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+        </md-card>
         
     </div>
     <div flex="25">

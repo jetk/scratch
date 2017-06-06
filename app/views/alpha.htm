@@ -37,6 +37,32 @@
             <md-button class="md-accent md-raised">Save these filters</md-button>
 
 
+
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+                        <h3>
+                            <span>MINIMUM RAISED</span>
+                        </h3>
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+
+                    <md-slider-container>
+                        <span>$</span>
+                        <md-slider flex min="0" max="50" ng-model="minimum_raised" aria-label="red" id="red-slider">
+                        </md-slider>
+                        <md-input-container>
+                            <input flex type="number" ng-model="minimum_raised" aria-label="minimum_raised" aria-controls="minimum_raised">
+                        </md-input-container>
+                    </md-slider-container>
+                </div>
+            </div>
+
+
+
             <div class="md-accordion">
                 <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
@@ -101,8 +127,8 @@
                 </div>
             </div>
 
-            
-            
+
+
             <div class="md-accordion">
                 <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
@@ -129,7 +155,7 @@
 
     <div flex-xs layout="column">
         <md-card class="md-padding" layout="row">
-            <span ng-if="list_loaded" class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies    <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
+            <span ng-if="list_loaded" class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies that have raised over ${{minimum_raised}}  <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
 
 
             <md-slider ng-model="mode" ng-change="log()" min="0" max="2" aria-label="mode"></md-slider>
@@ -143,16 +169,17 @@
                 <img style="max-width: 64px; max-height: 64px" ng-click="go_to_profile(article)" src="{{article.avatar}}">
                 <div flex="5"></div>
                 <div layout="column" flex>
-                <span class="md-headline" >{{article.company}}</span>
-                <div>
-                    <span class="md-subhead" flex>{{article.subject}} </span> <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
+                    <span class="md-headline">{{article.company}}</span>
+                    <div>
+                        <span class="md-subhead" flex>{{article.subject}} </span>
+                        <md-button class="md-icon-button launch" ng-click="go_to_article(article)"><i class="material-icons">launch</i></md-button>
                     </div>
-                    
+
                 </div>
-                
+
                 <img style="max-width: 64px; max-height: 64px" src="img/{{article.subject}}.png">
             </md-card-header>
-            <md-card-content>{{article.blurb}}</md-card-content> 
+            <md-card-content>{{article.blurb}}</md-card-content>
             <md-card-footer>
                 <div layout="row" layout-wrap>
 
@@ -219,5 +246,6 @@
         </md-sidenav>
 
     </div>
+
 
 </md-content>

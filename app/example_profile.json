@@ -10,14 +10,14 @@
   "Investors":
     [
       {
-        "name":"Kluglesoft Ventures",
-        "country":"Wakanda",
+        "name":"Octopus Ventures",
+        "country":"UK",
         "last_round":"Seed",
         "last_round_size":"$1.0m"
       },
       {
-        "name":"Rockstar Capital",
-        "country":"Latveria",
+        "name":"Microsoft Accelerator",
+        "country":"USA, UK",
         "last_round":"Seed",
         "last_round_size":"$1.0m"
       }
@@ -67,7 +67,7 @@
         },
         {
          "name":"Fredrik Widigs",
-         "title":"CDO"
+         "title":"CTO"
         }
       ]
 }
