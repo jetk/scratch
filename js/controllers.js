@@ -43,7 +43,7 @@ angular.module('app.controllers', [])
                     $location.url("/me");
                     break;
                 case 5:
-                    $location.url("/help");
+                    $location.url("/deals");
                     break;
             }
         });
@@ -62,19 +62,19 @@ angular.module('app.controllers', [])
                 url: "/research"
         },
             {
-                label: "Investment CRM",
+                label: "My Co's",
                 icon: "work",
                 url: "/inv"
         },
             {
-                label: "My Profile",
-                icon: "face",
-                url: "/me"
+                label: "Deals",
+                icon: "developer_board",
+                url: "/deals"
         },
             {
-                label: "Help",
-                icon: "help",
-                url: "/help"
+                label: "Profile",
+                icon: "face",
+                url: "/me"
         }
     ]
 
@@ -945,11 +945,122 @@ angular.module('app.controllers', [])
 
 }])
 
-    .controller('helpCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    .controller('dealsCtrl', ['$scope', '$mdDialog', 'co_service', '$location', function ($scope, $mdDialog, co_service, $location) {
+
+        $scope.seven_digital = false
+        $scope.close_seven_digital = function(){
+            $scope.seven_digital=true
+        }
+        $scope.four_iq = false
+        $scope.close_four_iq = function(){
+            $scope.four_iq=true
+        }
+        
+        
+        $scope.AdCash = "AdCash"
+        $scope.Actility = "Actility"
+        
+        $scope.syndicate_dummy_company = function(company){
+            $scope.syndication_company.Company=company    
+            $scope.confirm_new_syndication();
+        }
+        
+        
+        $scope.syndication_company = {}
+        
+        $scope.selectedItemChange = function (item) {
+            console.log(JSON.stringify(item))
+            $scope.syndication_company = item
+            //aleph.title = item.Company
+            //aleph.description = item.Description
+        }
+
+        
+        $scope.showDialog = function ($event) {
+
+
+            $mdDialog.show({
+                targetEvent: $event,
+                controller: function ($scope) {
+                    //          $scope.searchText = 'Enter a company';
+                    $scope.items = co_service;
+                },
+                templateUrl: 'views/select_company_for_syndication.html',
+                scope: $scope.$new()
+            });
+        };
+        
+        
+        $scope.cancel_new_syndication = function () {
+            $mdDialog.hide();
+        }
+
+        $scope.confirm_new_syndication = function () {
+            $location.path('/newdeal').search({
+                company: $scope.syndication_company.Company
+            })
+            $mdDialog.hide();
+            
+        };
 
 
 
 }])
+
+
+    
+    .controller('newdealCtrl', ['$scope', '$mdDialog', 'co_service', '$location', function ($scope, $mdDialog, co_service, $location) {
+        
+        
+         var db_entry = null
+
+$scope.syndication_company = {}            
+
+//Retrieves the 'database entry' from the company database service. Obviously this needs to be much more sophisticated
+
+var company = $location.search().company
+
+            co_service.some(function (entry) {
+                if (entry.Company == company) {
+                    db_entry = entry
+                }
+            });
+
+            $scope.lead=false
+
+            
+            $scope.syndication_company.id = db_entry.ID
+            console.log($scope.syndication_company.id)
+            $scope.syndication_company.name = db_entry.Company
+            $scope.syndication_company.geography = db_entry.IsoCountry1
+            $scope.syndication_company.sector = db_entry.subsector
+            $scope.syndication_company.stage = "A"
+            $scope.syndication_company.motto = db_entry.Description
+
+
+}])
+
+
+    .controller('newdrCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+
+    .controller('selectinvestorsCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+    .controller('pipelineCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+
+
+
+}])
+
+
 
     .controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', 'co_service', function ($scope, $mdSidenav, $http, $location, co_service) {
 

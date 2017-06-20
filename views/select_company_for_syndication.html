@@ -1,0 +1,49 @@
+<md-dialog flex>
+    <md-content layout="column">
+      
+       <md-toolbar>Prepare Deal Room and Investors for </md-toolbar>
+        
+        <md-list>
+                 <md-subheader class="md-no-sticky">Select from Portfolio</md-subheader>
+            <md-list-item ng-click="syndicate_dummy_company(Actility)">{{Actility}}</md-list-item>
+            <md-list-item ng-click="syndicate_dummy_company(AdCash)">{{AdCash}}</md-list-item>
+        </md-list>
+        
+      <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text-change="searchTextChange(searchText)"
+          md-search-text="searchText"
+          md-selected-item-change="selectedItemChange(item)"
+          md-items="item in items | filter:searchText"
+          md-item-text="item.Company"
+          md-min-length="0"
+          placeholder="...or type here to search for other companies">
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+      
+            <md-menu-class="autocomplete-custom-template">
+        <md-item-template>
+          <span class="item-title">
+            <md-icon><i class="material-icons">business</i></md-icon>
+            <span> <strong>{{item.Company}} </strong>|</span>
+          </span>
+                <span class="item-metadata">
+            <span>
+                {{item.IsoCountry1}} |
+            </span>
+            <span>
+               {{item.Description|limitTo:100}}
+            </span>
+          </span>
+        </md-item-template>
+        
+        </md-autocomplete>
+    </md-content>
+    <div class="md-dialog-actions" layout="row">
+        <md-button class="md-primary" ng-click="cancel_new_syndication()">
+            Cancel
+        </md-button>
+        <md-button class="md-primary" ng-click="confirm_new_syndication()">
+            Confirm
+        </md-button>
+    </div>
+</md-dialog>

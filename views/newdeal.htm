@@ -1,0 +1,65 @@
+<md-content class="md-padding md-hue-1" layout="column">
+
+
+
+    <md-toolbar>
+        
+         <div class="md-toolbar-tools">
+        <md-button class="md-outline" aria-label="Favorite">
+          Go Back
+        </md-button>
+
+
+        <h2 flex md-truncate>
+             Preparing to syndicate {{syndication_company.name}} (Step 1 of 4)
+            </h2>
+
+        <md-button class="md-outline" aria-label="Favorite">
+          Next: Prepare Data Room
+        </md-button>
+
+
+      </div>
+
+        </md-toolbar>
+    
+        <md-card>
+            <md-card-header class="md-padding" layout="row">
+                <md-card-avatar style="min-width: 128px; min-height: 128px">
+                    <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
+                </md-card-avatar>
+
+                <md-card-header-text flex="80" layout="row" >
+                    <div layout="column">
+                    <span class="md-headline">{{syndication_company.name}}</span>
+                    <span class="md-title">{{syndication_company.motto}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{syndication_company.sector}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{syndication_company.geography}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">cloud</i> www.{{syndication_company.name}}.com</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">group</i>50-100</span>
+                    </div>
+                          <div layout="column">
+                    <span class="md-headline">&nbsp</span>
+                    <span class="md-title">&nbsp</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">hourglass_empty</i>2010</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">show_chart</i> Series {{syndication_company.stage}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1m over 2 rounds</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">account_balance</i> 5 investors</span>
+                    </div>
+                </md-card-header-text>
+
+            </md-card-header>
+   
+        </md-card>
+
+    <md-card>
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-headline">Deal Parameters</span>
+            </md-card-header-text>
+        </md-card-header>    
+        <h3>range slider</h3>
+        <range-slider min="1" max="40" step="1" lower-value="lower" upper-value="upper" gap="gap"></range-slider>
+
+    </md-card>
+</md-content>

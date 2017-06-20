@@ -29,10 +29,6 @@ app.config(function ($routeProvider) {
             templateUrl: "views/research.htm",
             controller: "researchCtrl"
         })
-        .when("/help", {
-            templateUrl: "views/help.htm",
-            controller: "helpCtrl"
-        })
         .when("/inv", {
             templateUrl: "views/inv.htm",
             controller: "invCtrl"
@@ -44,6 +40,25 @@ app.config(function ($routeProvider) {
         .when("/article", {
             templateUrl: "views/article.htm",
             controller: "articleCtrl"
+        })
+        .when("/deals", {
+            templateUrl: "views/deals.htm",
+            controller: "dealsCtrl"
+        })
+        .when("/newdeal", {
+            templateUrl: "views/newdeal.htm",
+            controller: "newdealCtrl"
+        })
+        .when("/newdr", {
+            templateUrl: "views/newdr.htm",
+            controller: "newdrCtrl"
+        })
+        .when("/selectinvestors", {
+            templateUrl: "views/selectinvestors.htm",
+            controller: "selectinvestorsCtrl"
+        })
+        .when("/pipeline", {
+            templateUrl: "views/pipeline.htm",
+            controller: "pipelineCtrl"
         });
-});
-;
+});;

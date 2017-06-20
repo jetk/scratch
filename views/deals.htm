@@ -1,0 +1,88 @@
+<md-content class="md-padding md-hue-1" layout-xs="column" layout="row">
+
+    <md-card flex>
+        <md-toolbar class="md-padding" layout="column">
+                <span class="md-display-1">Deals Shared with Me</span>
+                <input type="search" ng-model="s" placeholder="filter for deals by keyword..." aria-label="filter shared deals" />
+
+        </md-toolbar>
+    
+        <md-card class="md-padding" ng-hide="four_iq">
+            <md-card-header layout="row">
+                    <img style="max-width:128px; padding-right:15px" class="md-user-avatar" src="img/4iq.png">
+  
+
+                <md-card-header-text  layout="row" >
+                <div flex>
+                    <span class="md-headline">4IQ</span>
+                        <br>
+                    
+                    <div layout="column">
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">bubble_chart</i>Security Software</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">location_on</i>Spain</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">cloud</i> <a href="http://www.4iq.com/home">www.4iq.com</a></span>
+       
+                    </div>
+                         
+                    </div>
+                </md-card-header-text>
+            </md-card-header>
+            
+            <span>£15mn raise led by Adara Ventures</span>
+            <img src="img/progress1.png">
+            
+                <md-card-footer>
+                <md-button class="md-raised md-warn"> Go To Deal Portal
+                </md-button> 
+                <md-button class="md-raised" ng-click="close_four_iq()"> Decline
+                </md-button> 
+                </md-card-footer>
+        
+            </md-card>
+
+    </md-card>
+
+      <md-card flex >
+        <md-toolbar class="md-padding md-accent" layout="column">
+                <span class="md-display-1">My Live Deals</span>
+                <input type="search" ng-model="l" placeholder="filter for deals by keyword..." aria-label="filter live deals" />
+            
+        </md-toolbar>
+          
+          
+              <md-card class="md-padding" ng-hide="seven_digital">
+            <md-card-header layout="row">
+                <img style="max-width:128px; max-height:128px; padding-right:15px" class="md-user-avatar" src="img/7digital.png">
+  
+                <md-card-header-text  layout="row" >
+                <div >
+                    <span class="md-headline">7Digital</span>
+                        <br>
+                    
+                    <div layout="column">
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">bubble_chart</i>Digital Media</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">location_on</i>UK</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">cloud</i> <a href="http://www.7digital.com">www.7digital.com</a></span>
+       
+                    </div>
+                         
+                    </div>
+                </md-card-header-text>
+            </md-card-header>
+            
+            £22 raise led by you
+            <img src="img/progress2.png">
+            
+                <md-card-footer>
+                <md-button class="md-raised md-primary"> Manage Deal Portal
+                </md-button> 
+                <md-button class="md-raised md-accent" ng-click="close_seven_digital()"> Close
+                </md-button> 
+                </md-card-footer>
+        
+            </md-card>
+          
+          <md-button class="md-primary md-raised" ng-click="showDialog($event)"> Prepare new deal for private syndication </md-button>
+          </md-card>
+
+</md-content>
