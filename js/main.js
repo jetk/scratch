@@ -1,4 +1,4 @@
-var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'app.services', 'app.controllers']);
+var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'app.services', 'app.controllers', 'rzModule']);
 
 
 app.config(function ($mdThemingProvider) {

@@ -1038,6 +1038,25 @@ var company = $location.search().company
             $scope.syndication_company.motto = db_entry.Description
 
 
+        
+$scope.slider = {
+  minValue: 500,
+  maxValue: 5000,
+  options: {
+    floor: 0,
+    ceil: 20000,
+    translate: function(value, sliderId, label) {
+      switch (label) {
+        case 'model':
+          return '<b>Committed by you:</b> $' + value + 'k';
+        case 'high':
+          return '<b>Total funding needed:</b> $' + value + 'k  ';
+        default:
+          return '$' + value +'k'
+      }
+    }
+  }
+};
 }])
 
 

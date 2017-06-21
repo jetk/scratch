@@ -58,8 +58,11 @@
                 <span class="md-headline">Deal Parameters</span>
             </md-card-header-text>
         </md-card-header>    
-        <h3>range slider</h3>
-        <range-slider min="1" max="40" step="1" lower-value="lower" upper-value="upper" gap="gap"></range-slider>
+<md-card-content>
+<rzslider rz-slider-model="slider.minValue"
+          rz-slider-high="slider.maxValue"
+          rz-slider-options="slider.options"></rzslider>
 
+        </md-card-content>
     </md-card>
 </md-content>
