@@ -9,7 +9,9 @@
     
         <md-card class="md-padding" ng-hide="four_iq">
             <md-card-header layout="row">
+                <div style="min-height:128px">
                     <img style="max-width:128px; padding-right:15px" class="md-user-avatar" src="img/4iq.png">
+                </div>
   
 
                 <md-card-header-text  layout="row" >
@@ -52,7 +54,9 @@
           
               <md-card class="md-padding" ng-hide="seven_digital">
             <md-card-header layout="row">
-                <img style="max-width:128px; max-height:128px; padding-right:15px" class="md-user-avatar" src="img/7digital.png">
+                <div style="min-height:128px">
+                <img style="max-height:54px; max-width:128px; padding-right:15px" class="md-user-avatar" src="img/7digital.png">
+                </div>
   
                 <md-card-header-text  layout="row" >
                 <div >
@@ -82,7 +86,7 @@
         
             </md-card>
           
-          <md-button class="md-primary md-raised" ng-click="showDialog($event)"> Prepare new deal for private syndication </md-button>
+          <md-button class="md-warn md-raised" ng-click="showDialog($event)"> Prepare new deal for private syndication </md-button>
           </md-card>
 
 </md-content>

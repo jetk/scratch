@@ -176,11 +176,11 @@ angular.module('app.controllers', [])
 
         function replace(dataset) {
             var entry
-
+            //Throwing an error because one of the
             if ($scope.company_lists != null) {
 
                 for (entry of dataset.followed) {
-                    entry.company = $scope.company_lists[getRandomInt(0, 2)].companies[getRandomInt(0, 2)].title
+                    entry.company = $scope.company_lists[getRandomInt(0, $scope.company_lists.length-1)].companies[getRandomInt(0, 2)].title
                 }
             }
         }
@@ -1027,7 +1027,6 @@ var company = $location.search().company
             });
 
             $scope.lead=false
-
             
             $scope.syndication_company.id = db_entry.ID
             console.log($scope.syndication_company.id)
@@ -1037,22 +1036,34 @@ var company = $location.search().company
             $scope.syndication_company.stage = "A"
             $scope.syndication_company.motto = db_entry.Description
 
+$scope.go_to_new_dr = function(){
+                $location.path('/newdr').search({
+                company: company,
+                comitted: $scope.slider.minValue*10,
+                open: ($scope.slider.maxValue-$scope.slider.minValue)*10
+            })
+}
 
+$scope.go_back_to_deals = function(){
+    $location.path('/deals')
+}
         
 $scope.slider = {
-  minValue: 500,
-  maxValue: 5000,
+  minValue: 5.0,
+  maxValue: 10.0,
   options: {
     floor: 0,
-    ceil: 20000,
+    ceil: 100,
+    step: 0.1,
+    precision: 1,
     translate: function(value, sliderId, label) {
       switch (label) {
         case 'model':
-          return '<b>Committed by you:</b> $' + value + 'k';
+          return '<b>Committed by you:</b> $' + value.toLocaleString() + 'm';
         case 'high':
-          return '<b>Total funding needed:</b> $' + value + 'k  ';
+          return '<b>Total funding needed:</b> $' + value.toLocaleString() + 'm';
         default:
-          return '$' + value +'k'
+          return '$' + value.toLocaleString() +'m'
       }
     }
   }
@@ -1060,16 +1071,65 @@ $scope.slider = {
 }])
 
 
-    .controller('newdrCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    .controller('newdrCtrl', ['$scope', '$mdDialog', '$location', function ($scope, $mdDialog, $location) {
 
-
+        
+        
+        $scope.go_back_to_parameters = function(){
+            $location.path('/newdeal').search({
+                company: $location.search().company,
+                comitted: $location.search().comitted,
+                open: $location.search().open
+            })
+        }
+       
+    
+           $scope.go_to_selectinvestors = function(){
+            $location.path('/selectinvestors').search({
+                  company: $location.search().company,
+                comitted: $location.search().comitted,
+                open: $location.search().open
+            })
+        }
+       
+    
+    
 
 }])
 
 
-    .controller('selectinvestorsCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    .controller('selectinvestorsCtrl', ['$scope', '$mdDialog', 'my_investors', 'random_int','coidb', function ($scope, $mdDialog, my_investors, random_int,coidb) {
 
+    $scope.my_investors = my_investors;
+        
+            $scope.myObj = {
+        "color" : "white",
+        "background-color" : "red",
+    }
+    
 
+        $scope.match=false
+        
+        $scope.match_investors = function(){
+            $scope.match=!$scope.match
+        }
+        $scope.coidb = coidb
+        
+              generate_fake_matches = function(list, min , max){
+            
+    for (var i=0; i<list.length; i++){        
+        list[i].sector_match= random_int.getRandomInt(min,max)
+        list[i].geography_match= random_int.getRandomInt(min,max)
+        list[i].stage_match= random_int.getRandomInt(min,max)
+        
+        list[i].overall_match= ((list[i].sector_match+list[i].geography_match+list[i].stage_match)/3).toLocaleString({ maximumFractionDigits: 1 })
+        
+    }
+        }
+
+        generate_fake_matches($scope.my_investors,0,100)
+        generate_fake_matches($scope.coidb,90,100)
+        $scope.coidb_matches = $scope.coidb.splice(0,10)
 
 }])
 

@@ -1,0 +1,30 @@
+<md-content class="md-padding md-hue-1" layout="column">
+
+
+
+    <md-toolbar>
+        
+         <div class="md-toolbar-tools">
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_back_to_parameters()">
+          Go Back to Deal Parameters
+        </md-button>
+
+
+        <h2 flex md-truncate>
+             Preparing to syndicate {{syndication_company.name}} (Step 2 of 4)
+            </h2>
+
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_selectinvestors()">
+          Next: Co-Investor Shortlist
+        </md-button>
+
+
+      </div>
+
+        </md-toolbar>
+    <md-card>
+        <img src="img/dataroom.png"
+    </md-card>
+    <md-button class="md-primary md-raised" ng-click="go_to_selectinvestors()"> Continue to Co-Investor Shortlisting
+    </md-button>
+</md-content>

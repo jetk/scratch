@@ -1,4 +1,4 @@
-var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'app.services', 'app.controllers', 'rzModule']);
+var app = angular.module('StarterApp', ['ngMaterial', 'ngRoute', 'app.services', 'app.controllers', 'rzModule', 'angularTrix']);
 
 
 app.config(function ($mdThemingProvider) {
@@ -6,6 +6,12 @@ app.config(function ($mdThemingProvider) {
         .primaryPalette('red')
         .accentPalette('grey')
         .warnPalette('amber');
+    
+      $mdThemingProvider.theme('alt')
+        .primaryPalette('deep-orange')
+        .accentPalette('red')
+        .warnPalette('grey').dark();
+    
 });
 
 app.config(function ($routeProvider) {

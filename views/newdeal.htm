@@ -5,16 +5,16 @@
     <md-toolbar>
         
          <div class="md-toolbar-tools">
-        <md-button class="md-outline" aria-label="Favorite">
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_back_to_deals()">
           Go Back
         </md-button>
 
 
         <h2 flex md-truncate>
-             Preparing to syndicate {{syndication_company.name}} (Step 1 of 4)
+             Preparing to syndicate {{syndication_company.name}} (Step 3 of 4)
             </h2>
 
-        <md-button class="md-outline" aria-label="Favorite">
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_new_dr()">
           Next: Prepare Data Room
         </md-button>
 
@@ -23,7 +23,7 @@
 
         </md-toolbar>
     
-        <md-card>
+        <md-card md-theme="alt">
             <md-card-header class="md-padding" layout="row">
                 <md-card-avatar style="min-width: 128px; min-height: 128px">
                     <img class="md-user-avatar" src="http://loremflickr.com/128/128/logo?random=1">
@@ -31,8 +31,12 @@
 
                 <md-card-header-text flex="80" layout="row" >
                     <div layout="column">
+                        <div>
                     <span class="md-headline">{{syndication_company.name}}</span>
+                            <span>-</span>
                     <span class="md-title">{{syndication_company.motto}}</span>
+                        </div>
+                        <span class="md-title">&nbsp</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{syndication_company.sector}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{syndication_company.geography}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">cloud</i> www.{{syndication_company.name}}.com</span>
@@ -55,14 +59,50 @@
     <md-card>
         <md-card-header>
             <md-card-header-text>
-                <span class="md-headline">Deal Parameters</span>
+                <span class="md-headline">Enter Deal Parameters</span>
             </md-card-header-text>
         </md-card-header>    
+        
 <md-card-content>
+    <md-checkbox> My investement vehicle is leading the deal</md-checkbox>
+         <div>
+      <md-input-container>
+        <label>Target total funding</label>
+        <input ng-model="slider.maxValue" type="number">
+      </md-input-container>
+
+      <md-input-container>
+        <label>Your commitment</label>
+        <input ng-model="slider.minValue" type="number">
+      </md-input-container>
+    </div>
+    
 <rzslider rz-slider-model="slider.minValue"
           rz-slider-high="slider.maxValue"
           rz-slider-options="slider.options"></rzslider>
 
+    
+        
+
         </md-card-content>
     </md-card>
+    
+    
+    <md-card>
+        <md-card-header> 
+                    <md-card-header-text>
+                <span class="md-headline">Write Teaser Online</span>
+            </md-card-header-text>
+            <md-button>
+                <md-icon>
+                <i class="material-icons">file_upload</i>
+                </md-icon>
+                Or click here to upload</md-button>
+        </md-card-header>
+        <md-card-content>
+    <trix-editor></trix-editor>
+        </md-card-content>
+    </md-card>
+    <md-button class="md-primary md-raised" ng-click="go_to_new_dr()"> Continue to Deal Room Preparation
+    </md-button>
 </md-content>

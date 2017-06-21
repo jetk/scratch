@@ -1,0 +1,97 @@
+<md-content class="md-padding md-hue-1">
+
+    <md-toolbar>
+
+        <div class="md-toolbar-tools">
+            <md-button class="md-outline" aria-label="Favorite" ng-click="go_back_to_deals()">
+                Go Back to Data Room
+            </md-button>
+
+
+            <h2 flex md-truncate>
+                Preparing to syndicate {{syndication_company.name}} (Step 3 of 4)
+            </h2>
+
+            <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_new_dr()">
+                Next: Begin sharing deal
+            </md-button>
+
+
+        </div>
+
+    </md-toolbar>
+
+
+    <md-card >
+        <md-card-header  layout="row">
+            <md-card-header-text>
+                <span style="headline">Select Investors to Syndicate To</span>
+            </md-card-header-text>
+        <md-button class="md-primary" ng-click="match_investors()">Top up with matched investors from Go4venture</md-button>
+        </md-card-header>
+    </md-card>
+        
+         <md-card ng-show="match" md-theme="alt">
+        <md-card-header flex layout="row">
+            <md-card-header-text>
+                <span style="headline">Go4-Venture</span>
+            </md-card-header-text>
+        
+        </md-card-header>
+                <md-list>
+            <md-list-item class="md-2-line" ng-repeat="investor in coidb_matches" ng-click="null">
+                <md-checkbox layout="row" align="center center"></md-checkbox>
+                <div class="md-list-item-text" flex>
+                    <h3>{{investor.Investor}}</h3>
+                    <p>{{investor.Type}}</p>
+                </div>
+
+                <div>
+                </div>
+                <md-chips readonly="true">
+                    <md-chip ng-style="myObj"><icon ></icon>
+                {{investor.overall_match}}% match
+                    </md-chip>
+                    <md-chip ng-click="null"><i class="material-icons">bubble_chart</i> {{investor.sector_match}}%</md-chip>
+                    <md-chip ng-click="null"><i class="material-icons">location_on</i> {{investor.geography_match}}%</md-chip>
+                    <md-chip><i class="material-icons">show_chart</i> {{investor.stage_match}}%</md-chip>
+                </md-chips>
+                <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
+                    <md-icon>   <i class="material-icons">group</i></md-icon> {{investor.Contacts}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-card>
+    <md-card>
+        <md-card-header >
+            <md-card-header-text>
+                <span style="headline">Select from my Investors</span>
+            </md-card-header-text>
+        </md-card-header>
+
+        <md-list>
+            <md-list-item class="md-2-line" ng-repeat="investor in my_investors" ng-click="null">
+                <md-checkbox layout="row" align="center center"></md-checkbox>
+                <div class="md-list-item-text" flex>
+                    <h3>{{investor.Investor}}</h3>
+                    <p>{{investor.Type}}</p>
+                </div>
+
+                <div>
+                </div>
+                <md-chips readonly="true">
+                    <md-chip ng-style="myObj"><icon ></icon>
+                {{investor.overall_match}}% match
+                    </md-chip>
+                    <md-chip ng-click="null"><i class="material-icons">bubble_chart</i> {{investor.sector_match}}%</md-chip>
+                    <md-chip ng-click="null"><i class="material-icons">location_on</i> {{investor.geography_match}}%</md-chip>
+                    <md-chip><i class="material-icons">show_chart</i> {{investor.stage_match}}%</md-chip>
+                </md-chips>
+                <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
+                    <md-icon>   <i class="material-icons">group</i></md-icon> {{investor.Contacts}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+
+    </md-card>
+</md-content>
