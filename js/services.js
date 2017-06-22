@@ -78,7 +78,8 @@ angular.module('app.services', [])
     var params = {
     company : "",
     funds_comitted : 0,
-    total_raise : 0
+    total_raise : 0,
+    view_only : true
     }
     
     //getter and setter methods
@@ -93,6 +94,22 @@ angular.module('app.services', [])
 
 }])
 
+.service('investor_list', [function () {
+    
+    //Deal Parameters because I'm too lazy to figure out how to pass parameters to a nested view
+    var investor_list = []
+    
+    //getter and setter methods
+    return {
+        get_investor_list: function () {
+            return investor_list;
+        },
+        set_investor_list: function (value) {
+            investor_list = value;
+        }
+    };
+
+}])
 
 .factory('my_investors', function(){
    return [

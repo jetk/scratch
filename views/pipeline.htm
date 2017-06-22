@@ -1,0 +1,66 @@
+<md-tabs ng-if="nondeal" class="md-accent"  md-selected="data.selectedIndex"  md-align-tabs="top">
+      <md-tab>
+        <md-tab-label>Opportunity Overview</md-tab-label>
+      </md-tab>
+          <md-tab>
+        <md-tab-label>2verview</md-tab-label>
+      </md-tab>
+    </md-tabs>
+
+ <md-toolbar ng-if="setup" md-theme="alt">
+        
+         <div class="md-toolbar-tools">
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_back_to_deals()">
+          Go Back
+        </md-button>
+
+
+        <h2 flex md-truncate>
+             Preparing to syndicate {{syndication_company.name}} (Step 1 of 4)
+            </h2>
+
+        <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_new_dr()">
+          Next: Prepare Data Room
+        </md-button>
+
+
+      </div>
+
+</md-toolbar>
+
+<md-content layout=row>
+    
+
+
+<md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline ">
+    <md-card-header>
+        <md-card-header-text>
+            <span class="headline">{{stage.name| uppercase }}</span>
+        </md-card-header-text>
+    </md-card-header>
+    <md-card ng-repeat="name in stage.orgs track by $index">        
+        <md-card-header>
+        <md-card-header-text flex="80">
+            <span class="title">{{name}}</span>
+        </md-card-header-text>
+            <md-button ng-if="stage.name=='shortlist'" class="md-icon-button md-primary" aria-label="invite" ng-click="invite_to_deal($index)">
+        <md-icon ><i class="material-icons">email</i></md-icon>
+      </md-button>
+    </md-card-header>
+    </md-card>
+    </md-card>
+    
+    <md-card flex="20">
+    <md-card-header>
+          <md-input-container class="md-block">
+        <label>Add a new stage</label>
+        <input name="stage">
+        
+      </md-input-container>
+        
+        
+    </md-card-header>
+    
+    </md-card>
+
+</md-content>

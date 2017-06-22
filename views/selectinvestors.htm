@@ -1,6 +1,4 @@
-<md-content class="md-padding md-hue-1">
-
-    <md-toolbar>
+    <md-toolbar md-theme="alt">
 
         <div class="md-toolbar-tools">
             <md-button class="md-outline" aria-label="Favorite" ng-click="go_back_to_deals()">
@@ -12,7 +10,7 @@
                 Preparing to syndicate {{syndication_company.name}} (Step 3 of 4)
             </h2>
 
-            <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_new_dr()">
+            <md-button class="md-outline" aria-label="Favorite" ng-click="go_to_pipeline()">
                 Next: Begin sharing deal
             </md-button>
 
@@ -20,6 +18,8 @@
         </div>
 
     </md-toolbar>
+<md-content class="md-padding md-hue-1">
+
 
 
     <md-card >
@@ -30,6 +30,8 @@
         <md-button class="md-primary" ng-click="match_investors()">Top up with matched investors from Go4venture</md-button>
         </md-card-header>
     </md-card>
+    
+
         
          <md-card ng-show="match" class="animate-show-hide" md-theme="alt">
         <md-card-header flex layout="row">
@@ -40,7 +42,7 @@
         </md-card-header>
                 <md-list>
             <md-list-item class="md-2-line" ng-repeat="investor in coidb_matches" ng-click="null">
-                <md-checkbox layout="row" align="center center"></md-checkbox>
+                <md-checkbox layout="row" align="center center" ng-model="investor.wanted"></md-checkbox>
                 <div class="md-list-item-text" flex>
                     <h3>{{investor.Investor}}</h3>
                     <p>{{investor.Type}}</p>
@@ -71,7 +73,7 @@
 
         <md-list>
             <md-list-item class="md-2-line" ng-repeat="investor in my_investors" ng-click="null">
-                <md-checkbox layout="row" align="center center"></md-checkbox>
+                <md-checkbox layout="row" align="center center"  ng-model="investor.wanted" ></md-checkbox>
                 <div class="md-list-item-text" flex>
                     <h3>{{investor.Investor}}</h3>
                     <p>{{investor.Type}}</p>

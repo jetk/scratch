@@ -1223,11 +1223,22 @@ angular.module('app.controllers', [])
         $scope.go_to_deal_portal = function () {
             $location.path('/dealportal').search({
                 company: '4iQ',
-                funds_comitted: 10,
-                total_raise: 15
+                funds_comitted: 13.7,
+                total_raise: 15,
+                view_only :true
             })
         }
 
+        
+        $scope.manage_deal_portal = function(){
+             $location.path('/dealportal').search({
+                company: '7Digital',
+                funds_comitted: 16.9,
+                total_raise: 22,
+                 view_only :false
+            })
+            
+        }
         $scope.AdCash = "AdCash"
         $scope.Actility = "Actility"
 
@@ -1369,10 +1380,11 @@ angular.module('app.controllers', [])
 }])
 
 
-    .controller('selectinvestorsCtrl', ['$scope', '$mdDialog', 'my_investors', 'random_int', 'coidb', function ($scope, $mdDialog, my_investors, random_int, coidb) {
+    .controller('selectinvestorsCtrl', ['$scope', '$mdDialog', 'my_investors', 'random_int', 'coidb', '$location', 'investor_list', function ($scope, $mdDialog, my_investors, random_int, coidb, $location, investor_list) {
 
         $scope.my_investors = my_investors;
 
+        
         $scope.myObj = {
             "color": "white",
             "background-color": "red",
@@ -1392,7 +1404,7 @@ angular.module('app.controllers', [])
                 list[i].sector_match = random_int.getRandomInt(min, max)
                 list[i].geography_match = random_int.getRandomInt(min, max)
                 list[i].stage_match = random_int.getRandomInt(min, max)
-
+                list[i].wanted=false
                 list[i].overall_match = ((list[i].sector_match + list[i].geography_match + list[i].stage_match) / 3).toLocaleString({
                     maximumFractionDigits: 1
                 })
@@ -1403,12 +1415,71 @@ angular.module('app.controllers', [])
         generate_fake_matches($scope.my_investors, 0, 100)
         generate_fake_matches($scope.coidb, 90, 100)
         $scope.coidb_matches = $scope.coidb.splice(0, 10)
+        
+        var selected_investors =[]
+        set_investors=function(){
+            for (var i = 0; i<$scope.coidb_matches.length;i++){
+                if($scope.coidb_matches[i].wanted){
+                selected_investors.push($scope.coidb_matches[i].Investor)
+                }
+            }
+             for (var j = 0; j<$scope.my_investors.length;j++){
+                if($scope.my_investors[j].wanted){
+                selected_investors.push($scope.my_investors[j].Investor)
+                }
+            }
+            console.log(JSON.stringify(selected_investors))
+        }
+        
+        
+         $scope.go_to_pipeline = function () {
+             console.log($scope.coidb_matches.length)
+             set_investors()
+             investor_list.set_investor_list(selected_investors)
+            $location.path('/pipeline').search({
+                company: $location.search().company,
+                comitted: $location.search().comitted,
+                open: $location.search().open,
+                setup: true
+            })
+        }
 
 }])
 
-    .controller('pipelineCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+    .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', function ($scope, $mdDialog, investor_list, $location) {
+        
+        
+        $scope.setup = $location.search().setup ? true:false;
 
-
+        $scope.nondeal=false
+        $scope.invite_to_deal = function(index){
+            var temp = $scope.current_pipeline[0].orgs[index]
+            $scope.current_pipeline[0].orgs.splice(index,1)
+            $scope.current_pipeline[1].orgs.push(temp)
+        }
+        
+        
+        var passed_orgs = investor_list.get_investor_list()
+        
+        $scope.data = {
+      selectedIndex: 0}
+        
+        
+        
+        $scope.current_pipeline = [{
+            name: "shortlist",
+            orgs: passed_orgs
+        }, {
+            name: "contacted",
+            orgs: []
+        },{
+            name: "meeting",
+            orgs: []
+        },{
+            name: "additional questions",
+            orgs: []
+        }]
+        
 
 }])
 
@@ -1416,10 +1487,12 @@ angular.module('app.controllers', [])
     .controller('deal_overviewCtrl', ['$scope', '$mdDialog', 'co_service', 'dealparams', function ($scope, $mdDialog, co_service, dealparams) {
 
         dealparams = dealparams.get_deal_params()
-        $scope.available = dealparams.total_raise - dealparams.funds_comitted
+        $scope.available = (dealparams.total_raise - dealparams.funds_comitted).toLocaleString()
         $scope.syndication_company = {}
         var db_entry = {}
-
+        
+        $scope.view_only=dealparams.view_only
+        
         co_service.some(function (entry) {
             if (entry.Company == dealparams.company) {
                 db_entry = entry
@@ -1469,28 +1542,13 @@ angular.module('app.controllers', [])
     .controller('dealportalCtrl', ['$scope', '$mdDialog', '$location', 'dealparams', function ($scope, $mdDialog, $location, dealparams) {
 
 
-        dealparams.set_deal_params($location.search())
-
-        $scope.data = {
-            selectedIndex: 0,
-        };
-        $scope.next = function () {
-            $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2);
-        };
-        $scope.previous = function () {
-            $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
-        };
-
+        params = $location.search()
+        
+        dealparams.set_deal_params(params)
+        
+        $scope.view_only = params.view_only
+   
         $scope.foo
-
-        $scope.go_to_profile = function (company) {
-
-            $location.path('/profile').search({
-                company: "spartoo"
-            })
-
-        }
-
 
         $scope.$on('$locationChangeStart', function (event) {
             var answer = confirm("Are you sure you want to leave this page?")
@@ -1505,13 +1563,6 @@ angular.module('app.controllers', [])
 
     .controller('profileCtrl', ['$scope', '$mdSidenav', '$http', '$location', 'co_service', 'dealparams', function ($scope, $mdSidenav, $http, $location, co_service, dealparams) {
 
-        console.log("text is: " + $scope.text)
-
-
-
-        console.log(JSON.stringify(dealparams.get_deal_params()))
-
-        console.log($scope.$parent.foo)
         $scope.contributors = [{
             name: "Bob Cox",
             articles: 20

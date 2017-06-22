@@ -33,5 +33,11 @@
              </md-card>
         </md-tab-body>
       </md-tab>
+          <md-tab ng-disabled="view_only">
+        <md-tab-label>Investors</md-tab-label>
+        <md-tab-body>
+            <div ng-controller='pipelineCtrl' ng-include="'views/pipeline.htm'"></div>
+        </md-tab-body>
+      </md-tab>
     </md-tabs>
   </md-content>
