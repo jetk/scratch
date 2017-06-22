@@ -66,5 +66,9 @@ app.config(function ($routeProvider) {
         .when("/pipeline", {
             templateUrl: "views/pipeline.htm",
             controller: "pipelineCtrl"
+        })
+        .when("/dealportal", {
+            templateUrl: "views/dealportal.htm",
+            controller: "dealportalCtrl"
         });
 });;

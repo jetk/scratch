@@ -72,6 +72,28 @@ angular.module('app.services', [])
       
 })
 
+.service('dealparams', [function () {
+    
+    //Deal Parameters because I'm too lazy to figure out how to pass parameters to a nested view
+    var params = {
+    company : "",
+    funds_comitted : 0,
+    total_raise : 0
+    }
+    
+    //getter and setter methods
+    return {
+        get_deal_params: function () {
+            return params;
+        },
+        set_deal_params: function (value) {
+            params = value;
+        }
+    };
+
+}])
+
+
 .factory('my_investors', function(){
    return [
 {"Investor":"Andrew Nutter","Type":"UHNWI","Contacts":"1","Sectors":"","Stages":""},

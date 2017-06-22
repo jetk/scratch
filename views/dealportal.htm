@@ -1,0 +1,37 @@
+ <md-content class="md-padding">
+    <md-tabs md-dynamic-height class="md-accent" md-align-tabs="top">
+      <md-tab>
+        <md-tab-label>Opportunity Overview</md-tab-label>
+        <md-tab-body>
+            <div ng-controller='deal_overviewCtrl' ng-include="'views/deal_overview.htm'"></div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab>
+        <md-tab-label>Company Profile</md-tab-label>
+        <md-tab-body>
+            <div ng-controller='profileCtrl' ng-include="'views/profile.htm'"></div>
+        </md-tab-body>
+      </md-tab>
+      <md-tab ng-disabled="false">
+        <md-tab-label>Data Room</md-tab-label>
+        <md-tab-body>
+            <img src="img/dataroom.png">
+        </md-tab-body>
+      </md-tab>
+         <md-tab ng-disabled="false">
+        <md-tab-label>Q &amp; A</md-tab-label>
+        <md-tab-body>
+
+             <md-card class="md-padding" md-theme="alt">
+                 
+                <img src="img/chatroom.png">
+                <md-input-container class="md-block">
+        <label>Type a new message</label>
+        <input name="message">
+        
+      </md-input-container>
+             </md-card>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </md-content>
