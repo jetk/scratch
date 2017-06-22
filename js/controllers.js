@@ -1439,6 +1439,26 @@ angular.module('app.controllers', [])
     .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', function ($scope, $mdDialog, investor_list, $location) {
         
         
+        
+              $scope.go_back_to_investor_shortlist = function () {
+            $location.path('/investorselect').search({
+                company: $location.search().company,
+                comitted: $location.search().comitted,
+                open: $location.search().open
+            })
+        }
+
+
+        $scope.manage_deal_portal = function () {
+            $location.path('/dealportal').search({
+                company: $location.search().company,
+                comitted: $location.search().comitted,
+                open: $location.search().open,
+                view_only:false
+            })
+        }
+        
+        
         $scope.setup = $location.search().setup ? true:false;
 
         $scope.nondeal=$location.search().nondeal ? true:false;
