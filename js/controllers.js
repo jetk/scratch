@@ -52,9 +52,9 @@ angular.module('app.controllers', [])
 
         $scope.nav_items = [
             {
-                label: "Businesses",
-                icon: "business",
-                url: "/busi"
+                label: "Research",
+                icon: "trending_up",
+                url: "/alpha"
         },
             {
                 label: "Channels",
@@ -62,9 +62,19 @@ angular.module('app.controllers', [])
                 url: "/research"
         },
             {
-                label: "My Co's",
-                icon: "work",
-                url: "/inv"
+                label: "Companies",
+                icon: "business",
+                url: "/companies"
+        },
+            {
+                label: "Investors",
+                icon: "account_balance",
+                url: "/investors"
+        },
+            {
+                label: "Pipelines",
+                icon: "dashboard",
+                url: "/pipeline?nondeal"
         },
             {
                 label: "Deals",
@@ -72,7 +82,7 @@ angular.module('app.controllers', [])
                 url: "/deals"
         },
             {
-                label: "Profile",
+                label: "Me",
                 icon: "face",
                 url: "/me"
         }
@@ -989,7 +999,7 @@ angular.module('app.controllers', [])
 
     .controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
 
-        $scope.companies = co_service
+        $scope.companies = co_service.slice(0,932)
 
         //Kludge to force articles to show before a filter is engaged
         $scope.touched = false;
@@ -1066,26 +1076,6 @@ angular.module('app.controllers', [])
 
 
         $scope.countries = co_service
-
-        /*
-        $http.get('countries.json').success(function (data) {
-
-            $scope.countries = data
-        }).error(function (data) {
-            console.log(data.message)
-        })
-        */
-
-
-
-        $scope.f = [{
-            "GBR": false
-    }, {
-            "FRA": false
-    }, {
-            "DNK": false
-    }]
-
 
 
         $scope.openLeftMenu = function () {
@@ -1451,7 +1441,7 @@ angular.module('app.controllers', [])
         
         $scope.setup = $location.search().setup ? true:false;
 
-        $scope.nondeal=false
+        $scope.nondeal=$location.search().nondeal ? true:false;
         $scope.invite_to_deal = function(index){
             var temp = $scope.current_pipeline[0].orgs[index]
             $scope.current_pipeline[0].orgs.splice(index,1)
@@ -1627,5 +1617,113 @@ angular.module('app.controllers', [])
 
         $scope.article_company = $location.search().company
         $scope.article_type = $location.search().type
+
+}])
+
+.controller('companiesCtrl', ['$scope', function ($scope) {
+
+
+
+}])
+
+ .controller('investorsCtrl', ['$scope', function ($scope) {
+
+
+
+}])
+
+
+ .controller('myinvestorsCtrl', ['$scope','my_investors', function ($scope,my_investors) {
+
+        $scope.my_investors = my_investors
+
+}])
+
+
+.controller('allinvestorsCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
+
+        $scope.companies = co_service.slice(936,co_service.length)
+
+        //Kludge to force articles to show before a filter is engaged
+        $scope.touched = false;
+
+        //extracts possible filters from the feed depending on content
+        $scope.getGenericFilters = function (list, property) {
+
+            return (list || []).
+            map(function (article) {
+
+                return article[property];
+            }).
+            filter(function (cat, idx, arr) {
+                return arr.indexOf(cat) === idx;
+            });
+        }
+
+        //Replicated a few times to get filtering on the respective categories
+        $scope.filterBySector = function (article) {
+            return $scope.filter[article.subsector] || noFilter($scope.filter);
+        }
+
+        $scope.filterByGeography = function (article) {
+            return $scope.geog[article.IsoCountry1] || noFilter($scope.geog);
+        }
+
+
+
+        //used for returning everything when no filter is assigned
+        function noFilter(filterObj) {
+            return Object.
+            keys(filterObj).
+            every(function (key) {
+                return !filterObj[key];
+            });
+        }
+        $scope.noFilter = noFilter
+
+
+        //TODO: rename so it's no longer a logging function
+        $scope.log = function () {
+            console.log($scope.filter)
+            $scope.touched = true
+        }
+
+        $scope.loggeo = function () {
+            console.log($scope.geog)
+            $scope.touched = true
+        }
+
+
+        //Still can't figure out how to work this, currently just replicating the function two times. Might one day be more useful
+        $scope.filterByProperties = function (wine) {
+
+            var activeFilterProps = Object.
+            keys($scope.filter).filter(function (prop) {
+                return !noFilter($scope.filter[prop]);
+            });
+
+            return activeFilterProps.every(function (prop) {
+                return $scope.filter[prop][wine[prop]];
+            });
+
+        }
+
+        $scope.fullfeed = null
+        $scope.list_loaded = false
+        $scope.filter = {}
+        $scope.geog = {}
+        $scope.subj = {}
+        $scope.mode = 0
+
+        $scope.list_loaded = true
+
+
+        $scope.countries = co_service
+
+
+        $scope.openLeftMenu = function () {
+            $mdSidenav('left').toggle();
+        };
+
 
 }])

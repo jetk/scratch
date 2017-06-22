@@ -8,30 +8,22 @@
         
         <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
 
-            <!--
-            
-                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
-    <label>
-      <input type="checkbox" ng-model="filter[sector]" />
-      {{ sector }}
-    </label>
-            </div>
 
--->
+
 
             <div layout="row">
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
 
-                <span class="md-title">Filter these companies</span>
+                <span class="md-title">Filter these investors</span>
 
             </div>
 
 
 
             <md-card>
-                <input type="search" ng-model="q" placeholder="filter for companies by keyword..." aria-label="filter articles" />
+                <input type="search" ng-model="q" placeholder="filter for investors by keyword..." aria-label="filter articles" />
             </md-card>
 
             <div class="md-accordion">
@@ -44,7 +36,7 @@
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
                 </md-toolbar>
-                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row" style="max-height:175px; overflow-y: scroll">
+                <div ng-hide="true" ng-class="{dataContent:true, activeContent:data.expanded}" layout="row" style="max-height:175px; overflow-y: scroll">
 
                     <div ng-if="list_loaded" ng-click="log()" ng-repeat="subsector in getGenericFilters(companies,'subsector')">
                         <label>
@@ -87,7 +79,7 @@
         
         <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
             <md-card-header class="md-padding" layout="row">
-                <md-card-avatar style="min-width: 128px; min-height: 128px">
+                <md-card-avatar style="min-width: 96px; min-height: 96px">
                     <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
                 </md-card-avatar>
 
@@ -100,47 +92,22 @@
                     <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{company.subsector}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{company.IsoCountry1}}</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">cloud</i> www.{{company.Company}}.com</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons">group</i>50-100</span>
                     </div>
                           <div layout="column">
+                    <span class="md-subhead" layout="row"><i class="material-icons">group</i>50-100</span>
                     <span class="md-subhead" layout="row"><i class="material-icons">hourglass_empty</i>2010</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons">show_chart</i> Series A</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1m over 2 rounds</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons">account_balance</i> 5 investors</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1bn in 90 deals</span>
                     </div>
                     </div>
                 </md-card-header-text>
             <div layout="column">
-                <md-button class="md-raised"> Add to My Companies
+                <md-button class="md-raised"> Add to My Investors
                 </md-button> 
-                <md-button class="md-raised"> Add Directly to List
-                </md-button> 
+               
             </div>
             </md-card-header>
         
             </md-card>
-<!--
-<md-card class="md-padding">
-<md-card-header  layout="row">
-    <md-card-avatar style="max-width: 48px; max-height: 48px">
-        <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
-    </md-card-avatar>
-    <md-card-header-text  class="md-padding">
-        <span class="md-title">
-        {{company.Company}}
-        </span>
-        <md-card-header-text> 
-</md-card-header>
-<md-card-content>{{company.Description|limitTo:140}}</md-card-content>
- <md-card-footer>
-     <div layout="row" layout-wrap>
-         <md-card><i class="material-icons">bubble_chart</i> {{company.subsector}}</md-card>
-         <md-card><i class="material-icons">location_on</i> {{company.IsoCountry1}}</md-card>
-         <md-card><i class="material-icons">show_chart</i> A </md-card>
-     </div>
-</md-card-footer>
-</md-card>
--->
 
 
     </div>

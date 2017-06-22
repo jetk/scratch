@@ -1,4 +1,29 @@
-[
+[{
+        "list_name": "Go4 Suggested Companies",
+        "companies": [{
+                "title": "FlatFrog Laboratories",
+                "description": "Developer and manufacturer of touch screens.",
+                "ticked": false,
+                "noti": 2,
+                "lin": 5,
+                "fund":"g4v"
+            
+            },
+            {
+                "title": "Spartoo",
+                "description": "Operator of an online shopping outlet.",
+                "ticked": false,
+                "noti": 3,
+                "lin": 3
+            },
+            {
+                "title": "Phone and Phone",
+                "description": "On-line vendor of mobile phones.",
+                "ticked": false,
+                "noti": 1,
+                "lin": 5
+            }]
+    },
     {
         "list_name": "Met or Spoken to",
         "companies": [{
@@ -7,7 +32,7 @@
                 "ticked": false,
                 "noti": 2,
                 "lin": 4,
-                "fund": "g4v"
+                "fund":"g4v"
             },
             {
                 "title": "Oxford Nanopore Technologies",
@@ -15,7 +40,7 @@
                 "ticked": false,
                 "noti": 2,
                 "lin": 3,
-                "fund": "crowdcube"
+                "fund":"crowdcube"
             },
             {
                 "title": "Metallkraft",
@@ -40,7 +65,7 @@
                 "ticked": false,
                 "noti": 1,
                 "lin": 5,
-                "fund": "angelist"
+                "fund":"angelist"
             },
             {
                 "title": "Effpower",
@@ -49,53 +74,4 @@
                 "noti": 2,
                 "lin": 2
             }]
-    },
-    
-    
-    {
-        "list_name": "Portfolio",
-        "companies": [
-            {
-                "title": "Actility",
-                "description": "Provider of M2M (Machine to Machine) network software solutions",
-                "ticked": false,
-                "noti": 1,
-                "lin": 4
-            },
-            {
-                "title": "Adcash",
-                "description": "Provider of a real-time advertising trading platform",
-                "ticked": false,
-                "noti": 1,
-                "lin": 5
-            }]
-    },
-    
-    
-    {
-        "list_name": "Suggested by Go4Venture",
-        "companies": [{
-                "title": "FlatFrog Laboratories",
-                "description": "Developer and manufacturer of touch screens.",
-                "ticked": false,
-                "noti": 2,
-                "lin": 5,
-                "fund": "g4v"
-
-            },
-            {
-                "title": "Spartoo",
-                "description": "Operator of an online shopping outlet.",
-                "ticked": false,
-                "noti": 3,
-                "lin": 3
-            },
-            {
-                "title": "Phone and Phone",
-                "description": "On-line vendor of mobile phones.",
-                "ticked": false,
-                "noti": 1,
-                "lin": 5
-            }]
-    }
-]
+    }]

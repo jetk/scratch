@@ -27,6 +27,10 @@ app.config(function ($routeProvider) {
             templateUrl: "views/me.htm",
             controller: "meCtrl"
         })
+        .when("/companies", {
+            templateUrl: "views/companies.htm",
+            controller: "companiesCtrl"
+        })
         .when("/busi", {
             templateUrl: "views/busi.htm",
             controller: "busiCtrl"
@@ -70,5 +74,17 @@ app.config(function ($routeProvider) {
         .when("/dealportal", {
             templateUrl: "views/dealportal.htm",
             controller: "dealportalCtrl"
+        })
+            .when("/investors", {
+            templateUrl: "views/investors.htm",
+            controller: "investorsCtrl"
+        })
+     .when("/myinvestors", {
+            templateUrl: "views/myinvestors.htm",
+            controller: "myinvestorsCtrl"
+        })
+    .when("/allinvestors", {
+            templateUrl: "views/allinvestors.htm",
+            controller: "allinvestorsCtrl"
         });
 });;
