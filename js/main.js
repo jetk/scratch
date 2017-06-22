@@ -17,7 +17,8 @@ app.config(function ($mdThemingProvider) {
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "views/prime.htm"
+            templateUrl: "views/alpha.htm",
+            controller:"alphaCtrl"
         })
         .when("/alpha", {
             templateUrl: "views/alpha.htm",
@@ -85,6 +86,6 @@ app.config(function ($routeProvider) {
         })
     .when("/allinvestors", {
             templateUrl: "views/allinvestors.htm",
-            controller: "allinvestorsCtrl"
+            controller: "all    investorsCtrl"
         });
 });;

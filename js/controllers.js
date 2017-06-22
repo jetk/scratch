@@ -1451,10 +1451,35 @@ angular.module('app.controllers', [])
         
         var passed_orgs = investor_list.get_investor_list()
         
-        $scope.data = {
-      selectedIndex: 0}
+        $scope.selectedIndex= 0
+        
+        $scope.showPrompt = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.prompt()
+      .title('What would you name your pipeline?')
+      .placeholder('Dog name')
+      .ariaLabel('Dog name')
+      .initialValue('Pipeline Alpha')
+      .targetEvent(ev)
+      .ok('Okay!')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function(result) {
+      $scope.all_pipelines.push({
+                pipeline_name: result,
+                data: []})
+        $scope.change($scope.all_pipelines.length-1)
+    }, function() {
+      
+    });
+  };
         
         
+        $scope.change = function(index){
+            if ($scope.nondeal){
+            $scope.current_pipeline=$scope.all_pipelines[index].data
+            }
+        }
         
         $scope.current_pipeline = [{
             name: "shortlist",
@@ -1470,6 +1495,39 @@ angular.module('app.controllers', [])
             orgs: []
         }]
         
+     
+        $scope.all_pipelines=
+            
+            [{
+                
+                pipeline_name: "Investment Targets Fund X",
+                data: [{
+                    name: "interesting",
+                    orgs: ["Kloogle", "Fakebook", "Fictioncorp"]
+        }, {
+                    name: "contacted",
+                    orgs: []
+        }, {
+                    name: "pitch",
+                    orgs: []
+        },  {
+                    name: "termsheet",
+                    orgs: ["Weyland Yutani"]
+        }]
+            }, {
+                
+                pipeline_name: "Personal Investments",
+                data: [{
+                    name: "Met or Spoken to",
+                    orgs: ["Blue Sun"]
+        }, {
+                    name: "Pitched By",
+                    orgs: ["Choam"]
+        }, {
+                    name: "meeting",
+                    orgs: []
+        }]
+            }]
 
 }])
 

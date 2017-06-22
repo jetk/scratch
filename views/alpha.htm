@@ -41,23 +41,24 @@
             <div class="md-accordion">
                 <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                     <div class="md-toolbar-tools">
-                        <h3>
-                            <span>MINIMUM RAISED</span>
-                        </h3>
+                        <h5>
+                            <span>CURATION LEVEL</span>
+                        </h5>
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
                 </md-toolbar>
                 <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
 
-                    <md-slider-container>
-                        <span>$</span>
-                        <md-slider flex min="0" max="50" ng-model="minimum_raised" aria-label="red" id="red-slider">
-                        </md-slider>
-                        <md-input-container>
-                            <input flex type="number" ng-model="minimum_raised" aria-label="minimum_raised" aria-controls="minimum_raised">
-                        </md-input-container>
-                    </md-slider-container>
+          
+          <md-select flex ng-model="mode">
+            
+            <md-option ng-value=0> My Companies </md-option>
+            <md-option ng-value=1> Recommended Companies </md-option>
+            <md-option ng-value=2> All Companies </md-option>
+              
+          </md-select>
+
                 </div>
             </div>
 
@@ -154,7 +155,8 @@
     </div>
 
     <div flex-xs layout="column">
-        <md-card class="md-padding" layout="row">
+<!--
+        <md-card  class="md-padding" layout="row">
             <span ng-if="list_loaded" class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies that have raised over ${{minimum_raised}}  <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
 
 
@@ -162,6 +164,7 @@
 
 
         </md-card>
+-->
 
         <md-card ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography | filter:filterBySubject">
             <md-card-header class="md-padding" layout="row">

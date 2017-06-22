@@ -19,7 +19,7 @@ angular.module('app.services', [])
             var feed = []
             for (i = 0; i < quantity; i++) {
 
-                var feed_entry = co_service[getRandomInt(1315, 2200)]
+                var feed_entry = co_service[getRandomInt(0, 900)]
 
                 var new_feed_item = {
                     company: feed_entry.Company,
