@@ -1670,7 +1670,7 @@ angular.module('app.controllers', [])
         
         
         $scope.received_deals = [
-            {company: '4iQ',
+            {company: '4iq',
                 funds_comitted: 13.7,
                 total_raise: 15,
                 view_only :true,
