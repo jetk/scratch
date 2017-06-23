@@ -563,6 +563,9 @@ angular.module('app.controllers', [])
         $scope.querySearch = querySearch;
         //TODO
         $scope.filters = loadVegetables();
+        $scope.geos = loadGeos();
+        $scope.stages = loadStages();
+        $scope.sectors = loadSectors();
         $scope.selectedFilters = [];
         $scope.numberChips = [];
         $scope.numberChips2 = [];
@@ -612,6 +615,434 @@ angular.module('app.controllers', [])
             $scope.selectedFilters.push(chip)
         }
 
+        
+        
+          function loadStages() {
+            var filters = [
+               
+                {
+                    'name': "Seed",
+                    'type': "Stage"
+                },
+                 {
+                    'name': "Series A",
+                    'type': "Stage"
+                },
+                 {
+                    'name': "Series B",
+                    'type': "Stage"
+                },
+                {
+                    'name': "Series C",
+                    'type': "Stage"
+                },
+                {
+                    'name': "Late Stage",
+                    'type': "Stage"
+                },
+                
+]
+
+            return filters.map(function (filter) {
+                filter._lowername = filter.name.toLowerCase();
+                filter._lowertype = filter.type.toLowerCase();
+                return filter;
+            });
+        }
+        
+        function loadGeos(){
+            var filters = [
+                {
+                    'name': "Macedonia",
+                    'type': "Geo"
+                },
+           
+                {
+                    'name': "Albania",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Andorra",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Austria",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Azerbaijan",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Belarus",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Belgium",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Bosnia and Herzegovina",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Bulgaria",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Croatia",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Czech Republic",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Denmark",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Estonia",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Finland",
+                    'type': "Geo"
+                },
+                {
+                    'name': "France",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Germany",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Greece",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Hungary",
+                    'type': "Geo"
+                },
+                {
+                    'name': "IaaS",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Iceland",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Ireland",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Italy",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Kosovo",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Late",
+                    'type': "Stage"
+                },
+                {
+                    'name': "Latvia",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Liechtenstein",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Lithuania",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Luxembourg",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Malta",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Moldova",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Monaco",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Montenegro",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Netherlands",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Norway",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Poland",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Portugal",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Romania",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Russia",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Slovakia",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Slovenia",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Software",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Spain",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Sweden",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Switzerland",
+                    'type': "Geo"
+                },
+
+                {
+                    'name': "Turkey",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Ukraine",
+                    'type': "Geo"
+                },
+                {
+                    'name': "United Kingdom",
+                    'type': "Geo"
+                },
+                {
+                    'name': "Vatican City",
+                    'type': "Geo"
+                }
+]
+        
+            return filters.map(function (filter) {
+                filter._lowername = filter.name.toLowerCase();
+                filter._lowertype = filter.type.toLowerCase();
+                return filter;
+            });
+            
+            }
+        
+        
+          function loadSectors() {
+            var filters = [
+               
+                {
+                    'name': "Adtech",
+                    'type': "Sector"
+                },
+               
+                {
+                    'name': "Alternative Telecom Operators",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Application-Specific Hardware",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Cleantech",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Communications & Networking",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Consulting",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Content Delivery Networks",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Data Centres",
+                    'type': "Sector"
+                },
+             {
+                    'name': "Devices",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Diagnostics",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Discovery Platforms",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Distribution",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Drug Delivery Systems",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Drug Discovery",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Electronics Manufacturing Services",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Enterprise Application Software",
+                    'type': "Sector"
+                },
+               
+                {
+                    'name': "Genomics",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Hardware",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Healthcare",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Healthcare IT",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Hosting",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "IaaS",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Imaging",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "IT",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Media & Internet",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Medtech",
+                    'type': "Sector"
+                },
+                {
+                    'name': "M-Health",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Processing",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Security Software",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Semis",
+                    'type': "Sector"
+                },
+                
+                
+                {
+                    'name': "Services",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Software",
+                    'type': "Sector"
+                },
+                
+                {
+                    'name': "Telecom",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Telecom Services",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Telecom Software",
+                    'type': "Sector"
+                },
+                {
+                    'name': "Traditional Telecom Operators",
+                    'type': "Sector"
+                },
+                
+]
+
+            return filters.map(function (filter) {
+                filter._lowername = filter.name.toLowerCase();
+                filter._lowertype = filter.type.toLowerCase();
+                return filter;
+            });
+        }
+        
         function loadVegetables() {
             var filters = [
                 {
@@ -1090,12 +1521,10 @@ angular.module('app.controllers', [])
 
         $scope.save = function (channel, index) {
 
-
-
             console.log("parent index is: " + JSON.stringify(channel))
             console.log("child index is: " + index)
 
-            $scope.channel_lists.saved.push($scope.channel_lists[channel][index])
+            $scope.channel_lists.SAVED.push($scope.channel_lists[channel][index])
             $scope.channel_lists[channel].splice(index, 1)
         }
 
@@ -1144,7 +1573,15 @@ angular.module('app.controllers', [])
                     filters: ["Austria", "Edtech"],
                     contributors: ["G4V"]
             },
+                
 
+                {
+                    name: "Innovation Finance Members",
+                    comments: "",
+                    filters: ["Fintech", "Custom"],
+                    contributors: ["G4V"]
+            },
+                
 
         ],
             RECOMMENDED: [
@@ -1155,39 +1592,59 @@ angular.module('app.controllers', [])
                     contributors: ["G4V", "Catcap"]
             },
                 {
-                    name: "Fintech in Spain by Group Olivo",
+                    name: "NOAH Conference 2017",
                     comments: "",
-                    filters: ["Fintech", "Spain"],
-                    contributors: ["G4V", "Olivo"]
+                    filters: ["Germany", "Digital"],
+                    contributors: ["G4V", "NOAH"]
             },
                 {
-                    name: "Deeptech",
+                    name: "Y-Combinator Cohorts",
                     comments: "",
-                    filters: ["Deeptech"],
-                    contributors: ["G4V", "Olivo"]
+                    filters: ["Seed, Custom"],
+                    contributors: ["G4V", "YCombinator"]
             },
+                  {
+                    name: "Balderton Portfolio",
+                    comments: "",
+                    filters: ["Custom"],
+                    contributors: ["G4V", "Balderton"]
+            },
+                  {
+                    name: "Web Summit 2017 Scaleups",
+                    comments: "",
+                    filters: ["Digital, Custom"],
+                    contributors: ["G4V", "Web Summit"]
+            },
+                  {
+                    name: "Tech Tour 50 2017",
+                    comments: "",
+                    filters: ["Custom"],
+                    contributors: ["Tech Tour"]
+            },
+                
 
         ],
 
             POPULAR: [
                 {
-                    name: "Michael Kotting's Hot Picks",
+                    name: "Accel Portfolio",
                     comments: "",
                     filters: ["UK", "custom"],
                     contributors: ["G4V", "Accel"]
             },
+               
                 {
-                    name: "Music Ally's Favourites across Western Europe",
-                    comments: "",
-                    filters: ["Music", "custom"],
-                    contributors: ["Music Ally"]
-            },
-                {
-                    name: "Microsoft Accelerator's Top 5",
+                    name: "Microsoft Accelerator Cohort",
                     comments: "",
                     filters: ["Fintech", "Spain"],
                     contributors: ["G4V", "Microsoft Accelerator"]
             },
+                 {
+                    name: "Music Ally's Favourites across Western Europe",
+                    comments: "",
+                    filters: ["Music", "custom"],
+                    contributors: ["Music Ally"]
+            },  
 
         ]
 
@@ -1210,7 +1667,35 @@ angular.module('app.controllers', [])
             $scope.four_iq = true
         }
 
-        $scope.go_to_deal_portal = function () {
+        
+        
+        $scope.received_deals = [
+            {company: '4iQ',
+                funds_comitted: 13.7,
+                total_raise: 15,
+                view_only :true,
+            sector:"Security Software",
+            geo:"Spain"},
+             {company: 'Aevi',
+                funds_comitted: 11.1,
+                total_raise: 20,
+                view_only :true,
+             sector:"Fintech",
+             geo:"Germany"},
+            
+        ]
+        
+        
+        $scope.decline = function(index){
+            $scope.received_deals.splice(index,1)
+        }
+        
+        $scope.go_to_deal_portal = function (index) {
+            $location.path('/dealportal').search($scope.received_deals[index])
+        }
+
+        
+        $scope.go_to_second_portal = function () {
             $location.path('/dealportal').search({
                 company: '4iQ',
                 funds_comitted: 13.7,
@@ -1218,7 +1703,6 @@ angular.module('app.controllers', [])
                 view_only :true
             })
         }
-
         
         $scope.manage_deal_portal = function(){
              $location.path('/dealportal').search({

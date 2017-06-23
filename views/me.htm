@@ -20,11 +20,10 @@
     </md-card>
 
 
-    <md-card>
+<md-card md-theme="alt">
         <md-card-header class="md-padding">
             <span class="md-title">Currently showing content about:</span>
         </md-card-header>
-
 
     <md-chips ng-model="selectedFilters" md-autocomplete-snap
               md-transform-chip="transformChip($chip)"
@@ -61,6 +60,50 @@
           <em>(Geo)</em>
         </span>
         </md-chip>
+    </md-chips>
+        
+        </md-card>
+    <md-card>
+        
+        <md-card-header class="md-padding">
+            <span class="md-title">Available Stage topics</span>
+    </md-card-header>
+    
+    <md-chips ng-model="stages" readonly="true">
+            <md-chip-template ng-click="push_to_selected($chip)">
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
+    </md-chips>
+        
+    <md-card-header class="md-padding">
+            <span class="md-title">Available Sector topics</span>
+    </md-card-header>
+    
+    <md-chips ng-model="sectors" readonly="true">
+            <md-chip-template ng-click="push_to_selected($chip)">
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
+    </md-chips>
+        
+        
+        
+        <md-card-header class="md-padding">
+            <span class="md-title">Available Geography topics</span>
+    </md-card-header>
+    
+    <md-chips ng-model="geos" readonly="true">
+            <md-chip-template ng-click="push_to_selected($chip)">
+        <span>
+          <strong>{{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+      </md-chip-template>
     </md-chips>
 
     <md-card-header class="md-padding">

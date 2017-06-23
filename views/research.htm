@@ -19,6 +19,50 @@
             <input type="search" ng-model="q" placeholder="filter your saved [channels]..." aria-label="filter searches" />
             </md-card>
 
+          
+          
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+                        <h3>
+                            <span>SECTORS</span>
+                        </h3>
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+
+                    <div ng-repeat="sector in ['Adtech','Deeptech','Edtech','Fintech']">
+                        <label>
+                  <input type="checkbox" ng-model="filter[sector]" />
+                  {{ sector }}
+                </label>
+                    </div>
+                </div>
+            </div>
+     
+          
+            <div class="md-accordion">
+                <md-toolbar style="max-height:5px" ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+                        <h3>
+                            <span>GEOGRAPHIES</span>
+                        </h3>
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+
+                    <div ng-repeat="sector in ['Austria','France','Germany','Spain','Switzerland','UK']">
+                        <label>
+                  <input type="checkbox" ng-model="filter[sector]" />
+                  {{ sector }}
+                </label>
+                    </div>
+                </div>
+            </div>
      
 
  

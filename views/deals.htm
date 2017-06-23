@@ -7,22 +7,22 @@
 
         </md-toolbar>
     
-        <md-card class="md-padding" ng-hide="four_iq">
+        <md-card ng-repeat="deal in received_deals track by $index" >
             <md-card-header layout="row">
                 <div style="min-height:128px">
-                    <img style="max-width:128px; padding-right:15px" class="md-user-avatar" src="img/4iq.png">
+                    <img style="max-width:128px; padding-right:15px" class="md-user-avatar" src="img/{{deal.company}}.png">
                 </div>
   
 
                 <md-card-header-text  layout="row" >
                 <div flex>
-                    <span class="md-headline">4IQ</span>
+                    <span class="md-headline">{{deal.company}}</span>
                         <br>
                     
                     <div layout="column">
-                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">bubble_chart</i>Security Software</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">location_on</i>Spain</span>
-                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">cloud</i> <a href="http://www.4iq.com/home">www.4iq.com</a></span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">bubble_chart</i>{{deal.sector}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">location_on</i>{{deal.geo}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons" style="padding-right: 10px">cloud</i> <a href="http://www.{{deal.company}}.com/home">www.{{deal.company}}.com</a></span>
        
                     </div>
                          
@@ -30,13 +30,13 @@
                 </md-card-header-text>
             </md-card-header>
             
-            <span>£15mn raise led by Adara Ventures</span>
-            <img src="img/progress1.png">
+            <span>£{{deal.total_raise}}mn raise led by Adara Ventures</span>
+            <img src="img/{{deal.company}}progress.png">
             
                 <md-card-footer>
-                <md-button class="md-raised md-warn" ng-click="go_to_deal_portal()"> Go To Deal Portal
+                <md-button class="md-raised md-warn" ng-click="go_to_deal_portal($index)"> Go To Deal Portal
                 </md-button> 
-                <md-button class="md-raised" ng-click="close_four_iq()"> Decline
+                <md-button class="md-raised" ng-click="decline($index)"> Decline
                 </md-button> 
                 </md-card-footer>
         
@@ -52,7 +52,7 @@
         </md-toolbar>
           
           
-              <md-card class="md-padding" ng-hide="seven_digital">
+              <md-card ng-hide="seven_digital">
             <md-card-header layout="row">
                 <div style="min-height:128px">
                 <img style="max-height:54px; max-width:128px; padding-right:15px" class="md-user-avatar" src="img/7digital.png">
