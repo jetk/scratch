@@ -869,7 +869,6 @@ angular.module('app.controllers', [])
             
             }
         
-        
           function loadSectors() {
             var filters = [
                
