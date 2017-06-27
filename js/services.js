@@ -20,10 +20,16 @@ angular.module('app.services', [])
             for (i = 0; i < quantity; i++) {
 
                 var feed_entry = co_service[getRandomInt(0, 900)]
-
+                
+                var subj_pair= generate_subject()
+                var cont_pair= generate_contributor()
+                console.log(JSON.stringify(generate_contributor()))
                 var new_feed_item = {
                     company: feed_entry.Company,
-                    subject: generate_subject(),
+                    subject: subj_pair.subject_name,
+                    subject_avatar: subj_pair.subject_avatar,
+                    contributor: cont_pair.contributor_name,
+                    contributor_avatar: cont_pair.contributor_avatar,
                     tags: generate_tags(),
                     avatar: "http://loremflickr.com/48/48/logo?random="+i,
                     sector: feed_entry.Sector,//generate_sector(),
@@ -42,19 +48,37 @@ angular.module('app.services', [])
             return feed
         }
         
-        var subject_array=["SYNDICATION OFFER","Research Update", "Company Update", "Transaction Update"]
+        
+        
+        var subject_array=["Interview","Report", "Scaleup Company Update", "Rated Company Update"]
+        var subject_avatar_array=["/img/interview.png","/img/report.png","/img/scaleup_company.png","/img/rated_company.png"]
         generate_subject=function (){
-            return subject_array[getRandomInt(0,subject_array.length-1)]
+            var rand = getRandomInt(0,subject_array.length-1)
+            
+            return {subject_name:subject_array[rand],
+                    subject_avatar:subject_avatar_array[rand]}
         }
         
 
+         
+        var contributor_array=["Go4venture","Tech Tour", "Stuart Webb", "Chris Lowe"]
+        var contributor_avatar_array=["/img/g4v.png","/img/techtour.png","/img/stuart_webb.png","/img/chris_lowe.png"]
+        generate_contributor=function (){
+            var rand = getRandomInt(0,contributor_array.length-1)
+            
+            return {contributor_name:contributor_array[rand],
+                    contributor_avatar:contributor_avatar_array[rand]}
+        }
+        
+
+        
+        
         var sector_array=["Adtech","Badtech","CADtech","Edtech","Fadtec"]
         generate_sector= function (){
             return sector_array[getRandomInt(0,sector_array.length-1)]
         }
         
         var tags_array=["tig","tag","tog","tug","foo","bar","baz","tab","asf","acs"]
-        
         generate_tags=function (){
             var tags_generated = []
             tags_generated.push(tags_array[getRandomInt(0,tags_array.length-1)])

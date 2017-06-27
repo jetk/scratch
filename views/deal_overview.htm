@@ -53,7 +53,7 @@
         
 
         </md-card-content>
-        <md-button ng-show="view_only" class="md-raised md-primary">Commit part or all of ${{available}}m availalbe</md-button>
+        <md-button ng-if="view_only" ng-click="commit_funds($event)" class="md-raised md-primary">Commit part or all of ${{available}}m availalbe</md-button>
     </md-card>
     
     

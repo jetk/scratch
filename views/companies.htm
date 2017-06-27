@@ -3,6 +3,12 @@
       <md-tab>
         <md-tab-label>My Companies</md-tab-label>
         <md-tab-body>
+            <div ng-controller='mycosCtrl' ng-include="'views/mycos.htm'"></div>
+        </md-tab-body>
+      </md-tab>
+        <md-tab>
+        <md-tab-label>My Lists</md-tab-label>
+        <md-tab-body>
             <div ng-controller='invCtrl' ng-include="'views/inv.htm'"></div>
         </md-tab-body>
       </md-tab>

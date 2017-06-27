@@ -1,4 +1,4 @@
-<md-content class="md-padding md-warn" layout-xs="column" layout="row">
+<md-content class="md-warn" layout-xs="column" layout="row">
 
 
     <div layout="row" ng-cloak>
@@ -167,7 +167,26 @@
 -->
 
         <md-card ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography | filter:filterBySubject">
-            <md-card-header class="md-padding" layout="row">
+            
+            
+                    <div ng-style="myObj"  class="md-dense" layout="row">
+             
+                <md-list-item ng-click="null" class="md-accent md-2-line" flex="50" >
+          <img src="{{article.subject_avatar}}" style="max-width:32px ; max-height:32px"/>
+          <div class="md-list-item-text" style="padding-left:20px" layout="column">
+            <h3>{{article.subject}}</h3>
+          </div>
+        </md-list-item>
+            <md-list-item ng-click="null" class="md-2-line" flex="50" >
+          <div class="md-list-item-text" style="text-align: right; padding-right:20px" layout="column">
+            <h3>By {{article.contributor}}</h3>
+            
+          </div>
+          <img src="{{article.contributor_avatar}}" style="max-width:32px ; max-height:32px"/>
+        </md-list-item>
+        </div>
+            
+            <md-card-header layout="row">
 
                 <img style="max-width: 64px; max-height: 64px" ng-click="go_to_profile(article)" src="{{article.avatar}}">
                 <div flex="5"></div>
@@ -180,7 +199,7 @@
 
                 </div>
 
-                <img style="max-width: 64px; max-height: 64px" src="img/{{article.subject}}.png">
+                <!--img style="max-width: 64px; max-height: 64px" src="img/{{article.subject}}.png"-->
             </md-card-header>
             <md-card-content>{{article.blurb}}</md-card-content>
             <md-card-footer>

@@ -1,0 +1,137 @@
+<md-content class="md-padding md-hue-1" layout-xs="column" layout="row">
+    
+    
+    <div layout="row" ng-cloak>
+
+        
+        
+        
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+
+            <!--
+            
+                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
+    <label>
+      <input type="checkbox" ng-model="filter[sector]" />
+      {{ sector }}
+    </label>
+            </div>
+
+-->
+
+            <div layout="row">
+                <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+                    <i class="material-icons">filter_list</i>
+                </md-button>
+
+                <span class="md-title">Filter your companies</span>
+
+            </div>
+
+
+
+            <md-card>
+                <input type="search" ng-model="q" placeholder="filter your companies by keyword..." aria-label="filter articles" />
+            </md-card>
+
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+                        <h3>
+                            <span>SECTORS</span>
+                        </h3>
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row" style="max-height:175px; overflow-y: scroll">
+
+                    <div ng-if="list_loaded" ng-click="log()" ng-repeat="subsector in getGenericFilters(companies,'subsector')">
+                        <label>
+                  <input type="checkbox" ng-model="filter[subsector]" />
+                  {{ subsector }}
+                </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+
+                        <span>GEOGRAPHIES</span>
+
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row" style="max-height:175px; overflow-y: scroll">
+
+                    <div ng-if="list_loaded" ng-click="loggeo()" ng-repeat="IsoCountry1 in getGenericFilters(companies,'IsoCountry1')">
+                        <label>
+                              <input type="checkbox" ng-model="geog[IsoCountry1]" />
+                              {{ IsoCountry1 }}
+                            </label>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </md-sidenav>
+    </div>
+    
+    <div flex-xs layout="column">
+        
+        <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
+            <md-card-header class="md-padding" layout="row">
+                <md-card-avatar style="min-width: 128px; min-height: 128px">
+                    <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
+                </md-card-avatar>
+
+                <div flex>
+                    <span class="md-headline">{{company.Company}}</span>
+                        <br>
+                    <span class="md-subhead">{{company.Description|limitTo:140}}</span>
+                <md-card-header-text  layout="row" >
+                    <div layout="column">
+                    <span class="md-subhead" layout="row"><i class="material-icons">bubble_chart</i> {{company.subsector}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">location_on</i> {{company.IsoCountry1}}</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">cloud</i> www.{{company.Company}}.com</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">group</i>50-100</span>
+                    </div>
+                          <div layout="column">
+                    <span class="md-subhead" layout="row"><i class="material-icons">hourglass_empty</i>2010</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">show_chart</i> Series A</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">attach_money</i> $5.1m over 2 rounds</span>
+                    <span class="md-subhead" layout="row"><i class="material-icons">account_balance</i> 5 investors</span>
+                    </div>
+                    </div>
+                </md-card-header-text>
+            <div layout="column">
+                <md-button class="md-raised" ng-click="unfollow($index)"> Unfollow
+                </md-button> 
+           
+                <md-button class="md-raised" align="center center" ng-click="notifications_dialog($event, company.noti, company.title)">
+      <md-icon><i class="material-icons">priority_high</i></md-icon>
+          {{company.noti}}
+      </md-button>
+      <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
+      <md-icon><i class="zmdi zmdi-linkedin"></i></md-icon> {{company.lin}}
+      </md-button>
+            </div>
+            </md-card-header>
+        
+            </md-card>
+
+
+
+    </div>
+    
+
+    
+  </md-content>
+
+ 

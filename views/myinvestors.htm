@@ -1,35 +1,40 @@
+<md-card class="md-padding">
+    <md-card-header>
+        <md-card-header-text>
+            <h4>Investors I am tracking</h4>
+        </md-card-header-text>
+        <md-button class="md-primary md-raised">Add new</md-button>
+    </md-card-header>
 
-            <md-card class="md-padding">
-        <md-card-header >
-            <md-card-header-text>
-                <h4>Investors I am tracking</h4>
-            </md-card-header-text>
-            <md-button class="md-primary md-raised">Add new</md-button>
-        </md-card-header>
-                
-                <input type="search" ng-model="q" placeholder="filter for investors by keyword..." aria-label="filter articles" />
-                
-            </md-card>
-<md-card>
+    <input type="search" ng-model="q" placeholder="filter for investors by keyword..." aria-label="filter articles" />
 
-        <md-list>
-            <md-list-item class="md-2-line" ng-repeat="investor in my_investors|filter:q" ng-click="null">
-        
-                <div class="md-list-item-text" flex>
-                    <h3>{{investor.Investor}}</h3>
-                    <p>{{investor.Type}}</p>
-                </div>
+</md-card>
+<md-content >
+<md-card md-theme="alt">
 
-                <div>
-                </div>
+    <md-list>
+        <md-list-item class="md-2-line" ng-repeat="investor in my_investors|filter:q" ng-click="null">
+
+            <div class="md-list-item-text" flex>
+                <h3>{{investor.Investor}}</h3>
+                <p>{{investor.Type}}</p>
+            </div>
+
+            <div>
+            </div>
+            <div layout-align="end end" layout="column">
                 <md-chips readonly="true">
-                    <md-chip ng-click="null"><i class="material-icons">bubble_chart</i> {{investor.Sectors}}</md-chip>
+                    <md-chip ng-click="null"><i class="material-icons">bubble_chart</i> {{investor.Sectors|limitTo:75}}</md-chip>
+                </md-chips>
+                <md-chips readonly="true">
                     <md-chip><i class="material-icons">show_chart</i> {{investor.Stages}}</md-chip>
                 </md-chips>
-                <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
-                    <md-icon>   <i class="material-icons">group</i></md-icon> {{investor.Contacts}}
-                </md-button>
-            </md-list-item>
-        </md-list>
+            </div>
+            <md-button class="md-raised"  ng-click="linkedin_dialog($event, company.lin, company.title)">
+                <md-icon> <i class="material-icons">group</i></md-icon> {{investor.Contacts}}
+            </md-button>
+        </md-list-item>
+    </md-list>
 
-    </md-card>
+</md-card>
+</md-content>

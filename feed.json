@@ -1,7 +1,10 @@
 {"followed":[
     {
         "company":"Fictioncorp",
-        "subject":"SYNDICATION OFFER",
+        "subject":"Rated Company Report",
+        "subject_avatar":"/img/rated_company.png",
+        "contributor":"Go4venture",
+        "contributor_avatar":"/img/g4v.png", 
         "tags":["vertical","retail","AI","Impact"],
         "avatar":"img/a.png",
         "sector":"Adtech",
@@ -12,7 +15,10 @@
     },
     {
         "company":"Foogle",
-        "subject":"Research Update",
+        "subject":"Interview",
+        "subject_avatar":"/img/interview.png",
+        "contributor":"Techtour",
+        "contributor_avatar":"/img/techtour.png",        
         "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/b.png",
         "sector":"Edtech",
@@ -21,20 +27,13 @@
         "blurb":"when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",
         "article":"null"
     },
-    {
-        "company":"Talesforce",
-        "subject":"Company Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/c.png",
-        "sector":"Deeptech",
-        "geography":"Germany",
-        "stage":"Seed",
-        "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-        "article":"null"
-    },
+    
     {
         "company":"Teknoa",
-        "subject":"Transaction Update",
+        "subject":"Scaleup Company Update",
+        "subject_avatar":"/img/scaleup_company.png",
+        "contributor":"Go4venture",
+        "contributor_avatar":"/img/g4v.png",
         "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/d.png",
         "sector":"Fintech",
@@ -44,8 +43,25 @@
         "article":"null"
     },
     {
+        "company":"Talesforce",
+        "subject":"Interview",
+        "subject_avatar":"/img/interview.png",
+        "contributor":"Stuart Webb",
+        "contributor_avatar":"/img/stuart_webb.png", 
+        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
+        "avatar":"img/c.png",
+        "sector":"Deeptech",
+        "geography":"Germany",
+        "stage":"Seed",
+        "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        "article":"null"
+    },
+    {
         "company":"Fissilemat",
-        "subject":"Research Update",
+        "subject":"Report",
+        "subject_avatar":"/img/report.png",
+        "contributor":"Atomico",
+        "contributor_avatar":"/img/atomico.png",
         "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/e.png",
         "sector":"Fintech",
@@ -56,7 +72,10 @@
     },
     {
         "company":"Opusra",
-        "subject":"Company Update",
+        "subject":"Scaleup Company Update",
+        "subject_avatar":"/img/scaleup_company.png",
+        "contributor":"Go4venture",
+        "contributor_avatar":"/img/g4v.png",
         "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
         "avatar":"img/f.png",
         "sector":"Adtech",
@@ -166,94 +185,6 @@
         "geography":"Norway",
         "stage":"C",
         "blurb":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        "article":"null"
-    },
-    {
-        "company":"Thepriceof",
-        "subject":"Research update",
-        "tags":["foo","bar","baz","AI","Impact"],
-        "avatar":"img/a.png",
-        "sector":"Edtech",
-        "geography":"Sweden",
-        "stage":"A",
-        "blurb":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-        "article":"null"
-    },
-    {
-        "company":"Foogle",
-        "subject":"Research update",
-        "tags":["vertical","retail","AI","Impact"],
-        "avatar":"img/b.png",
-        "sector":"Adtech",
-        "geography":"Austria",
-        "stage":"A",
-        "blurb":"when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",
-        "article":"null"
-    },
-    {
-        "company":"Talesforce",
-        "subject":"Transaction Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/c.png",
-        "sector":"Deeptech",
-        "geography":"Sweden",
-        "stage":"Seed",
-        "blurb":"It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-        "article":"null"
-    },
-    {
-        "company":"Teknoa",
-        "subject":"Market Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/d.png",
-        "sector":"CADtech",
-        "geography":"Germany",
-        "stage":"Seed",
-        "blurb":"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-        "article":"null"
-    },
-    {
-        "company":"Fissilemat",
-        "subject":"Fundraising Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/e.png",
-        "sector":"Cleantech",
-        "geography":"France",
-        "stage":"C",
-        "blurb":"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-        "article":"null"
-    },
-    {
-        "company":"Opusra",
-        "subject":"Fundraising Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/f.png",
-        "sector":"Adtech",
-        "geography":"Sweden",
-        "stage":"B",
-        "blurb":"Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.",
-        "article":"null"
-    },
-    {
-        "company":"Gaki",
-        "subject":"Transaction Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/g.png",
-        "sector":"Adtech",
-        "geography":"Spain",
-        "stage":"C",
-        "blurb":"Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC.",
-        "article":"null"
-    },
-    {
-        "company":"Hakthee",
-        "subject":"Research Update",
-        "tags":["foo","bar","baz","vertical","retail","AI","Impact"],
-        "avatar":"img/h.png",
-        "sector":"CADtech",
-        "geography":"Italy",
-        "stage":"Late",
-        "blurb":"This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, comes from a line in section 1.10.32.",
         "article":"null"
     }
 ]}

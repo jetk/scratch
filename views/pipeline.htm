@@ -28,8 +28,11 @@
 
 </md-toolbar>
 
+    <md-card ng-if="!nondeal&&!viewonly">
+    <img src="img/pipeline_progress.png">
+    </md-card>
 <md-content layout=row>
-    
+
 
 
 <md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline ">

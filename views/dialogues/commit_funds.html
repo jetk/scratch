@@ -1,0 +1,23 @@
+<md-dialog class="md-padding" flex>
+    <md-content   layout="column">
+      <md-header md-theme="alt">Commit Funds</md-header>
+        <span class="title">The minimum ticket size for this transaction is $100,000. Please chose an commitment in multiples of this value.</span>
+         <md-slider-container>
+      
+      <md-slider flex min="1" max="13" ng-model="commitment" aria-label="commitment" >
+      </md-slider>
+
+    </md-slider-container>
+
+           <span class="title">By clicking confirm you will inform the deal runner that you are prepared to commit <strong>${{commitment*100|number:0}}k</strong> to the funding round</span>
+        
+    </md-content>
+    <div class="md-dialog-actions" layout="row">
+        <md-button class="md-primary" ng-click="cancel_commit()">
+            Cancel
+        </md-button>
+        <md-button class="md-primary" ng-click="confirm_commit()">
+            Confirm
+        </md-button>
+    </div>
+</md-dialog>

@@ -24,42 +24,18 @@ angular.module('app.controllers', [])
         }
 
         $scope.selectedIndex = null;
-
-        $scope.$watch('selectedIndex', function (current, old) {
-            switch (current) {
-                case 0:
-                    $location.url("/alpha");
-                    break;
-                case 1:
-                    $location.url("/busi");
-                    break;
-                case 2:
-                    $location.url("/research");
-                    break;
-                case 3:
-                    $location.url("/inv");
-                    break;
-                case 4:
-                    $location.url("/me");
-                    break;
-                case 5:
-                    $location.url("/deals");
-                    break;
-            }
-        });
-
-
+        
 
         $scope.nav_items = [
             {
-                label: "Research",
-                icon: "trending_up",
-                url: "/alpha"
+                label: "Syndications",
+                icon: "developer_board",
+                url: "/deals"
         },
             {
-                label: "Channels",
-                icon: "subject",
-                url: "/research"
+                label: "Pipelines",
+                icon: "dashboard",
+                url: "/pipeline?nondeal"
         },
             {
                 label: "Companies",
@@ -72,14 +48,14 @@ angular.module('app.controllers', [])
                 url: "/investors"
         },
             {
-                label: "Pipelines",
-                icon: "dashboard",
-                url: "/pipeline?nondeal"
+                label: "Research",
+                icon: "trending_up",
+                url: "/alpha"
         },
             {
-                label: "Deals",
-                icon: "developer_board",
-                url: "/deals"
+                label: "Channels",
+                icon: "subject",
+                url: "/research"
         },
             {
                 label: "Me",
@@ -92,6 +68,10 @@ angular.module('app.controllers', [])
 
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
 
+            
+        $scope.myObj = {
+            "background-color": "gold",
+        }
 
         $scope.minimum_raised = 10
         $scope.go_to_profile = function (article) {
@@ -551,6 +531,27 @@ angular.module('app.controllers', [])
     .controller('meCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
 
 
+        
+        //Ticket Size Slider
+        $scope.slider = {
+            minValue: 100.0,
+            maxValue: 250.0,
+            options: {
+                floor: 0,
+                ceil: 1000,
+                step: 10,
+                translate: function (value, sliderId, label) {
+                    switch (label) {
+                        case 'model':
+                            return '<b>Minimum:</b> $' + value.toLocaleString() + 'k';
+                        case 'high':
+                            return '<b>Maximum:</b> $' + value.toLocaleString() + 'k';
+                        default:
+                            return '$' + value.toLocaleString() + 'k'
+                    }
+                }
+            }
+        };
 
 
         /*
@@ -1515,6 +1516,193 @@ angular.module('app.controllers', [])
 
 }])
 
+
+
+    .controller('mycosCtrl', ['$scope', '$mdDialog', '$http', 'co_service', 'random_int', function ($scope, $mdDialog, $http, co_service, random_int) {
+
+        
+        $scope.companies = []
+        
+        $http.get('my_companies.json').success(function (data) {
+            
+        for (var i = 0; i<data.length; i++){
+            
+        
+        for(company of data[i].companies){
+            
+        co_service.some(function (entry) {
+            if (entry.Company == company.title) {
+                entry.lin = random_int.getRandomInt(0,5)
+            entry.noti = random_int.getRandomInt(0,5)
+                $scope.companies.push(entry)
+            }
+        });
+        }
+        }
+            /*
+        for (company of $scope.companies){
+            company.lin = random_int.getRandomInt(0,5)
+            company.noti = random_int.getRandomInt(0,5)
+        }  
+        */
+        })
+
+        //Kludge to force articles to show before a filter is engaged
+        $scope.touched = false;
+
+        //extracts possible filters from the feed depending on content
+        $scope.getGenericFilters = function (list, property) {
+
+            return (list || []).
+            map(function (article) {
+
+                return article[property];
+            }).
+            filter(function (cat, idx, arr) {
+                return arr.indexOf(cat) === idx;
+            });
+        }
+
+        //Replicated a few times to get filtering on the respective categories
+        $scope.filterBySector = function (article) {
+            return $scope.filter[article.subsector] || noFilter($scope.filter);
+        }
+
+        $scope.filterByGeography = function (article) {
+            return $scope.geog[article.IsoCountry1] || noFilter($scope.geog);
+        }
+
+
+
+        //used for returning everything when no filter is assigned
+        function noFilter(filterObj) {
+            return Object.
+            keys(filterObj).
+            every(function (key) {
+                return !filterObj[key];
+            });
+        }
+        $scope.noFilter = noFilter
+
+
+        //TODO: rename so it's no longer a logging function
+        $scope.log = function () {
+            console.log($scope.filter)
+            $scope.touched = true
+        }
+
+        $scope.loggeo = function () {
+            console.log($scope.geog)
+            $scope.touched = true
+        }
+
+
+        //Still can't figure out how to work this, currently just replicating the function two times. Might one day be more useful
+        $scope.filterByProperties = function (wine) {
+
+            var activeFilterProps = Object.
+            keys($scope.filter).filter(function (prop) {
+                return !noFilter($scope.filter[prop]);
+            });
+
+            return activeFilterProps.every(function (prop) {
+                return $scope.filter[prop][wine[prop]];
+            });
+
+        }
+
+        $scope.fullfeed = null
+        $scope.list_loaded = false
+        $scope.filter = {}
+        $scope.geog = {}
+        $scope.subj = {}
+        $scope.mode = 0
+
+        $scope.list_loaded = true
+
+
+        //$scope.countries = co_service
+        
+        
+        $scope.notifications_dialog = function ($event, number, company) {
+
+
+
+            $mdDialog.show({
+                targetEvent: $event,
+                locals: {
+                    number: number,
+                    company: company
+                },
+                controller: function ($scope, number, company) {
+                    $scope.number = number;
+                    $scope.company = company;
+                    $scope.range = function (count) {
+                        var notifs = [];
+
+                        for (var i = 0; i < count; i++) {
+                            notifs.push(i)
+                        }
+
+                        return notifs;
+                    }
+                },
+
+                templateUrl: 'views/noti.htm',
+                scope: $scope.$new()
+            });
+        };
+
+        $scope.hide_notifications = function () {
+            $mdDialog.hide();
+        }
+
+
+
+        $scope.linkedin_dialog = function ($event, number, company) {
+
+            $mdDialog.show({
+                targetEvent: $event,
+                locals: {
+                    number: number,
+                    company: company
+                },
+                controller: function ($scope, number, company) {
+                    $scope.number = number;
+                    $scope.company = company;
+                    $scope.range = function (count) {
+                        var linkedin = [];
+
+                        for (var i = 0; i < count; i++) {
+                            linkedin.push(i)
+                        }
+
+                        return linkedin;
+                    }
+                },
+
+                templateUrl: 'views/lin.htm',
+                scope: $scope.$new()
+            });
+        };
+
+        $scope.hide_linkedin = function () {
+            $mdDialog.hide();
+        }
+
+
+        $scope.unfollow = function(index){
+            $scope.companies.splice(index,1)
+        }
+
+
+        $scope.openLeftMenu = function () {
+            $mdSidenav('left').toggle();
+        };
+
+
+}])
+
     .controller('researchCtrl', ['$scope', '$mdDialog', '$location', function ($scope, $mdDialog, $location) {
 
 
@@ -1921,9 +2109,49 @@ angular.module('app.controllers', [])
 
     .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', function ($scope, $mdDialog, investor_list, $location) {
         
+        var passed_orgs = investor_list.get_investor_list()
+            
+        $scope.current_pipeline = [{
+            name: "shortlist",
+            orgs: passed_orgs
+        }, {
+            name: "contacted",
+            orgs: []
+        },{
+            name: "meeting",
+            orgs: []
+        },{
+            name: "additional questions",
+            orgs: []
+        }]
         
         
-              $scope.go_back_to_investor_shortlist = function () {
+        
+                var seven_digital_pipeline=[{
+            name: "shortlist",
+            orgs: []
+        }, {
+            name: "contacted",
+            orgs: []
+        },{
+            name: "meeting",
+            orgs: ["Atom"]
+        },{
+            name: "additional questions",
+            orgs: ["Prudential","Richard Branson","Talis Capital"]
+        },{
+            name: "committed",
+            orgs: ["Draper","MetLife"]
+        }]
+        
+                
+         var setup_for_7digital = function(){
+            $scope.current_pipeline = seven_digital_pipeline
+        }
+         
+         
+         
+         $scope.go_back_to_investor_shortlist = function () {
             $location.path('/investorselect').search({
                 company: $location.search().company,
                 comitted: $location.search().comitted,
@@ -1943,8 +2171,12 @@ angular.module('app.controllers', [])
         
         
         $scope.setup = $location.search().setup ? true:false;
-
         $scope.nondeal=$location.search().nondeal ? true:false;
+        
+
+        
+        
+        
         $scope.invite_to_deal = function(index){
             var temp = $scope.current_pipeline[0].orgs[index]
             $scope.current_pipeline[0].orgs.splice(index,1)
@@ -1952,7 +2184,11 @@ angular.module('app.controllers', [])
         }
         
         
-        var passed_orgs = investor_list.get_investor_list()
+        
+        
+        if($location.search().company=="7Digital"){
+            setup_for_7digital()
+        }
         
         $scope.selectedIndex= 0
         
@@ -1984,20 +2220,8 @@ angular.module('app.controllers', [])
             }
         }
         
-        $scope.current_pipeline = [{
-            name: "shortlist",
-            orgs: passed_orgs
-        }, {
-            name: "contacted",
-            orgs: []
-        },{
-            name: "meeting",
-            orgs: []
-        },{
-            name: "additional questions",
-            orgs: []
-        }]
-        
+            
+    
      
         $scope.all_pipelines=
             
@@ -2050,6 +2274,29 @@ angular.module('app.controllers', [])
             }
         });
 
+        
+        
+        $scope.commit_funds = function ($event) {
+
+            $mdDialog.show({
+                targetEvent: $event,
+                controller: function ($scope) {
+                    $scope.commitment = 1;
+                },
+                templateUrl: 'views/dialogues/commit_funds.html',
+                scope: $scope.$new()
+            });
+        };
+        
+        $scope.confirm_commit=function(){
+            $mdDialog.hide();
+        }
+
+        $scope.cancel_commit=function(){
+            $mdDialog.hide();
+        }
+
+        
         $scope.lead = false
 
         $scope.syndication_company.id = db_entry.ID
@@ -2093,6 +2340,7 @@ angular.module('app.controllers', [])
     .controller('dealportalCtrl', ['$scope', '$mdDialog', '$location', 'dealparams', function ($scope, $mdDialog, $location, dealparams) {
 
 
+        
         params = $location.search()
         
         dealparams.set_deal_params(params)
