@@ -64,13 +64,88 @@ angular.module('app.controllers', [])
 
     .controller('feedCtrl', ['$scope', '$mdDialog', '$location', function ($scope, $mdDialog, $location) {
 
+}])
 
 
+    .controller('cohortsCtrl', ['$scope', '$mdDialog', '$location', 'my_investors', function ($scope, $mdDialog, $location, my_investors) {
+        $scope.investor_cohorts = []
+        
+        /*
+        
+        for (var i = 0 ; i< my_investors.length; i++){
+            if(my_investors[i].Cohorts!=null){
+
+                
+            for (var j =0; j<my_investors[i].Cohorts.length;j++){               
+                
+                if($scope.investor_cohorts.indexOf(my_investors[i].Cohorts[j]) < 0){
+                    var new_cohort = {cohort_name:my_investors[i].Cohorts[j], members:[]}
+                    $scope.investor_cohorts.push(new_cohort)
+                    
+                }
+            }
+            }
+        }
+        */
+        
+        
+        for (var i = 0; i < my_investors.length; i++) {
+            if (my_investors[i].Cohorts != null) {
+                var found = false
+
+                for (var j = 0; j < my_investors[i].Cohorts.length; j++) {
+
+                    $scope.investor_cohorts.some(function (entry) {
+                        if (entry.cohort_name == my_investors[i].Cohorts[j]) {
+                            found = true
+                        }
+                    })
 
 
+                    if (found == false) {
+                        var new_cohort = {
+                            cohort_name: my_investors[i].Cohorts[j],
+                            members: []
+                        }
+                        $scope.investor_cohorts.push(new_cohort)
 
-
-
+                    }
+                }
+            }
+        }
+        
+        console.log("total tags should be: "+JSON.stringify($scope.investor_cohorts))
+        
+        /*
+        for (var i = 0; i < $scope.investor_cohorts.length; i++) {
+            
+                my_investors.some(function (entry) {
+                    
+                    console.log("index is: "+entry.Cohorts.indexOf($scope.investor_cohorts[i].cohort_name)+JSON.stringify(entry))
+                    
+                    var cohort_index = entry.Cohorts.indexOf($scope.investor_cohorts[i].cohort_name)
+                    if (cohort_index>0) {
+                        var display_investor = entry
+                        $scope.investor_cohorts[cohort_index].members.push(display_investor)
+                    }
+                });
+            
+        }      */  
+        
+        
+        for(var i =0; i < my_investors.length;i++){
+            if(my_investors[i].Cohorts!=null){
+                for (var j =0; j< my_investors[i].Cohorts.length;j++){
+                    for (var k = 0; k < $scope.investor_cohorts.length; k++){
+                        if (my_investors[i].Cohorts[j]==$scope.investor_cohorts[k].cohort_name){
+                            var display_investor = my_investors[i]
+                            $scope.investor_cohorts[k].members.push(display_investor)
+                        }
+                    }
+                }
+                     }
+        }
+        console.log("display objects are: "+JSON.stringify($scope.investor_cohorts))
 }])
 
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {

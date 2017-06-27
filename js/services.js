@@ -137,20 +137,20 @@ angular.module('app.services', [])
 
 .factory('my_investors', function(){
    return [
-{"Investor":"360 Capital Partners","Type":"Venture Capital","Contacts":"1","Sectors":"Digital, Internet, Mobile, Fintech, Software, IoT, Gaming","Stages":"Seed, Early Stage"},
-{"Investor":"ACE & Co","Type":"Venture Capital","Contacts":"1","Sectors":"Curated Web, Enterprise Software, E-Commerce","Stages":"Seed, Early Stage"},
-{"Investor":"Alliance Venture","Type":"Venture Capital","Contacts":"1","Sectors":"Digital","Stages":"Seed, Early Stage, Late Stage"},
-{"Investor":"Alven Capital","Type":"Venture Capital","Contacts":"1","Sectors":"Software, E-Commerce, Mobile","Stages":"Seed, Early Stage Venture, late Stage Venture"},
-{"Investor":"Andrew Nutter","Type":"UHNWI","Contacts":"1","Sectors":"","Stages":""},
-{"Investor":"Anthony Karibian","Type":"UHNWI","Contacts":"1","Sectors":"Enterprise Software, Web Design","Stages":""},
-{"Investor":"Ariadne Capital","Type":"Venture Capital","Contacts":"1","Sectors":"News, Content, Curated Web","Stages":"Seed, Early Stage"},
-{"Investor":"Atomico","Type":"Venture Capital","Contacts":"1","Sectors":"Internet, Media, Communications, Technology-Enabled Services","Stages":"Seed, Early Stage, Late Stage, Private Equity"},
-{"Investor":"Axeleo","Type":"Venture Capital","Contacts":"1","Sectors":"B2B","Stages":"Seed"},
-{"Investor":"Becrypt Limited","Type":"UHNWI","Contacts":"1","Sectors":"","Stages":""},
-{"Investor":"Big Sur Ventures","Type":"Venture Capital","Contacts":"1","Sectors":"Software, Artificial Intelligence, SaaS, Marketplaces, B2B, B2C","Stages":"Seed, Early Stage"},
-{"Investor":"BOOST&Co","Type":"Venture Capital","Contacts":"1","Sectors":"Software and services, internet, hardware, cleantech, life sciences","Stages":"Early Stage Venture, late Stage Venture, Debt Financing, Post Ipo Debt"},
-{"Investor":"BPIFrance","Type":"State/Sovereign Fund","Contacts":"4","Sectors":"All Sector","Stages":"Late Stage, Private Equity"},
-{"Investor":"Bull Capital Partners","Type":"Other Financial Investor","Contacts":"1","Sectors":"onsumption/retail and services, high-end manufacturing, technology and environment-related sectors","Stages":"Late Venture"},
+{"Investor":"360 Capital Partners","Type":"Venture Capital","Contacts":"1","Sectors":"Digital, Internet, Mobile, Fintech, Software, IoT, Gaming","Stages":"Seed, Early Stage","Cohorts":["Goldman Crew"]},
+{"Investor":"Anthony Karibian","Type":"UHNWI","Contacts":"1","Sectors":"Enterprise Software, Web Design","Stages":"","Cohorts":["Goldman Crew","LP"]},
+{"Investor":"ACE & Co","Type":"Venture Capital","Contacts":"1","Sectors":"Curated Web, Enterprise Software, E-Commerce","Stages":"Seed, Early Stage","Cohorts":["Goldman Crew"]},
+{"Investor":"Alliance Venture","Type":"Venture Capital","Contacts":"1","Sectors":"Digital","Stages":"Seed, Early Stage, Late Stage","Cohorts":["LP"]},
+{"Investor":"Alven Capital","Type":"Venture Capital","Contacts":"1","Sectors":"Software, E-Commerce, Mobile","Stages":"Seed, Early Stage Venture, late Stage Venture","Cohorts":["Goldman Crew"]},
+{"Investor":"Andrew Nutter","Type":"UHNWI","Contacts":"1","Sectors":"","Stages":"","Cohorts":["LP"]},
+{"Investor":"Ariadne Capital","Type":"Venture Capital","Contacts":"1","Sectors":"News, Content, Curated Web","Stages":"Seed, Early Stage","Cohorts":["Frequent Coinvestor"]},
+{"Investor":"Atomico","Type":"Venture Capital","Contacts":"1","Sectors":"Internet, Media, Communications, Technology-Enabled Services","Stages":"Seed, Early Stage, Late Stage, Private Equity","Cohorts":["Goldman Crew"]},
+{"Investor":"Axeleo","Type":"Venture Capital","Contacts":"1","Sectors":"B2B","Stages":"Seed","Cohorts":["French in London"]},
+{"Investor":"Becrypt Limited","Type":"UHNWI","Contacts":"1","Sectors":"","Stages":"","Cohorts":["Goldman Crew","French in London"]},
+{"Investor":"Big Sur Ventures","Type":"Venture Capital","Contacts":"1","Sectors":"Software, Artificial Intelligence, SaaS, Marketplaces, B2B, B2C","Stages":"Seed, Early Stage","Cohorts":["French in London"]},
+{"Investor":"BOOST&Co","Type":"Venture Capital","Contacts":"1","Sectors":"Software and services, internet, hardware, cleantech, life sciences","Stages":"Early Stage Venture, late Stage Venture, Debt Financing, Post Ipo Debt","Cohorts":["LP"]},
+{"Investor":"BPIFrance","Type":"State/Sovereign Fund","Contacts":"4","Sectors":"All Sector","Stages":"Late Stage, Private Equity","Cohorts":["LP", "French in London"]},
+{"Investor":"Bull Capital Partners","Type":"Other Financial Investor","Contacts":"1","Sectors":"onsumption/retail and services, high-end manufacturing, technology and environment-related sectors","Stages":"Late Venture","Cohorts":["LP","Goldman Crew"]}/*,
 {"Investor":"Cabiedes & Partners SCR","Type":"Single Family Office","Contacts":"2","Sectors":"E-Commerce, Enterprise Software, Design, Fintech","Stages":"seed fundingand early-stage and late-stage investment services"},
 {"Investor":"CapHorn Invest","Type":"Single Family Office","Contacts":"1","Sectors":"Software, E-Commerce, Curated Web, Connected retail, Security, IoT, Industrial SaaS application, Plateform","Stages":"Early Stage Venture Investments"},
 {"Investor":"Chausson Finance","Type":"Venture Capital","Contacts":"1","Sectors":"Internet, ecommerce, Medias, SaaS, Software, Healthcare","Stages":"Early Stage"},
@@ -193,7 +193,7 @@ angular.module('app.services', [])
 {"Investor":"Thomas H Lee Partners","Type":"Venture Capital","Contacts":"1","Sectors":"Tech, FinTech, Consumer, Healthcare","Stages":"Private Equity"},
 {"Investor":"Ventech","Type":"Venture Capital","Contacts":"1","Sectors":"Internet and Applications, Mobile, Enterprise Software, Infrastructure","Stages":"Seed and Early Stage Venture"},
 {"Investor":"Verdane Capital","Type":"Venture Capital","Contacts":"1","Sectors":"Consumer Internet, Software, Energy, Advanced Industrial Tech","Stages":"Early Stage Venture, late Stage Venture, Private Equity Investments"},
-{"Investor":"Waltham Partners","Type":"Venture Capital","Contacts":"1","Sectors":"Fintech","Stages":"Early Stage"}
+{"Investor":"Waltham Partners","Type":"Venture Capital","Contacts":"1","Sectors":"Fintech","Stages":"Early Stage"}*/
 ]
 })
 

@@ -1,7 +1,7 @@
 <md-card class="md-padding">
     <md-card-header>
         <md-card-header-text>
-            <h4>Investors I am tracking</h4>
+            <h4>My investors grouped by cohort</h4>
         </md-card-header-text>
         <md-button class="md-primary md-raised">Add new</md-button>
     </md-card-header>
@@ -12,8 +12,10 @@
 <md-content>
     <md-card>
 
-
-        <md-card ng-repeat="investor in my_investors|filter:q" ng-click="null">
+        <div ng-repeat="cohort in investor_cohorts">
+        <md-toolbar class="md-padding"> {{cohort.cohort_name}}
+            </md-toolbar>
+        <md-card ng-repeat="investor in cohort.members|filter:q" ng-click="null">
            <md-list>
                  <md-list-item class="md-2-line" ng-click="null">
 
@@ -43,5 +45,6 @@
         </md-card>
 
 
+            </div>
     </md-card>
 </md-content>
