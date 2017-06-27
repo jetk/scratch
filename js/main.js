@@ -17,8 +17,12 @@ app.config(function ($mdThemingProvider) {
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "views/alpha.htm",
-            controller:"alphaCtrl"
+            templateUrl: "views/feed.htm",
+            controller:"feedCtrl"
+        })
+    .when("/feed", {
+            templateUrl: "views/feed.htm",
+            controller: "feedCtrl"
         })
         .when("/alpha", {
             templateUrl: "views/alpha.htm",

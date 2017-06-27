@@ -50,12 +50,7 @@ angular.module('app.controllers', [])
             {
                 label: "Research",
                 icon: "trending_up",
-                url: "/alpha"
-        },
-            {
-                label: "Channels",
-                icon: "subject",
-                url: "/research"
+                url: "/feed"
         },
             {
                 label: "Me",
@@ -63,6 +58,18 @@ angular.module('app.controllers', [])
                 url: "/me"
         }
     ]
+
+}])
+
+
+    .controller('feedCtrl', ['$scope', '$mdDialog', '$location', function ($scope, $mdDialog, $location) {
+
+
+
+
+
+
+
 
 }])
 

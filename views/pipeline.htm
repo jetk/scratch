@@ -28,7 +28,7 @@
 
 </md-toolbar>
 
-    <md-card ng-if="!nondeal&&!viewonly||!setup">
+    <md-card ng-hide="nondeal||setup">
     <img src="img/pipeline_progress.png">
     </md-card>
 <md-content layout=row>
@@ -41,7 +41,7 @@
             <span class="headline">{{stage.name| uppercase }}</span>
         </md-card-header-text>
     </md-card-header>
-    <md-card ng-repeat="name in stage.orgs track by $index">        
+    <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index">        
         <md-card-header>
         <md-card-header-text flex="80">
             <span class="title">{{name}}</span>

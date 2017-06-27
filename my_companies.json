@@ -1,5 +1,5 @@
 [{
-        "list_name": "Go4 Suggested Companies",
+        "list_name": "Phone-related",
         "companies": [{
                 "title": "FlatFrog Laboratories",
                 "description": "Developer and manufacturer of touch screens.",
@@ -25,7 +25,7 @@
             }]
     },
     {
-        "list_name": "Met or Spoken to",
+        "list_name": "Hardware",
         "companies": [{
                 "title": "Terra Nova",
                 "description": "Electronic Waste Recycler.",
@@ -51,7 +51,7 @@
             }]
     },
     {
-        "list_name": "Received Pitch",
+        "list_name": "Suggested by Go4Venture",
         "companies": [{
                 "title": "1855",
                 "description": "Euronext Listed e-tailer of wine.",

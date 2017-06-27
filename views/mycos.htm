@@ -77,6 +77,26 @@
             </div>
 
 
+            <div class="md-accordion">
+                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools">
+
+                        <span>STAGE</span>
+
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+                    <div ng-if="list_loaded">
+                        <label><input type="checkbox"/>Seed</label>
+                        <label><input type="checkbox"/>Series A</label>
+                        <label><input type="checkbox"/>Series B</label>
+                        <label><input type="checkbox"/>Series C</label>
+                        <label><input type="checkbox"/>Late</label>
+                    </div>
+                </div>
+            </div>
 
 
 
