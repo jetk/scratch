@@ -70,7 +70,7 @@
 
         </md-sidenav>
     
-    <div class='md-padding' layout="column">
+    <div layout="column">
     
     
     <div layout="row" layout-wrap ng-repeat="(name,list) in channel_lists track by $index">
@@ -79,17 +79,28 @@
             {{name}}
             
         </md-toolbar>
-        <md-card style="width: 250px;" ng-repeat="channel in list track by $index">
-          <!--<img src="{{channel.img}}" class="md-card-image" alt="">-->
-          <md-card-content>
-            <h2>{{channel.name}}</h2>
-            <p>{{channel.comments}}</p>
-              
+        <md-card class="md-padding" flex="40" ng-repeat="channel in list track by $index">
+            
+            <div layout="row">
+                
+                <div layout="column" flex>
+                    <h2>{{channel.name}}</h2>
+                    <p>{{channel.comments}}</p>
+                
+                </div>
+                <div layout="column">
+                <div ng-repeat="cont in channel.contributors" >
+                <img style="max-width: 32px; max-height: 32px" src="/img/{{cont}}.png">
+                </div>
+                </div>
+
+            </div>
+          
                 <md-chips ng-model="channel.filters" readonly="true">
                     
                     <md-chip><i class="material-icons">filter_list</i>{{$chip.name}}</md-chip>
                 </md-chips>
-          </md-card-content>
+          
 
             <md-card-footer>
             <div class="md-actions" layout="row" layout-align="end center">

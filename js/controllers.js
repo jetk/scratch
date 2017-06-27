@@ -1752,21 +1752,21 @@ angular.module('app.controllers', [])
                     name: "Swiss Adtech",
                     comments: "",
                     filters: ["Adtech", "Switzerland"],
-                    contributors: ["G4V", "Catcap"]
+                    contributors: ["g4v", "catcap"]
             },
                 {
                     name: "Austrain Edtech",
                     comments: "",
                     filters: ["Austria", "Edtech"],
-                    contributors: ["G4V"]
+                    contributors: ["g4v"]
             },
                 
 
                 {
-                    name: "Innovation Finance Members",
+                    name: "Innovate Finance Members",
                     comments: "",
                     filters: ["Fintech", "Custom"],
-                    contributors: ["G4V"]
+                    contributors: ["g4v","innovate_finance"]
             },
                 
 
@@ -1776,37 +1776,37 @@ angular.module('app.controllers', [])
                     name: "Adtech in DACH",
                     comments: "",
                     filters: ["Adtech", "Germany", "Switzerland", "Austria"],
-                    contributors: ["G4V", "Catcap"]
+                    contributors: ["g4v", "catcap"]
             },
                 {
                     name: "NOAH Conference 2017",
                     comments: "",
                     filters: ["Germany", "Digital"],
-                    contributors: ["G4V", "NOAH"]
+                    contributors: ["g4v", "NOAH"]
             },
                 {
                     name: "Y-Combinator Cohorts",
                     comments: "",
                     filters: ["Seed, Custom"],
-                    contributors: ["G4V", "YCombinator"]
+                    contributors: ["g4v", "ycombinator"]
             },
                   {
                     name: "Balderton Portfolio",
                     comments: "",
                     filters: ["Custom"],
-                    contributors: ["G4V", "Balderton"]
+                    contributors: ["g4v", "balderton"]
             },
                   {
                     name: "Web Summit 2017 Scaleups",
                     comments: "",
                     filters: ["Digital, Custom"],
-                    contributors: ["G4V", "Web Summit"]
+                    contributors: ["g4v", "websummit"]
             },
                   {
                     name: "Tech Tour 50 2017",
                     comments: "",
                     filters: ["Custom"],
-                    contributors: ["Tech Tour"]
+                    contributors: ["techtour"]
             },
                 
 
@@ -1817,21 +1817,38 @@ angular.module('app.controllers', [])
                     name: "Accel Portfolio",
                     comments: "",
                     filters: ["UK", "custom"],
-                    contributors: ["G4V", "Accel"]
+                    contributors: ["g4v", "accel"]
             },
                
                 {
                     name: "Microsoft Accelerator Cohort",
                     comments: "",
                     filters: ["Fintech", "Spain"],
-                    contributors: ["G4V", "Microsoft Accelerator"]
+                    contributors: ["g4v", "microsoft_accelerator"]
             },
                  {
                     name: "Music Ally's Favourites across Western Europe",
                     comments: "",
                     filters: ["Music", "custom"],
-                    contributors: ["Music Ally"]
+                    contributors: ["music_ally"]
             },  
+
+        ],
+            CONTRIBUTORS: [
+                {
+                    name: "Chris Lowe",
+                    comments: "",
+                    filters: ["custom"],
+                    contributors: ["chris_lowe"]
+            },
+               
+                {
+                    name: "Stuart Webb",
+                    comments: "",
+                    filters: ["custom"],
+                    contributors: ["stuart_webb"]
+            },
+                
 
         ]
 
