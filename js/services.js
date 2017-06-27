@@ -51,7 +51,7 @@ angular.module('app.services', [])
         
         
         var subject_array=["Interview","Report", "Scaleup Company Update", "Rated Company Update"]
-        var subject_avatar_array=["/img/interview.png","/img/report.png","/img/scaleup_company.png","/img/rated_company.png"]
+        var subject_avatar_array=["img/interview.png","img/report.png","img/scaleup_company.png","img/rated_company.png"]
         generate_subject=function (){
             var rand = getRandomInt(0,subject_array.length-1)
             
@@ -62,7 +62,7 @@ angular.module('app.services', [])
 
          
         var contributor_array=["Go4venture","Tech Tour", "Stuart Webb", "Chris Lowe"]
-        var contributor_avatar_array=["/img/g4v.png","/img/techtour.png","/img/stuart_webb.png","/img/chris_lowe.png"]
+        var contributor_avatar_array=["img/g4v.png","img/techtour.png","img/stuart_webb.png","img/chris_lowe.png"]
         generate_contributor=function (){
             var rand = getRandomInt(0,contributor_array.length-1)
             
