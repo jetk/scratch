@@ -2092,13 +2092,14 @@ angular.module('app.controllers', [])
 
         generate_fake_matches($scope.my_investors, 0, 100)
         generate_fake_matches($scope.coidb, 90, 100)
-        $scope.coidb_matches = $scope.coidb.splice(0, 10)
+        $scope.coidb_matches = $scope.coidb.slice(0, 10)
         
         var selected_investors =[]
         set_investors=function(){
             for (var i = 0; i<$scope.coidb_matches.length;i++){
                 if($scope.coidb_matches[i].wanted){
-                selected_investors.push($scope.coidb_matches[i].Investor)
+               var new_name = $scope.coidb_matches[i].Investor
+                selected_investors.push(new_name)
                 }
             }
              for (var j = 0; j<$scope.my_investors.length;j++){
@@ -2106,7 +2107,7 @@ angular.module('app.controllers', [])
                 selected_investors.push($scope.my_investors[j].Investor)
                 }
             }
-            console.log(JSON.stringify(selected_investors))
+            
         }
         
         
@@ -2124,7 +2125,7 @@ angular.module('app.controllers', [])
 
 }])
 
-    .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', function ($scope, $mdDialog, investor_list, $location) {
+    .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', 'coidb', function ($scope, $mdDialog, investor_list, $location, coidb) {
         
         var passed_orgs = investor_list.get_investor_list()
             
@@ -2161,6 +2162,8 @@ angular.module('app.controllers', [])
             orgs: ["Draper","MetLife"]
         }]
         
+        
+                
                 
          var setup_for_7digital = function(){
             $scope.current_pipeline = seven_digital_pipeline
@@ -2191,8 +2194,16 @@ angular.module('app.controllers', [])
         $scope.nondeal=$location.search().nondeal ? true:false;
         
 
+        $scope.go4_recs = ["Draper","Richard Branson"]   
         
-        
+        if($scope.setup){
+            console.log("it's a setup!")
+            for (var i = 0; i<coidb.length ; i++){
+                $scope.go4_recs.push(coidb[i].Investor)
+                console.log(JSON.stringify($scope.go4_recs))
+            }
+            console.log(JSON.stringify($scope.go4_recs))
+        }
         
         $scope.invite_to_deal = function(index){
             var temp = $scope.current_pipeline[0].orgs[index]
@@ -2201,6 +2212,9 @@ angular.module('app.controllers', [])
         }
         
         
+           $scope.is_rec = function(name) {
+       return $scope.go4_recs.indexOf(name) !== -1;
+   }
         
         
         if($location.search().company=="7Digital"){

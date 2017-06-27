@@ -28,7 +28,7 @@
 
 </md-toolbar>
 
-    <md-card ng-if="!nondeal&&!viewonly">
+    <md-card ng-if="!nondeal&&!viewonly||!setup">
     <img src="img/pipeline_progress.png">
     </md-card>
 <md-content layout=row>
@@ -46,8 +46,10 @@
         <md-card-header-text flex="80">
             <span class="title">{{name}}</span>
         </md-card-header-text>
+            <img src="/img/g4v.png" style="max-width:16px;max-height:16px" ng-show="is_rec(name)">
             <md-button ng-if="stage.name=='shortlist'" class="md-icon-button md-primary" aria-label="invite" ng-click="invite_to_deal($index)">
-        <md-icon ><i class="material-icons">email</i></md-icon>
+        <md-icon >
+        <i class="material-icons">email</i></md-icon>
       </md-button>
     </md-card-header>
     </md-card>
