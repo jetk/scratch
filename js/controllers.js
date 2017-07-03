@@ -1973,7 +1973,7 @@ angular.module('app.controllers', [])
         
         
         $scope.received_deals = [
-            {company: 'Adconion',
+            {company: 'adconion',
                 funds_comitted: 13.7,
                 total_raise: 15,
                 view_only :true,
