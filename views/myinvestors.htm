@@ -15,7 +15,7 @@
 
         <md-card ng-repeat="investor in my_investors|filter:q" ng-click="null">
            <md-list>
-                 <md-list-item class="md-2-line" ng-click="null">
+                 <md-list-item class="md-2-line" ng-click="go_to_investor_profile(investor)">
 
             <div class="md-list-item-text" flex>
                 <h3>{{investor.Investor}}</h3>

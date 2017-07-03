@@ -1510,9 +1510,18 @@ angular.module('app.controllers', [])
 }])
 
 
-    .controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
+    .controller('busiCtrl', ['$scope', '$mdDialog', '$http', 'co_service', '$location', function ($scope, $mdDialog, $http, co_service, $location) {
 
         $scope.companies = co_service.slice(0,932)
+        
+        $scope.go_to_profile = function (company) {
+
+            $location.path('/profile').search({
+                company: angular.isString(company) ? company : company.Company
+            })
+
+        }
+
 
         //Kludge to force articles to show before a filter is engaged
         $scope.touched = false;
@@ -1600,8 +1609,16 @@ angular.module('app.controllers', [])
 
 
 
-    .controller('mycosCtrl', ['$scope', '$mdDialog', '$http', 'co_service', 'random_int', function ($scope, $mdDialog, $http, co_service, random_int) {
+    .controller('mycosCtrl', ['$scope', '$mdDialog', '$http', 'co_service', 'random_int', '$location',function ($scope, $mdDialog, $http, co_service, random_int, $location) {
 
+        
+          $scope.go_to_profile = function (company) {
+
+            $location.path('/profile').search({
+                company: angular.isString(company) ? company : company.Company
+            })
+
+        }
         
         $scope.companies = []
         
@@ -1956,11 +1973,11 @@ angular.module('app.controllers', [])
         
         
         $scope.received_deals = [
-            {company: '4iq',
+            {company: 'Adconion',
                 funds_comitted: 13.7,
                 total_raise: 15,
                 view_only :true,
-            sector:"Security Software",
+            sector:"Website Tools",
             geo:"Spain"},
              {company: 'Aevi',
                 funds_comitted: 11.1,
@@ -2210,6 +2227,13 @@ angular.module('app.controllers', [])
     .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', 'coidb', function ($scope, $mdDialog, investor_list, $location, coidb) {
         
         var passed_orgs = investor_list.get_investor_list()
+        
+              $scope.go_to_profile = function (company) {
+
+            $location.path('/profile').search({
+                company: angular.isString(company) ? company : company.Company
+            })
+        }
             
         $scope.current_pipeline = [{
             name: "shortlist",
@@ -2375,6 +2399,8 @@ angular.module('app.controllers', [])
     .controller('deal_overviewCtrl', ['$scope', '$mdDialog', 'co_service', 'dealparams', function ($scope, $mdDialog, co_service, dealparams) {
 
         dealparams = dealparams.get_deal_params()
+        
+        console.log("dealparams are:"+JSON.stringify(dealparams))
         $scope.available = (dealparams.total_raise - dealparams.funds_comitted).toLocaleString()
         $scope.syndication_company = {}
         var db_entry = {}
@@ -2555,16 +2581,33 @@ angular.module('app.controllers', [])
 }])
 
 
- .controller('myinvestorsCtrl', ['$scope','my_investors', function ($scope,my_investors) {
+ .controller('myinvestorsCtrl', ['$scope','my_investors', '$location', function ($scope,my_investors, $location) {
 
         $scope.my_investors = my_investors
+     
+     $scope.go_to_investor_profile = function (investor) {
+
+            $location.path('/profile').search({
+                company: angular.isString(investor) ? investor : investor.Investor
+            })
+
+        }
+
 
 }])
 
 
-.controller('allinvestorsCtrl', ['$scope', '$mdDialog', '$http', 'co_service', function ($scope, $mdDialog, $http, co_service) {
+.controller('allinvestorsCtrl', ['$scope', '$mdDialog', '$http', 'co_service', '$location', function ($scope, $mdDialog, $http, co_service, $location) {
 
         $scope.companies = co_service.slice(936,co_service.length)
+    
+      $scope.go_to_profile = function (company) {
+
+            $location.path('/profile').search({
+                company: company.Company
+            })
+
+        }
 
         //Kludge to force articles to show before a filter is engaged
         $scope.touched = false;

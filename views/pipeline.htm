@@ -41,7 +41,7 @@
             <span class="headline">{{stage.name| uppercase }}</span>
         </md-card-header-text>
     </md-card-header>
-    <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index">        
+    <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index" ng-click="go_to_profile(name)">        
         <md-card-header>
         <md-card-header-text flex="80">
             <span class="title">{{name}}</span>
