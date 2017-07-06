@@ -15,7 +15,7 @@
       <md-tab ng-disabled="false">
         <md-tab-label>Data Room</md-tab-label>
         <md-tab-body>
-            <img src="img/dataroom.png">
+            <img ng-src="img/dataroom.png">
         </md-tab-body>
       </md-tab>
          <md-tab ng-disabled="false">
@@ -23,8 +23,8 @@
         <md-tab-body>
 
              <md-card class="md-padding" md-theme="alt">
-                 <img ng-if="view_only" src="img/buyer_chatroom.png">
-                <img ng-if="!view_only" src="img/seller_chatroom.png">
+                 <img ng-if="view_only" ng-src="img/buyer_chatroom.png">
+                <img ng-if="!view_only" ng-src="img/seller_chatroom.png">
                 <md-input-container class="md-block">
         <label>Type a new message</label>
         <input name="message">

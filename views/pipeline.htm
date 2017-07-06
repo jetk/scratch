@@ -29,20 +29,25 @@
 </md-toolbar>
 
     <md-card ng-hide="nondeal||setup">
-    <img src="img/pipeline_progress.png">
+    <img ng-src="img/pipeline_progress.png">
     </md-card>
 <md-content layout=row>
 
 
 
-<md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline ">
+    
+      
+            
+
+<md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline" ng-style="cardstyle">
+    
     <md-card-header>
         <md-card-header-text>
             <span class="headline">{{stage.name| uppercase }}</span>
         </md-card-header-text>
     </md-card-header>
-    <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index">        <div align="end end">
-        <div >
+    <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index">        
+        <div align="end end">
         <md-button class="md-icon-button" ng-click="profile_popover($event, name)"><md-icon md-font-set="material-icons">description</md-icon>
             </md-button>
         <md-button class="md-icon-button" ng-click="null"><md-icon md-font-set="material-icons">settings</md-icon>
@@ -52,9 +57,9 @@
         <md-card-header-text flex="80">
             <span class="title">{{name}}</span>
         </md-card-header-text>
-            <img src="img/g4v.png" style="max-width:16px;max-height:16px" ng-show="is_rec(name)">
+            <img ng-src="img/g4v.png" style="max-width:16px;max-height:16px" ng-show="is_rec(name)">
     </md-card-header>
-        </div>
+        
         <md-button ng-if="stage.name=='shortlist'" class="md-raised" aria-label="invite" ng-click="invite_to_deal($index)">
         <md-icon >
         <i class="material-icons">email</i></md-icon>invite

@@ -3,7 +3,7 @@
 
     <md-card layout="column">
         <md-card-header class="md-padding" layout="row">
-                <img style="max-width:64px;max-height:64px" src="http://loremflickr.com/128/128/logo">
+                <img style="max-width:64px;max-height:64px" ng-src="http://loremflickr.com/128/128/logo">
             <div flex="2">&nbsp</div>
             <md-card-header-text layout="column">
                 <span class="md-display-1">{{article_company}}</span>
@@ -45,7 +45,7 @@
         <md-card>
             <md-list>
                 <md-list-item class="md-2-line">
-                        <img src="img/pdf.jpg" class="md-avatar">
+                        <img ng-src="img/pdf.jpg" class="md-avatar">
                         <div class="md-list-item-text" layout="column">
                             <p>Termsheet </p>
                             <p>12:33 23-May-2017</p>
@@ -56,7 +56,7 @@
                     </md-button>
                     </md-list-item>
                     <md-list-item class="md-2-line">
-                        <img src="img/xls.jpg" class="md-avatar">
+                        <img ng-src="img/xls.jpg" class="md-avatar">
                         <div class="md-list-item-text" layout="column">
                             <p>Financial Model</p>
                             <p>12:37 20-May-2017</p>
@@ -79,13 +79,13 @@
                 </md-card-header>
                 <md-list>
                     <md-list-item class="md-2-line">
-                        <img src="img/user.png" class="md-avatar">
+                        <img ng-src="img/user.png" class="md-avatar">
                         <div class="md-list-item-text" layout="column">
                             <p>Robert Researcherson</p>
                             <p>12:33 23-May-2017</p>
                         </div>
                         <md-button>
-                            <md-icon><img style="max-width:32px ; max-height:32px" src="img/g4v.png"></md-icon>
+                            <md-icon><img style="max-width:32px ; max-height:32px" ng-src="img/g4v.png"></md-icon>
                         </md-button>
 
                     </md-list-item>
@@ -100,7 +100,7 @@
                 <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
                     <md-list class="md-dense">
                         <md-list-item ng-click="go_to_profile(fake_company)" ng-repeat="fake_company in fake_companies track by $index">
-                            <img style="max-height:32px;max-width:32px" class="md-avatar" src="http://loremflickr.com/64/64/logo?random={{$index}}">
+                            <img style="max-height:32px;max-width:32px" class="md-avatar" ng-src="http://loremflickr.com/64/64/logo?random={{$index}}">
                             <div class="md-list-item-text">{{fake_company.Company}}</div>
                         </md-list-item>
                     </md-list>
@@ -117,7 +117,7 @@
                 <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
                     <md-list class="md-dense">
                         <md-list-item ng-click="go_to_profile(fake_investor)" ng-repeat="fake_investor in fake_investors track by $index">
-                            <img style="max-height:32px;max-width:32px" class="md-avatar" src="http://loremflickr.com/64/64/logo?random={{$index+10}}">
+                            <img style="max-height:32px;max-width:32px" class="md-avatar" ng-src="http://loremflickr.com/64/64/logo?random={{$index+10}}">
                             <div class="md-list-item-text">{{fake_investor.Company}}</div>
                         </md-list-item>
                     </md-list>

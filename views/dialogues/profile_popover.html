@@ -1,6 +1,7 @@
-<md-content class="md-padding md-hue-1" layout="row">
+<md-dialog md-theme="default">
 
-    <div layout-xs="column" flex="75">
+    
+     <div layout-xs="column">
 
 
 
@@ -9,6 +10,7 @@
             
                 <md-button> Download Tearsheet
                 </md-button>
+            <md-button ng-click="close()">X</md-button>
             
         </md-toolbar>
 
@@ -17,6 +19,7 @@
             
                 <md-button> Download Tearsheet
                 </md-button>
+               <md-button ng-click="close()">X</md-button>
             
         </md-toolbar>
 
@@ -53,7 +56,8 @@
             </md-card-header>
             <md-card>
                 <md-card-header  class="md-padding"><span class="md-title">ABOUT</span></md-card-header>
-                <md-content>{{pro.blurb}}</md-content>
+                <md-content ng-if="pro.id>=9000" class="md-padding">{{pro.blurb}}</md-content>
+                <md-content ng-if="pro.id<=9000" class="md-padding">This would be a proprietary report on of {{pro.name}}, detailing primary areas of investment, key people, notable investments and geographic focuses</md-content>
             </md-card>
             <div ng-if="pro.id>=9000">
                         <md-card>
@@ -308,7 +312,7 @@
         </md-card>
         
     </div>
-    <div flex="25">
+    <div>
 
         <md-toolbar class="md-accent" layout="row">
             <span class="md-padding md-title">3rd Party Data</span>
@@ -362,4 +366,8 @@
         </md-card>
 
     </div>
-</md-content>
+
+
+
+
+</md-dialog>

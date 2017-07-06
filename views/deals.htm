@@ -10,7 +10,7 @@
         <md-card ng-repeat="deal in received_deals track by $index" >
             <md-card-header layout="row">
                 <div style="min-height:128px">
-                    <img style="max-width:128px; padding-right:15px" class="md-user-avatar" src="img/{{deal.company}}.png">
+                    <img style="max-width:128px; padding-right:15px" class="md-user-avatar" ng-src="img/{{deal.company}}.png">
                 </div>
   
 
@@ -31,7 +31,7 @@
             </md-card-header>
             
             <span>£{{deal.total_raise}}mn raise led by Adara Ventures</span>
-            <img src="img/{{deal.company}}progress.png">
+            <img ng-src="img/{{deal.company}}progress.png">
             
                 <md-card-footer>
                 <md-button class="md-raised md-warn" ng-click="go_to_deal_portal($index)"> Go To Deal Portal
@@ -55,7 +55,7 @@
               <md-card ng-hide="seven_digital">
             <md-card-header layout="row">
                 <div style="min-height:128px">
-                <img style="max-height:54px; max-width:128px; padding-right:15px" class="md-user-avatar" src="img/7digital.png">
+                <img style="max-height:54px; max-width:128px; padding-right:15px" class="md-user-avatar" ng-src="img/7digital.png">
                 </div>
   
                 <md-card-header-text  layout="row" >
@@ -75,7 +75,7 @@
             </md-card-header>
             
             £22 raise led by you
-            <img src="img/progress2.png">
+            <img ng-src="img/progress2.png">
             
                 <md-card-footer>
                 <md-button class="md-raised md-primary" ng-click="manage_deal_portal()"> Manage Deal Portal

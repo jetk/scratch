@@ -80,7 +80,7 @@
         <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
             <md-card-header class="md-padding" layout="row">
                 <md-card-avatar ng-click="go_to_profile(company)" style="min-width: 96px; min-height: 96px">
-                    <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
+                    <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
                 </md-card-avatar>
 
                 <div flex>

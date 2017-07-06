@@ -14,6 +14,9 @@ app.config(function ($mdThemingProvider) {
     
 });
 
+
+
+
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {

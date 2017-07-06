@@ -25,6 +25,7 @@ angular.module('app.controllers', [])
 
         $scope.selectedIndex = null;
         
+//        $mdDialogProvider.addPreset;
 
         $scope.nav_items = [
             {
@@ -67,26 +68,10 @@ angular.module('app.controllers', [])
 }])
 
 
-    .controller('cohortsCtrl', ['$scope', '$mdDialog', '$location', 'my_investors', function ($scope, $mdDialog, $location, my_investors) {
+    .controller('cohortsCtrl', ['$scope', '$mdDialog', '$location', 'my_investors','profile_popover', function ($scope, $mdDialog, $location, my_investors, profile_popover) {
         $scope.investor_cohorts = []
         
-        /*
-        
-        for (var i = 0 ; i< my_investors.length; i++){
-            if(my_investors[i].Cohorts!=null){
-
-                
-            for (var j =0; j<my_investors[i].Cohorts.length;j++){               
-                
-                if($scope.investor_cohorts.indexOf(my_investors[i].Cohorts[j]) < 0){
-                    var new_cohort = {cohort_name:my_investors[i].Cohorts[j], members:[]}
-                    $scope.investor_cohorts.push(new_cohort)
-                    
-                }
-            }
-            }
-        }
-        */
+      
         
         
         var find_unique_cohorts = function(){
@@ -120,23 +105,6 @@ angular.module('app.controllers', [])
         
         find_unique_cohorts()
         
-//        console.log("total tags should be: "+JSON.stringify($scope.investor_cohorts))
-        
-        /*
-        for (var i = 0; i < $scope.investor_cohorts.length; i++) {
-            
-                my_investors.some(function (entry) {
-                    
-                    console.log("index is: "+entry.Cohorts.indexOf($scope.investor_cohorts[i].cohort_name)+JSON.stringify(entry))
-                    
-                    var cohort_index = entry.Cohorts.indexOf($scope.investor_cohorts[i].cohort_name)
-                    if (cohort_index>0) {
-                        var display_investor = entry
-                        $scope.investor_cohorts[cohort_index].members.push(display_investor)
-                    }
-                });
-            
-        }      */  
         
         
         for(var i =0; i < my_investors.length;i++){
@@ -151,7 +119,11 @@ angular.module('app.controllers', [])
                 }
                      }
         }
-//        console.log("display objects are: "+JSON.stringify($scope.investor_cohorts))
+
+        
+           
+     $scope.profile_popover = profile_popover
+        
 }])
 
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
@@ -2300,34 +2272,17 @@ if(entry.wanted){
 
 }])
 
-    .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', 'coidb', function ($scope, $mdDialog, investor_list, $location, coidb) {
+    .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', 'coidb', 'profile_popover', function ($scope, $mdDialog, investor_list, $location, coidb, profile_popover) {
         
         var passed_orgs = investor_list.get_investor_list()
-        /*
-        $scope.profile_popover = function ($event, name) {
-           $mdDialog.show({
-                targetEvent: $event,
-                controller: function ($scope) {
-                    //          $scope.searchText = 'Enter a company';
-                    $scope.items = co_service;
-                },
-                templateUrl: 'views/profile.htm',
-                scope: $scope.$new()
-            })
-        }*/
         
         
-          $scope.profile_popover = function ($event, name) {
-    $mdDialog.show({
+        $scope.profile_popover = profile_popover
+       
+        $scope.cardstyle={"background-color":"gold"}
+        
       
-      templateUrl: 'views/dialogues/profile_holder.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: $event,
-      clickOutsideToClose:true
-    })
-        ;
-  };
-
+        
         
         console.log(JSON.stringify(passed_orgs))
               $scope.go_to_profile = function (company) {
@@ -2684,18 +2639,12 @@ if(entry.wanted){
 }])
 
 
- .controller('myinvestorsCtrl', ['$scope','my_investors', '$location', function ($scope,my_investors, $location) {
+ .controller('myinvestorsCtrl', ['$scope','my_investors','profile_popover', function ($scope,my_investors,profile_popover) {
 
-        $scope.my_investors = my_investors
+    $scope.my_investors = my_investors
      
-     $scope.go_to_investor_profile = function (investor) {
-
-            $location.path('/profile').search({
-                company: angular.isString(investor) ? investor : investor.Investor
-            })
-
-        }
-
+     $scope.profile_popover = profile_popover
+     
 
 }])
 
@@ -2795,3 +2744,48 @@ if(entry.wanted){
 
 
 }])
+
+function DialogCtrl($scope, $mdDialog, company, $http, $location, co_service, dealparams) {
+            $scope.contributors = [{
+            name: "Bob Cox",
+            articles: 20
+        }, {
+            name: "Perry Kelso",
+            articles: 12
+        }]
+        //This works well and fine if we have a json file for each profile out there
+        $scope.pro = {}
+
+
+        console.log("this is popover controller")
+        $scope.company = company
+        
+        
+        $scope.close=function(){
+            $mdDialog.hide();
+        }
+
+    
+        $http.get("example_profile.json").success(function (data) {
+
+            var db_entry = null
+
+            //Retrieves the 'database entry' from the company database service. Obviously this needs to be much more sophisticated
+            co_service.some(function (entry) {
+                if (entry.Company == company) {
+                    db_entry = entry
+                }
+            });
+
+            $scope.lead = false
+
+            $scope.pro = data
+            $scope.pro.id = db_entry.ID
+            console.log($scope.pro.id)
+            $scope.pro.name = db_entry.Company
+            $scope.pro.geography = db_entry.IsoCountry1
+            $scope.pro.sector = db_entry.subsector
+            $scope.pro.stage = "A"
+            $scope.pro.motto = db_entry.Description
+        })
+        }

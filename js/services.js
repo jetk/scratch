@@ -2,10 +2,78 @@ angular.module('app.services', [])
 
 .service('random_int', function(){
          
-        this.getRandomInt= function(min, max) {
+        this.getRandomInt = function(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 })
+
+
+.service('profile_popover', function($mdDialog){
+         
+        return function ($event, name) {
+           $mdDialog.show({
+                targetEvent: $event,
+                controller: DialogCtrl,
+               clickOutsideToClose:true,
+                templateUrl: 'views/dialogues/profile_popover.html',
+               locals : {
+                    company: name
+                }
+                
+            })
+            
+            
+        }
+    
+        function DialogCtrl($scope, $mdDialog, company, $http, $location, co_service, dealparams) {
+            $scope.contributors = [{
+            name: "Bob Cox",
+            articles: 20
+        }, {
+            name: "Perry Kelso",
+            articles: 12
+        }]
+        //This works well and fine if we have a json file for each profile out there
+        $scope.pro = {}
+
+
+        console.log("this is popover controller")
+        $scope.company = company
+        
+        
+        $scope.close=function(){
+            $mdDialog.hide();
+        }
+
+    
+        $http.get("example_profile.json").success(function (data) {
+
+            var db_entry = null
+
+            //Retrieves the 'database entry' from the company database service. Obviously this needs to be much more sophisticated
+            co_service.some(function (entry) {
+                if (entry.Company == company) {
+                    db_entry = entry
+                }
+            });
+
+            $scope.lead = false
+
+            $scope.pro = data
+            $scope.pro.id = db_entry.ID
+            console.log($scope.pro.id)
+            $scope.pro.name = db_entry.Company
+            $scope.pro.geography = db_entry.IsoCountry1
+            $scope.pro.sector = db_entry.subsector
+            $scope.pro.stage = "A"
+            $scope.pro.motto = db_entry.Description
+        })
+        }
+    
+        
+})
+
+
 
 .service('feed_generator', function(co_service){
     

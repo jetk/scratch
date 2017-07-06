@@ -88,7 +88,7 @@
         <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
             <md-card-header class="md-padding" layout="row">
                 <md-card-avatar style="min-width: 128px; min-height: 128px" ng-click="go_to_profile(company)">
-                    <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
+                    <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
                 </md-card-avatar>
 
                 <div flex>
@@ -123,7 +123,7 @@
 <md-card class="md-padding">
 <md-card-header  layout="row">
     <md-card-avatar style="max-width: 48px; max-height: 48px">
-        <img class="md-user-avatar" src="http://loremflickr.com/48/48/logo?random={{$index}}">
+        <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
     </md-card-avatar>
     <md-card-header-text  class="md-padding">
         <span class="md-title">
