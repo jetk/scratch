@@ -23,7 +23,7 @@ angular.module('app.services', [])
                 
                 var subj_pair= generate_subject()
                 var cont_pair= generate_contributor()
-                console.log(JSON.stringify(generate_contributor()))
+                //console.log(JSON.stringify(generate_contributor()))
                 var new_feed_item = {
                     company: feed_entry.Company,
                     subject: subj_pair.subject_name,

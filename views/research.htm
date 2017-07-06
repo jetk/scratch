@@ -9,14 +9,15 @@
                     <i class="material-icons">filter_list</i>
                 </md-button>
                 
-                <span class="md-title">Filter these [channels]</span>
+                <span class="md-title">Filter these channels</span>
                 
             </div>
             
             
 
             <md-card>
-            <input type="search" ng-model="q" placeholder="filter your saved [channels]..." aria-label="filter searches" />
+            <input type="search" ng-model="q" placeholder="filter your saved channels..." aria-label="filter searches" />
+            <md-switch ng-model="custom" ng-true-value="'custom'" ng-false-value="null">Custom Curated Only</md-switch>
             </md-card>
 
           

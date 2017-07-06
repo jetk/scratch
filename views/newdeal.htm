@@ -65,8 +65,25 @@
         </md-card-header>    
         
 <md-card-content>
+    
+    <div layout="column">
+    
     <md-checkbox> My investement vehicle is leading the deal</md-checkbox>
-         <div>
+        
+        
+    
+    
+        <md-input-container>
+        <label>Minimum ticket size</label>
+        <input type="number">
+      </md-input-container>
+    <md-input-container>
+        <label>Deal Round Number</label>
+        <input type="number">
+      </md-input-container>
+    </div>
+    
+    <div>
       <md-input-container>
         <label>Target total funding</label>
         <input ng-model="slider.maxValue" type="number">
@@ -83,7 +100,6 @@
           rz-slider-options="slider.options"></rzslider>
 
     
-        
 
         </md-card-content>
     </md-card>

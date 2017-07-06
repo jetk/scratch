@@ -25,12 +25,28 @@
     <md-card >
         <md-card-header  layout="row">
             <md-card-header-text>
-                <span style="headline">Select Investors to Syndicate To</span>
+                <span class="md-title">Select Investors to Syndicate To</span>
             </md-card-header-text>
         <md-button class="md-primary" ng-click="match_investors()">Top up with matched investors from Go4venture</md-button>
         </md-card-header>
     </md-card>
+    <md-card>
+        <md-card-header  layout="row">
+            <md-card-header-text>
+                <span class="md-title">Invite non-platform investors</span>
+            </md-card-header-text>
+        <md-button class="md-primary" ng-click="add_to_list(non_platform_investor)">Add to list</md-button>
     
+        </md-card-header>
+            <input type="text" ng-model="non_platform_investor">
+        <md-list>
+            <md-list-item ng-repeat="investor in non_platform_to_add"> <md-checkbox layout="row" align="center center"  ng-model="investor.wanted" ></md-checkbox>{{investor.Investor}}</md-list-item>
+        </md-list>
+    </md-card>
+    <md-card>
+    
+    
+    </md-card>
 
         
          <md-card ng-show="match" class="animate-show-hide" md-theme="alt">
@@ -50,6 +66,8 @@
 
                 <div>
                 </div>
+                
+                
                 <md-chips readonly="true">
                     <md-chip ng-style="myObj"><icon ></icon>
                 {{investor.overall_match}}% match
@@ -67,8 +85,21 @@
     <md-card>
         <md-card-header >
             <md-card-header-text>
-                <span style="headline">Select from my Investors</span>
+                   <span class="md-title">Select from my Investors</span>
             </md-card-header-text>
+        </md-card-header>
+    
+        <md-card-header>
+             <md-card-header-text>
+                   <span>Cohorts</span>
+            </md-card-header-text>
+            <div>
+            <md-button class="md-warn" ng-repeat="cohort in investor_cohorts" ng-click="tick_all_cohort(cohort.cohort_name)">
+                <md-icon> <i class="material-icons">group</i>
+                </md-icon>
+                
+                {{cohort.cohort_name}}</md-button>
+            </div>
         </md-card-header>
 
         <md-list>
@@ -81,6 +112,9 @@
 
                 <div>
                 </div>
+                
+                <div layout-align="end end" layout="column">
+                    
                 <md-chips readonly="true">
                     <md-chip ng-style="myObj"><icon ></icon>
                 {{investor.overall_match}}% match
@@ -89,6 +123,12 @@
                     <md-chip ng-click="null"><i class="material-icons">location_on</i> {{investor.geography_match}}%</md-chip>
                     <md-chip><i class="material-icons">show_chart</i> {{investor.stage_match}}%</md-chip>
                 </md-chips>
+                    <md-chips md-them="alt" ng-model="investor.Cohorts" readonly="true">
+                        <md-chip ng-click="select_cohort($chip)"><i class="material-icons">people</i>{{$chip.name}}</md-chip>
+                    </md-chips>
+                    
+                    
+                </div>
                 <md-button class="md-raised" align="center center" ng-click="linkedin_dialog($event, company.lin, company.title)">
                     <md-icon>   <i class="material-icons">group</i></md-icon> {{investor.Contacts}}
                 </md-button>

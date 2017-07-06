@@ -89,6 +89,9 @@ angular.module('app.controllers', [])
         */
         
         
+        var find_unique_cohorts = function(){
+            
+        
         for (var i = 0; i < my_investors.length; i++) {
             if (my_investors[i].Cohorts != null) {
                 var found = false
@@ -113,8 +116,11 @@ angular.module('app.controllers', [])
                 }
             }
         }
+        }
         
-        console.log("total tags should be: "+JSON.stringify($scope.investor_cohorts))
+        find_unique_cohorts()
+        
+//        console.log("total tags should be: "+JSON.stringify($scope.investor_cohorts))
         
         /*
         for (var i = 0; i < $scope.investor_cohorts.length; i++) {
@@ -145,7 +151,7 @@ angular.module('app.controllers', [])
                 }
                      }
         }
-        console.log("display objects are: "+JSON.stringify($scope.investor_cohorts))
+//        console.log("display objects are: "+JSON.stringify($scope.investor_cohorts))
 }])
 
     .controller('alphaCtrl', ['$scope', '$mdSidenav', '$http', '$location', '$timeout', 'feed_generator', function ($scope, $mdSidenav, $http, $location, $timeout, feed_generator) {
@@ -1886,7 +1892,7 @@ angular.module('app.controllers', [])
                 {
                     name: "Y-Combinator Cohorts",
                     comments: "",
-                    filters: ["Seed, Custom"],
+                    filters: ["Seed", "Custom"],
                     contributors: ["g4v", "ycombinator"]
             },
                   {
@@ -1915,7 +1921,7 @@ angular.module('app.controllers', [])
                 {
                     name: "Accel Portfolio",
                     comments: "",
-                    filters: ["UK", "custom"],
+                    filters: ["UK", "Custom"],
                     contributors: ["g4v", "accel"]
             },
                
@@ -1937,14 +1943,14 @@ angular.module('app.controllers', [])
                 {
                     name: "Chris Lowe",
                     comments: "",
-                    filters: ["custom"],
+                    filters: ["Custom"],
                     contributors: ["chris_lowe"]
             },
                
                 {
                     name: "Stuart Webb",
                     comments: "",
-                    filters: ["custom"],
+                    filters: ["Custom"],
                     contributors: ["stuart_webb"]
             },
                 
@@ -2162,12 +2168,80 @@ angular.module('app.controllers', [])
         $scope.my_investors = my_investors;
 
         
+        $scope.non_platform_to_add = []
+        
+        $scope.add_to_list = function(investor){
+            
+            var new_investor={Investor:investor,wanted:true}
+            $scope.non_platform_to_add.push(new_investor) 
+        }
+        
         $scope.myObj = {
             "color": "white",
             "background-color": "red",
         }
 
 
+        $scope.select_cohort= function (cohort){
+            console.log(cohort);    
+        }
+        
+        
+        $scope.push_to_selected = function (chip) {
+            console.log(JSON.stringify(chip))
+            //$scope.selectedFilters.push(chip)
+        }
+        
+        $scope.investor_cohorts = []
+        
+        var find_unique_cohorts = function(){
+            
+        
+        for (var i = 0; i < my_investors.length; i++) {
+            if (my_investors[i].Cohorts != null) {
+                var found = false
+
+                for (var j = 0; j < my_investors[i].Cohorts.length; j++) {
+
+                    $scope.investor_cohorts.some(function (entry) {
+                        if (entry.cohort_name == my_investors[i].Cohorts[j]) {
+                            found = true
+                        }
+                    })
+
+
+                    if (found == false) {
+                        var new_cohort = {
+                            cohort_name: my_investors[i].Cohorts[j],
+                            members: []
+                        }
+                        $scope.investor_cohorts.push(new_cohort)
+
+                    }
+                }
+            }
+        }
+        }
+        
+        
+        find_unique_cohorts()
+        //console.log($scope.investor_cohorts)
+        
+      
+        $scope.tick_all_cohort = function(cohort_name){
+            
+            
+            
+            $scope.my_investors.some(function (entry) {
+                for (cohort of entry.Cohorts){
+                    if (cohort == cohort_name){entry.wanted=!entry.wanted}
+                }
+           
+        });
+            
+            
+        }
+        
         $scope.match = false
 
         $scope.match_investors = function () {
@@ -2195,18 +2269,20 @@ angular.module('app.controllers', [])
         
         var selected_investors =[]
         set_investors=function(){
-            for (var i = 0; i<$scope.coidb_matches.length;i++){
-                if($scope.coidb_matches[i].wanted){
-               var new_name = $scope.coidb_matches[i].Investor
-                selected_investors.push(new_name)
+            for (entry of $scope.coidb_matches){
+if(entry.wanted){
+                    selected_investors.push(entry.Investor)
+                }            }
+             for (entry of $scope.my_investors){
+                if(entry.wanted){
+                    selected_investors.push(entry.Investor)
                 }
             }
-             for (var j = 0; j<$scope.my_investors.length;j++){
-                if($scope.my_investors[j].wanted){
-                selected_investors.push($scope.my_investors[j].Investor)
+            for(entry of $scope.non_platform_to_add){
+                if(entry.wanted){
+                    selected_investors.push(entry.Investor)
                 }
             }
-            
         }
         
         
@@ -2227,7 +2303,33 @@ angular.module('app.controllers', [])
     .controller('pipelineCtrl', ['$scope', '$mdDialog', 'investor_list', '$location', 'coidb', function ($scope, $mdDialog, investor_list, $location, coidb) {
         
         var passed_orgs = investor_list.get_investor_list()
+        /*
+        $scope.profile_popover = function ($event, name) {
+           $mdDialog.show({
+                targetEvent: $event,
+                controller: function ($scope) {
+                    //          $scope.searchText = 'Enter a company';
+                    $scope.items = co_service;
+                },
+                templateUrl: 'views/profile.htm',
+                scope: $scope.$new()
+            })
+        }*/
         
+        
+          $scope.profile_popover = function ($event, name) {
+    $mdDialog.show({
+      
+      templateUrl: 'views/dialogues/profile_holder.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      clickOutsideToClose:true
+    })
+        ;
+  };
+
+        
+        console.log(JSON.stringify(passed_orgs))
               $scope.go_to_profile = function (company) {
 
             $location.path('/profile').search({
@@ -2306,9 +2408,9 @@ angular.module('app.controllers', [])
             console.log("it's a setup!")
             for (var i = 0; i<coidb.length ; i++){
                 $scope.go4_recs.push(coidb[i].Investor)
-                console.log(JSON.stringify($scope.go4_recs))
+                //console.log(JSON.stringify($scope.go4_recs))
             }
-            console.log(JSON.stringify($scope.go4_recs))
+            //console.log(JSON.stringify($scope.go4_recs))
         }
         
         $scope.invite_to_deal = function(index){
@@ -2514,6 +2616,7 @@ angular.module('app.controllers', [])
 
         console.log("this is profile controller")
         var company = $location.search().company
+        console.log("scope fompany is"+$scope.company )
         console.log("arrived from elsewhere, company is: " + company)
 
         $http.get("example_profile.json").success(function (data) {
