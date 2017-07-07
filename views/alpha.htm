@@ -1,23 +1,21 @@
-<md-content class="md-warn" layout-xs="column" layout="row">
 
+<md-content class="md-warn" layout-xs="column" layout="row">
 
     <div layout="row" ng-cloak>
 
-
-        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
-
-            <!--
+        <div>
             
-                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
-    <label>
-      <input type="checkbox" ng-model="filter[sector]" />
-      {{ sector }}
-    </label>
-            </div>
 
--->
+                  <md-button ng-show="collapsed" class="md-fab md-mini" ng-click="openLeftMenu()">
+                    <i class="material-icons">filter_list</i>
+                </md-button>
+        
+        </div>
+        <md-sidenav md-component-id="left" ng-show="!collapsed" class="md-sidenav-left" md-is-locked-open="true" layout="column">
 
-            <div layout="row">
+        
+
+            <div class="md-toolbar-tools md-warn" layout="row">
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
@@ -39,11 +37,10 @@
 
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-                        <h5>
-                            <span>CURATION LEVEL</span>
-                        </h5>
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short"  layout="row">
+                        <i class="material-icons">album</i>     
+                        <span flex>CURATION</span>
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -51,7 +48,7 @@
                 <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
 
           
-          <md-select aria-label="ffff" flex ng-model="mode">
+          <md-select style="min-height: 30px" aria-label="ffff" ng-model="mode">
             
             <md-option ng-value=0> My Companies </md-option>
             <md-option ng-value=1> Recommended Companies </md-option>
@@ -64,12 +61,11 @@
 
 
 
-            <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-                        <h3>
-                            <span>SECTORS</span>
-                        </h3>
+        <div class="md-accordion">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short" layout="row">
+                        <i class="material-icons">bubble_chart</i>     
+                        <span>SECTORS</span>
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -85,12 +81,11 @@
                 </div>
             </div>
 
-            <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-
+             <div class="md-accordion">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short" layout="row">
+                        <i class="material-icons">location_on</i>    
                         <span>GEOGRAPHIES</span>
-
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -107,12 +102,11 @@
             </div>
 
 
-            <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-
+                    <div class="md-accordion">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short"  layout="row">
+                        <i class="material-icons">description</i> 
                         <span>SUBJECTS</span>
-
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -130,12 +124,11 @@
 
 
 
-            <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-
-                        <span>STAGE</span>
-
+                    <div class="md-accordion">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short" layout="row">
+                        <i class="material-icons">show_chart</i>    
+                        <span>STAGES</span>
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -155,29 +148,20 @@
     </div>
 
     <div flex-xs layout="column">
-<!--
-        <md-card  class="md-padding" layout="row">
-            <span ng-if="list_loaded" class="md-title" layout-align="center top" flex>News related to: <strong>{{get_mode_name(mode)}}</strong> companies that have raised over ${{minimum_raised}}  <md-tooltip md-visible="true">Slide to the right to see wider content!</md-tooltip> </span>
 
-
-            <md-slider ng-model="mode" ng-change="log()" min="0" max="2" aria-label="mode"></md-slider>
-
-
-        </md-card>
--->
 
         <md-card ng-if="list_loaded===true" ng-repeat="article in get_article_list(mode) | filter:q  |filter:filterBySector | filter:filterByGeography | filter:filterBySubject">
             
             
                     <div ng-style="myObj"  class="md-dense" layout="row">
              
-                <md-list-item ng-click="null" class="md-accent md-2-line" flex="50" >
+                <md-list-item style="min-height: 30px" ng-click="null" class="md-accent md-2-line" flex="50" >
           <img ng-src="{{article.subject_avatar}}" style="max-width:32px ; max-height:32px"/>
           <div class="md-list-item-text" style="padding-left:20px" layout="column">
             <h3>{{article.subject}}</h3>
           </div>
         </md-list-item>
-            <md-list-item ng-click="null" class="md-2-line" flex="50" >
+            <md-list-item style="min-height: 30px" ng-click="null" class="md-2-line" flex="50" >
           <div class="md-list-item-text" style="text-align: right; padding-right:20px" layout="column">
             <h3>By {{article.contributor}}</h3>
             
@@ -243,7 +227,7 @@
 
 
                 <div class="md-accordion" ng-repeat="data in company_lists">
-                    <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <md-toolbar  class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
                         <div class="md-toolbar-tools">
                             <h3>
                                 <span>{{data.list_name}}</span>

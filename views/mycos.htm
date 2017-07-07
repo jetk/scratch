@@ -6,28 +6,23 @@
         
         
         
-        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
 
-            <!--
-            
-                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
-    <label>
-      <input type="checkbox" ng-model="filter[sector]" />
-      {{ sector }}
-    </label>
-            </div>
 
--->
+      <div ng-show="collapsed"><md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+                    <i class="material-icons">filter_list</i>
+                </md-button></div>
+        
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column" ng-show="!collapsed">
 
-            <div layout="row">
+
+            <div class="md-toolbar-tools"  layout="row">
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
 
-                <span class="md-title">Filter your companies</span>
+                <span class="md-title">Filter these companies</span>
 
             </div>
-
 
 
             <md-card>
@@ -35,8 +30,8 @@
             </md-card>
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
                         <h3>
                             <span>SECTORS</span>
                         </h3>
@@ -56,8 +51,8 @@
             </div>
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
 
                         <span>GEOGRAPHIES</span>
 
@@ -78,8 +73,8 @@
 
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
 
                         <span>STAGE</span>
 
@@ -103,12 +98,12 @@
         </md-sidenav>
     </div>
     
-    <div flex-xs layout="column">
+    <div flex layout="column">
         
         <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
             <md-card-header class="md-padding" layout="row">
                 <md-card-avatar ng-click="go_to_profile(company)" style="min-width: 128px; min-height: 128px">
-                    <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
+                    <img class="md-user-avatar" ng-src="img/logos/{{company.Company|limitTo:1}}.png">
                 </md-card-avatar>
 
                 <div flex>

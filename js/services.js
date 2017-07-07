@@ -91,6 +91,7 @@ angular.module('app.services', [])
                 
                 var subj_pair= generate_subject()
                 var cont_pair= generate_contributor()
+                var letter= feed_entry.Company.charAt(0)
                 //console.log(JSON.stringify(generate_contributor()))
                 var new_feed_item = {
                     company: feed_entry.Company,
@@ -99,7 +100,7 @@ angular.module('app.services', [])
                     contributor: cont_pair.contributor_name,
                     contributor_avatar: cont_pair.contributor_avatar,
                     tags: generate_tags(),
-                    avatar: "http://loremflickr.com/48/48/logo?random="+i,
+                    avatar: "img/logos/"+letter+".png",
                     sector: feed_entry.Sector,//generate_sector(),
                     geography: feed_entry.IsoCountry1,
                     stage: generate_stage(),

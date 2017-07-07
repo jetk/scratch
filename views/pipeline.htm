@@ -31,21 +31,17 @@
     <md-card ng-hide="nondeal||setup">
     <img ng-src="img/pipeline_progress.png">
     </md-card>
-<md-content layout=row>
-
-
-
+<md-content >
+<div ng-style="pipeline_background_style" layout="row"> 
+<md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline" >
     
-      
-            
-
-<md-card md-dynamic-height flex="20" ng-repeat="stage in current_pipeline" ng-style="cardstyle">
-    
-    <md-card-header>
-        <md-card-header-text>
+<!--    <md-card-header>-->
+        <md-toolbar style="min-height: 20px" class="md-hue-2" >
+        <div class="md-toolbar-tools-short">
             <span class="headline">{{stage.name| uppercase }}</span>
-        </md-card-header-text>
-    </md-card-header>
+        </div>
+        </md-toolbar>
+<!--    </md-card-header>-->
     <md-card md-theme="alt" ng-repeat="name in stage.orgs track by $index">        
         <div align="end end">
         <md-button class="md-icon-button" ng-click="profile_popover($event, name)"><md-icon md-font-set="material-icons">description</md-icon>
@@ -79,5 +75,5 @@
     </md-card-header>
     
     </md-card>
-
+</div>
 </md-content>

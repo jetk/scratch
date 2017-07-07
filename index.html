@@ -57,10 +57,11 @@
         </md-autocomplete>
       <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
         <md-nav-item ng-repeat="item in nav_items" md-nav-href="#{{item.url}}" name="{{item.label}}">
-        <md-icon class="material-icons">{{item.icon}}
+        <md-icon class="material-icons"><font color="white">{{item.icon}}</font>
         <!--md-tooltip>{{item.label}}</md-tooltip-->
         </md-icon>  
-            <span style="font-size: 0.875em">{{item.label}}</span>
+            <span style="font-size: 0.8em"><font color="white">
+                {{item.label}}</font></span>
           
         </md-nav-item>
       </md-nav-bar>            

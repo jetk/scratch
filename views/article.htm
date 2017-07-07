@@ -3,7 +3,7 @@
 
     <md-card layout="column">
         <md-card-header class="md-padding" layout="row">
-                <img style="max-width:64px;max-height:64px" ng-src="http://loremflickr.com/128/128/logo">
+                <img style="max-width: 64px; max-height: 64px" class="md-user-avatar" ng-src="img/logos/{{article_company|limitTo:1}}.png">
             <div flex="2">&nbsp</div>
             <md-card-header-text layout="column">
                 <span class="md-display-1">{{article_company}}</span>
@@ -100,7 +100,7 @@
                 <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
                     <md-list class="md-dense">
                         <md-list-item ng-click="go_to_profile(fake_company)" ng-repeat="fake_company in fake_companies track by $index">
-                            <img style="max-height:32px;max-width:32px" class="md-avatar" ng-src="http://loremflickr.com/64/64/logo?random={{$index}}">
+                            <img style="max-width: 32px; max-height: 32px" class="md-user-avatar" ng-src="img/logos/{{fake_company.Company  |limitTo:1}}.png"><div>&nbsp;&nbsp;</div>
                             <div class="md-list-item-text">{{fake_company.Company}}</div>
                         </md-list-item>
                     </md-list>
@@ -117,7 +117,7 @@
                 <md-card-content layout-wrap style="max-height:175px; overflow-y: scroll">
                     <md-list class="md-dense">
                         <md-list-item ng-click="go_to_profile(fake_investor)" ng-repeat="fake_investor in fake_investors track by $index">
-                            <img style="max-height:32px;max-width:32px" class="md-avatar" ng-src="http://loremflickr.com/64/64/logo?random={{$index+10}}">
+                           <img style="max-width: 32px; max-height: 32px" class="md-user-avatar" ng-src="img/logos/{{fake_investor.Company  |limitTo:1}}.png"><div>&nbsp;&nbsp;</div>
                             <div class="md-list-item-text">{{fake_investor.Company}}</div>
                         </md-list-item>
                     </md-list>

@@ -13,7 +13,10 @@
     <md-card>
 
         <div ng-repeat="cohort in investor_cohorts">
-        <md-toolbar class="md-padding"> {{cohort.cohort_name}}
+        <md-toolbar class="md-hue-2"> 
+            <div class="md-toolbar-tools">
+            {{cohort.cohort_name}}
+            </div>
             </md-toolbar>
         <md-card ng-repeat="investor in cohort.members|filter:q" ng-click="null">
            <md-list>

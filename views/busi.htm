@@ -4,22 +4,14 @@
     <div layout="row" ng-cloak>
 
         
+        <div ng-show="collapsed"><md-button class="md-fab md-mini" ng-click="openLeftMenu()">
+                    <i class="material-icons">filter_list</i>
+                </md-button></div>
         
-        
-        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
+        <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="true" layout="column" ng-show="!collapsed">
 
-            <!--
-            
-                  <div ng-if="list_loaded" ng-click="log()" ng-repeat="sector in getSectors(get_article_list(mode))">
-    <label>
-      <input type="checkbox" ng-model="filter[sector]" />
-      {{ sector }}
-    </label>
-            </div>
 
--->
-
-            <div layout="row">
+            <div class="md-toolbar-tools"  layout="row">
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
@@ -35,11 +27,9 @@
             </md-card>
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-                        <h3>
+                <md-toolbar style="min-height:20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
                             <span>SECTORS</span>
-                        </h3>
                         <span flex=""></span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
@@ -56,9 +46,9 @@
             </div>
 
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-
+                <md-toolbar style="min-height:20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
+                        <i class="material-icons">location_on</i> 
                         <span>GEOGRAPHIES</span>
 
                         <span flex=""></span>
@@ -76,7 +66,26 @@
                 </div>
             </div>
 
+         <div class="md-accordion">
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short">
+                        <i class="material-icons">show_chart</i> 
+                        <span>STAGE</span>
 
+                        <span flex=""></span>
+                        <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                    </div>
+                </md-toolbar>
+                <div ng-class="{dataContent:true, activeContent:data.expanded}" layout="row">
+                    <div ng-if="list_loaded">
+                        <label><input type="checkbox"/>Seed</label>
+                        <label><input type="checkbox"/>Series A</label>
+                        <label><input type="checkbox"/>Series B</label>
+                        <label><input type="checkbox"/>Series C</label>
+                        <label><input type="checkbox"/>Late</label>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -85,10 +94,11 @@
     
     <div flex-xs layout="column">
         
-        <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:200 track by $index">
+        <md-card  ng-repeat="company in companies |filter:q |filter:filterBySector | filter:filterByGeography |limitTo:400 |orderBy:'Description' track by $index">
             <md-card-header class="md-padding" layout="row">
                 <md-card-avatar style="min-width: 128px; min-height: 128px" ng-click="go_to_profile(company)">
-                    <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
+
+                    <img class="md-user-avatar" ng-src="img/logos/{{company.Company|limitTo:1}}.png">
                 </md-card-avatar>
 
                 <div flex>
@@ -119,28 +129,7 @@
             </md-card-header>
         
             </md-card>
-<!--
-<md-card class="md-padding">
-<md-card-header  layout="row">
-    <md-card-avatar style="max-width: 48px; max-height: 48px">
-        <img class="md-user-avatar" ng-src="http://loremflickr.com/48/48/logo?random={{$index}}">
-    </md-card-avatar>
-    <md-card-header-text  class="md-padding">
-        <span class="md-title">
-        {{company.Company}}
-        </span>
-        <md-card-header-text> 
-</md-card-header>
-<md-card-content>{{company.Description|limitTo:140}}</md-card-content>
- <md-card-footer>
-     <div layout="row" layout-wrap>
-         <md-card><i class="material-icons">bubble_chart</i> {{company.subsector}}</md-card>
-         <md-card><i class="material-icons">location_on</i> {{company.IsoCountry1}}</md-card>
-         <md-card><i class="material-icons">show_chart</i> A </md-card>
-     </div>
-</md-card-footer>
-</md-card>
--->
+
 
 
     </div>

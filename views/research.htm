@@ -1,10 +1,10 @@
-<md-content class="md-padding md-hue-1"layout-xs="column" layout="row">
+<md-content class="md-padding md-hue-2"layout-xs="column" layout="row">
 
     
       <md-sidenav md-component-id="research_left" class="md-sidenav-left" md-is-locked-open="true" layout="column">
  
 
-            <div layout="row">
+            <div class="md-toolbar-tools" layout="row">
                 <md-button class="md-fab md-mini" ng-click="openLeftMenu()">
                     <i class="material-icons">filter_list</i>
                 </md-button>
@@ -23,12 +23,10 @@
           
           
             <div class="md-accordion">
-                <md-toolbar ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-                        <h3>
-                            <span>SECTORS</span>
-                        </h3>
-                        <span flex=""></span>
+                <md-toolbar style="min-height: 20px" class="md-hue-2"ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short" layout="row">
+                        <i class="material-icons">bubble_chart</i> 
+                            <span flex>SECTORS</span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
                 </md-toolbar>
@@ -45,12 +43,10 @@
      
           
             <div class="md-accordion">
-                <md-toolbar style="max-height:5px" ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
-                    <div class="md-toolbar-tools">
-                        <h3>
-                            <span>GEOGRAPHIES</span>
-                        </h3>
-                        <span flex=""></span>
+                <md-toolbar style="min-height: 20px" class="md-hue-2"style="max-height:5px" ng-init="data.expanded = true" ng-click="data.expanded = !data.expanded">
+                    <div class="md-toolbar-tools-short"  layout="row">
+                        <i class="material-icons">location_on</i> 
+                            <span flex>GEOGRAPHIES</span>
                         <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
                     </div>
                 </md-toolbar>
@@ -75,9 +71,10 @@
     
     
     <div layout="row" layout-wrap ng-repeat="(name,list) in channel_lists track by $index">
-        <md-toolbar class="md-hue-2 md-padding">
-            
+        <md-toolbar class="md-hue-2"class="md-hue-2 md-padding">
+            <div class="md-toolbar-tools">
             {{name}}
+            </div>
             
         </md-toolbar>
         <md-card class="md-padding" flex="40" ng-repeat="channel in list track by $index">
@@ -113,9 +110,10 @@
 
     </div>
         
-         <md-toolbar class="md-hue-2 md-padding">
-            
+         <md-toolbar class="md-hue-2"class="md-hue-2 md-padding">
+             <div class="md-toolbar-tools">
             ALL CHANNELS
+             </div>
             
         </md-toolbar>
     

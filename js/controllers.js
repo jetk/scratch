@@ -54,8 +54,8 @@ angular.module('app.controllers', [])
                 url: "/feed"
         },
             {
-                label: "Me",
-                icon: "face",
+                label: "My Profile",
+                icon: "account_circle",
                 url: "/me"
         }
     ]
@@ -130,7 +130,7 @@ angular.module('app.controllers', [])
 
             
         $scope.myObj = {
-            "background-color": "gold",
+            "background-color": "Silver",
         }
 
         $scope.minimum_raised = 10
@@ -213,11 +213,17 @@ angular.module('app.controllers', [])
             }
         };
 
+        
+              
         /*
         Controls the sidenav
         */
+        
+        $scope.collapsed=false
         $scope.openLeftMenu = function () {
-            $mdSidenav('left').toggle();
+            //$mdSidenav('left').toggle();
+            
+            $scope.collapsed=!$scope.collapsed
         };
         $scope.openRightMenu = function () {
             $mdSidenav('right').toggle();
@@ -1578,8 +1584,10 @@ angular.module('app.controllers', [])
         $scope.countries = co_service
 
 
+          $scope.collapsed=false
         $scope.openLeftMenu = function () {
-            $mdSidenav('left').toggle();
+            //$mdSidenav('left').toggle();
+            $scope.collapsed=!$scope.collapsed
         };
 
 
@@ -1773,9 +1781,12 @@ angular.module('app.controllers', [])
         }
 
 
+             $scope.collapsed=false
         $scope.openLeftMenu = function () {
-            $mdSidenav('left').toggle();
+            //$mdSidenav('left').toggle();
+            $scope.collapsed=!$scope.collapsed
         };
+
 
 
 }])
@@ -2279,7 +2290,7 @@ if(entry.wanted){
         
         $scope.profile_popover = profile_popover
        
-        $scope.cardstyle={"background-color":"gold"}
+        $scope.pipeline_background_style={"background-color":"black"}
         
       
         
@@ -2737,9 +2748,9 @@ if(entry.wanted){
 
         $scope.countries = co_service
 
-
+        $scope.collapsed=false
         $scope.openLeftMenu = function () {
-            $mdSidenav('left').toggle();
+            $scope.collapsed=!$scope.collapsed
         };
 
 

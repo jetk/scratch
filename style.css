@@ -1,8 +1,31 @@
+.md-toolbar-tools-short {
+  font-size: 20px;
+  letter-spacing: 0.005em;
+  box-sizing: border-box;
+  font-weight: 400;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 32px;
+  max-height: 32px;
+  padding: 0 8px;
+  margin: 0; }
+
+
 md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-active {
  min-width: 250px !important;
  width: 250vw !important;
  max-width: 250px !important;
 }
+
 
 .md-accordion .expandCollapse { 
   width:10px;
